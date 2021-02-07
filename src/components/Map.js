@@ -3,8 +3,8 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const styles = {
-  width: "350px",
-  height: "350px"
+  width: "400px",
+  height: "400px"
 };
 
 const MapboxGLMap = () => {

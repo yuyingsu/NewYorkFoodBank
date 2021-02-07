@@ -6,11 +6,10 @@ function HeaderIndex() {
   return (
     <>
       <div className="page-header clear-filter" filter-color="blue">
-        <img src={header}></img>
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require('../assets/img/elaine-casap-qgHGDbbSNm8-unsplash.jpg') + ")",
+            backgroundImage: `url(${header})`,
           }}
         ></div>
         <Container>
