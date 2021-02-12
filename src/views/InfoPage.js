@@ -27,7 +27,7 @@ function InfoPage() {
         <div className="section section-heat-map">
           <Container>
             <Row>
-              <Col xs="12" className="ml-auto mr-auto text-center">
+              <Col style={{color:"black"}}className="text-center">
                 A Map to visualize the poverty status distribution in NYC
               <Map></Map>
               </Col>
