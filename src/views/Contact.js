@@ -28,9 +28,6 @@ function Contact() {
             <Row>
               <Col className="text-center ml-auto mr-auto" lg="6" md="8">
                 <InputGroup
-                  className={
-                    "input-lg" + (firstFocus ? " input-group-focus" : "")
-                  }
                 >
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
@@ -40,14 +37,9 @@ function Contact() {
                   <Input
                     placeholder="First Name..."
                     type="text"
-                    onFocus={() => setFirstFocus(true)}
-                    onBlur={() => setFirstFocus(false)}
                   ></Input>
                 </InputGroup>
                 <InputGroup
-                  className={
-                    "input-lg" + (lastFocus ? " input-group-focus" : "")
-                  }
                 >
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
@@ -57,8 +49,6 @@ function Contact() {
                   <Input
                     placeholder="Email..."
                     type="text"
-                    onFocus={() => setLastFocus(true)}
-                    onBlur={() => setLastFocus(false)}
                   ></Input>
                 </InputGroup>
                 <div className="textarea-container">
