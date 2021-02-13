@@ -14,6 +14,7 @@ import {
 
 // core components
 import HeaderIndex from "../components/HeaderIndex.js";
+import AddressBar from "components/AddressBar";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function InfoPage() {
@@ -34,6 +35,7 @@ function InfoPage() {
             </Row>
           </Container>
         </div>
+        <AddressBar></AddressBar>
         {/*<DefaultFooter />*/}
       </div>
     </>
