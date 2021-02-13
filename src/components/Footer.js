@@ -8,16 +8,16 @@ import { Container, Row, Col } from "reactstrap";
 const attributes = {
   background: "rgba(0,0,0,0.5)",
   width: "100%",
-  margin: "0",
-  padding: "0",
-  position: "-35px"
+  left: "0",
+  right: "0",
+  position: "absolute"
 }
 
 function Footer() {
   return (
     <>
       <footer className="footer footer-default">
-        <Container style={{margin:"0", padding:"0"}}>
+        <Container style={{margin:"0", padding:"0"}} fluid>
           <Row>
             <Col>
                 <a
