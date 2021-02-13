@@ -21,5 +21,20 @@ code {
   left: 0;
   height: 100vh;
   overflow: hidden;
-  z-index: -1; }
+  z-index: -1;
+}
 
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.col {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}

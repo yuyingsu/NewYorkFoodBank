@@ -3,8 +3,6 @@ import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 import { Link, withRouter } from "react-router-dom";
 
 const attributes = {
-  height:"400px",
-  width: "300px",
   border: "5em",
   color: "white",
   background: "rgba(0,0,0,0.5)"
