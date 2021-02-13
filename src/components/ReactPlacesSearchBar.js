@@ -1,7 +1,22 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { classnames } from './ReactPlacesEventHandler';
-
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Form,
+  FormGroup,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Col,
+  Label
+} from "reactstrap";
 class ReactPlacesSearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +57,8 @@ class ReactPlacesSearchBar extends React.Component {
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
+        this.props.address(selected);
+        this.props.geocode(lat.toString() + ", " + lng.toString())
         this.setState({
           latitude: lat,
           longitude: lng,
@@ -91,23 +108,22 @@ class ReactPlacesSearchBar extends React.Component {
             return (
               <div className="Demo__search-bar-container">
                 <div className="Demo__search-input-container">
-                  <input
+                  <InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons users_circle-08"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
                     {...getInputProps({
                       placeholder: 'Search Places...',
                       className: 'Demo__search-input',
                     })}
                   />
-                  {this.state.address.length > 0 && (
-                    <button
-                      className="Demo__clear-button"
-                      onClick={this.handleCloseClick}
-                    >
-                      x
-                    </button>
-                  )}
+                    </InputGroup>
                 </div>
                 {suggestions.length > 0 && (
-                  <div className="Demo__autocomplete-container">
+                  <div style={{color:"black"}} className="Demo__autocomplete-container">
                     {suggestions.map(suggestion => {
                       const className = classnames('Demo__suggestion-item', {
                         'Demo__suggestion-item--active': suggestion.active,
@@ -155,11 +171,9 @@ class ReactPlacesSearchBar extends React.Component {
               </div>
             ) : (
               <div>
-                <div className="Demo__geocode-result-item--lat">
+                <div style={{color:"black"}}>
                   <label>Latitude:</label>
                   <span>{latitude}</span>
-                </div>
-                <div className="Demo__geocode-result-item--lng">
                   <label>Longitude:</label>
                   <span>{longitude}</span>
                 </div>
