@@ -1,7 +1,7 @@
 import './App.css';
 import NavbarIndex from './components/NavbarIndex';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { AddOrganization, InfoPage, LandingPage, LoginPage } from './views/';
+import { AddOrganization, LandingPage, Login, MapHouseholdIncome, Register } from './views/';
 
 function App() {
   return (
@@ -11,8 +11,9 @@ function App() {
         <header className="App-header">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/addorg" component={AddOrganization} />
-          <Route exact path="/info" component={InfoPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/info" component={MapHouseholdIncome} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
         </header>
       </div>
     </BrowserRouter>

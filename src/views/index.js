@@ -1,5 +1,6 @@
 export { default as AddOrganization } from './AddOrganization'
 export { default as Contact } from './Contact'
-export { default as InfoPage } from './InfoPage'
 export { default as LandingPage } from './LandingPage'
-export { default as LoginPage } from './LoginPage'
+export { default as Login } from './Login'
+export { default as MapHouseholdIncome } from './MapHouseholdIncome'
+export { default as Register } from './Register'

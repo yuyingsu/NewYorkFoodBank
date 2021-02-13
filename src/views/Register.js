@@ -20,7 +20,7 @@ import { register } from '../actions/userActions';
 // core components
 
 
-function RegisterPage(props) {
+function Register(props) {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
   const [username, setUsername] = useState('');
@@ -58,13 +58,13 @@ function RegisterPage(props) {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
+            backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
         ></div>
         <div className="content">
           {loading && <div>Loading...</div>}
           {error && <div>{error}</div>}
-          <Container>    
+          <Container>
             <Col className="ml-auto mr-auto" md="12">
               <Card className="card-login card-plain">
                 <Form action="" className="form" method="">
@@ -132,7 +132,7 @@ function RegisterPage(props) {
                     </InputGroup>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button 
+                    <Button
                       block
                       className="btn-round"
                       color="info"
@@ -153,4 +153,4 @@ function RegisterPage(props) {
   );
 }
 
-export default RegisterPage;
+export default Register;

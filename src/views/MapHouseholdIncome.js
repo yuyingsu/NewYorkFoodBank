@@ -14,7 +14,7 @@ import {
 
 // core components
 import HeaderIndex from "../components/HeaderIndex.js";
-import AddressBar from "components/AddressBar";
+import AddressBar from "../components/AddressBar";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function InfoPage() {
