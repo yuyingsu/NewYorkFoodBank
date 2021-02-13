@@ -16,13 +16,27 @@ import {
   Col,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { signin } from '../actions/userActions';
 // core components
 
 
-function LoginPage() {
+function LoginPage(props) {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
-  React.useEffect(() => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const userSignin = useSelector(state => state.userSignin);
+  const { loading, userInfo, error } = userSignin;
+  const dispatch = useDispatch();
+  
+  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+  
+  useEffect(() => {
+    if (userInfo) {
+      props.history.push(redirect);
+    }
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -32,7 +46,12 @@ function LoginPage() {
       document.body.classList.remove("login-page");
       document.body.classList.remove("sidebar-collapse");
     };
-  }, []);
+  }, [userInfo]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(signin(username, password));
+  }
   return (
     <>
       <div className="page-header clear-filter" filter-color="blue">
@@ -64,10 +83,11 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="First Name..."
+                        placeholder="Username..."
                         type="text"
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
+                        onChange={(e) => setUsername(e.target.value)}
                       ></Input>
                     </InputGroup>
                     <InputGroup
@@ -82,10 +102,11 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Last Name..."
-                        type="text"
+                        placeholder="Password..."
+                        type="password"
                         onFocus={() => setLastFocus(true)}
                         onBlur={() => setLastFocus(false)}
+                        onChange={(e) => setPassword(e.target.value)}
                       ></Input>
                     </InputGroup>
                   </CardBody>
@@ -95,10 +116,10 @@ function LoginPage() {
                       className="btn-round"
                       color="info"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={submitHandler}
                       size="lg"
                     >
-                      Get Started
+                      Log In
                     </Button>
                     <div className="pull-left">
                       <h6>
