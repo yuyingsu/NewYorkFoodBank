@@ -33,8 +33,8 @@ const defaultSchedule = rangeStrings.map(range =>
 );
 
 function AddOrganization() {
-  const [organizationName, setOrganizationName] = React.useState("");
-  const [contactName, setContactName] = React.useState("");
+  const [organization_name, setOrganizationName] = React.useState("");
+  const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [type, setType] = React.useState("");
   const [address, setAddress] = React.useState("");
@@ -49,8 +49,8 @@ function AddOrganization() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let test = JSON.stringify({
-      "organization_name": organizationName,
-      "contact_name": contactName,
+      "organization_name": organization_name,
+      "contact_name": contact_name,
       "phone": phone,
       "type": type,
       "address": address,
@@ -58,7 +58,7 @@ function AddOrganization() {
       "hours": JSON.stringify({schedule})
     });
     console.log(test);
-    dispatch(register(test));
+    dispatch(register(organization_name, contact_name, phone, type, address, geocode, schedule));
   }
 
   return (

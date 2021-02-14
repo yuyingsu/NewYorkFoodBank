@@ -6,18 +6,12 @@ import {
   ORG_REGISTER_FAIL,
 } from "../constants/orgConstants";
 
-const register = (organizationName, contactName, phone, type, address, geocode, schedule) => async (dispatch, getState) => {
+const register = (organization_name, contact_name, phone, type, address, geocode, schedule) => async (dispatch, getState) => {
   try {
-    dispatch({ type: ORG_REGISTER_REQUEST, payload: {organizationName, contactName, phone, type, address, geocode, schedule} });
+    dispatch({ type: ORG_REGISTER_REQUEST, payload: {organization_name, contact_name, phone, type, address, geocode, schedule} });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.post("http://127.0.0.1:5000/add", {
-      "organization_name": organizationName,
-      "contact_name": contactName,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "geocode": geocode,
-      "hours": JSON.stringify({schedule})
+    console.log(userInfo)
+    const { data } = await Axios.post("http://127.0.0.1:5000/add", { organization_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), "user_id": userInfo.user_id
     }, {
       headers: {
         Authorization: ' Bearer ' + userInfo.token
