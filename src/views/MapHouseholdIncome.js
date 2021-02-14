@@ -1,5 +1,6 @@
 import React from "react";
 import Map from "../components/Map";
+import AGoogleMap from "../components/MyMapComponent";
 // reactstrap components
 import {
   Button,
@@ -14,7 +15,7 @@ import {
 
 // core components
 import HeaderIndex from "../components/HeaderIndex.js";
-import AddressBar from "../components/AddressBar";
+import MyMapComponent from "../components/MyMapComponent";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function InfoPage() {
@@ -33,9 +34,15 @@ function InfoPage() {
               <Map></Map>
               </Col>
             </Row>
+            <Row>
+              <Col style={{color:"black"}}className="text-center">
+                A Map to visualize the pantry locations on the Google Map
+              <MyMapComponent></MyMapComponent>
+              </Col>
+            </Row>
           </Container>
         </div>
-        <AddressBar></AddressBar>
+
         {/*<DefaultFooter />*/}
       </div>
     </>
