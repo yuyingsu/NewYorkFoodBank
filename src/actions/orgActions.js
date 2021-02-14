@@ -1,5 +1,4 @@
 import Axios from "axios";
-import Cookie from 'js-cookie';
 import {
   ORG_REGISTER_REQUEST,
   ORG_REGISTER_SUCCESS,
