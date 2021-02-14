@@ -63,7 +63,7 @@ function LandingPage() {
             <div className="section-story-overview">
               <Row>
                 <Col md="6">
-                <div className="span12" style={{position: "absolute", width:"94%"}}>
+                <div className="span12" style={{position: "absolute", zIndex: "1", width:"94%"}}>
                       <CardLink />
                     </div>
                     <div
@@ -73,7 +73,8 @@ function LandingPage() {
                         paddingTop: "20px",
                         backgroundImage: `url(${leftImage})`,
                         height: "90vh",
-                        zIndex: "-1"
+                        width: "100%",
+                        zIndex: "0"
                       }}
                     >
                     </div>

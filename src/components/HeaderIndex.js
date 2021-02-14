@@ -11,6 +11,7 @@ function HeaderIndex() {
           className="page-header-image"
           style={{
             backgroundImage: `url(${header})`,
+            zIndex: "0"
           }}
         ></div>
         <Container>

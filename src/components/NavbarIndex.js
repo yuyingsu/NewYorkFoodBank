@@ -18,7 +18,8 @@ import {Link} from 'react-router-dom';
 import { logout } from '../actions/userActions';
 
 const attributes = {
-  background: "rgba(0,0,0,0.5)"
+  background: "rgba(0,0,0,0.5)",
+  zIndex: "5"
 }
 
 const HeaderIndex = (props) => {
@@ -36,7 +37,7 @@ const HeaderIndex = (props) => {
 
   return (
     <div>
-      <Navbar style={attributes} className="navbar fixed-top navbar-expand-md navbar-light bg-faded">
+      <Navbar style={attributes} className="navbar top navbar-expand-md navbar-light bg-faded">
         <NavbarBrand href="/" style={{color: "white"}}>New York Food Bank</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -68,7 +69,7 @@ const HeaderIndex = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText> 
+          <NavbarText>
             {userInfo ? (
               userInfo.username
             ) : (
