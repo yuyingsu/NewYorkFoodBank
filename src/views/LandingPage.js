@@ -16,6 +16,9 @@ import {
 import Footer from "../components/Footer";
 import HeaderIndex from "../components/HeaderIndex";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
+import centerImage from '../assets/img/joel-muniz-3k3l2brxmwQ-unsplash.jpg';
+import leftImage from '../assets/img/nico-smit-NFoerQuvzrs-unsplash.jpg';
+import CardLink from '../components/CardLink'
 
 function LandingPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -48,47 +51,47 @@ function LandingPage() {
                   in the Barents Sea.
                 </h5>
               </Col>
+              <img src={centerImage}
+                className="rounded"
+                style={{display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: "20px"}}
+                />
             </Row>
             <div className="separator separator-primary"></div>
             <div className="section-story-overview">
               <Row>
                 <Col md="6">
-                  <div
-                    className="image-container image-left"
-                    style={{/*
-                      backgroundImage:
-                        "url(" + require("../assets/img/login.jpg") + ")",
-                    */}}
-                  >
-                    <p className="blockquote blockquote-info">
-                      "Over the span of the satellite record, Arctic sea ice has
-                      been declining significantly, while sea ice in the
-                      Antarctichas increased very slightly" <br></br>
-                      <br></br>
-                      <small>-NOAA</small>
-                    </p>
-                  </div>
-                  <div
-                    className="image-container"
-                    style={{
-                      backgroundImage:
-                        "url(" + require("../assets/img/elaine-casap-qgHGDbbSNm8-unsplash.jpg") + ")",
-                    }}
-                  ></div>
-                </Col>
+                <div className="span12" style={{position: "absolute", width:"94%"}}>
+                      <CardLink />
+                    </div>
+                    <div
+                      className="rounded"
+                      style={{
+                        position: "relative",
+                        paddingTop: "20px",
+                        backgroundImage: `url(${leftImage})`,
+                        height: "90vh",
+                        zIndex: "-1"
+                      }}
+                    >
+                    </div>
+
+                  </Col>
                 <Col md="5">
-                  <div
+                  {/*<div
                     className="image-container image-right"
                     style={{
                       backgroundImage:
-                        "url(" + require("../assets/img/elaine-casap-qgHGDbbSNm8-unsplash.jpg") + ")",
+                        `url(${centerImage})`
                     }}
-                  ></div>
+                  ></div>*/}
                   <h3>
                     So what does the new record for the lowest level of winter
                     ice actually mean
                   </h3>
-                  <p>
+                  <h5>
                     The Arctic Ocean freezes every winter and much of the
                     sea-ice then thaws every summer, and that process will
                     continue whatever happens with climate change. Even if the
@@ -97,17 +100,8 @@ function LandingPage() {
                     polar dark every winter. And year-by-year, for all kinds of
                     natural reasons, there’s huge variety of the state of the
                     ice.
-                  </p>
-                  <p>
-                    For a start, it does not automatically follow that a record
-                    amount of ice will melt this summer. More important for
-                    determining the size of the annual thaw is the state of the
-                    weather as the midnight sun approaches and temperatures
-                    rise. But over the more than 30 years of satellite records,
-                    scientists have observed a clear pattern of decline,
-                    decade-by-decade.
-                  </p>
-                  <p>
+                  </h5>
+                  <h5>
                     The Arctic Ocean freezes every winter and much of the
                     sea-ice then thaws every summer, and that process will
                     continue whatever happens with climate change. Even if the
@@ -116,7 +110,7 @@ function LandingPage() {
                     polar dark every winter. And year-by-year, for all kinds of
                     natural reasons, there’s huge variety of the state of the
                     ice.
-                  </p>
+                  </h5>
                 </Col>
               </Row>
             </div>
