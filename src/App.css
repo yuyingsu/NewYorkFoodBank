@@ -20,7 +20,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(2px + 2vmin);
-  color: white;
 }
 
 @keyframes App-logo-spin {
