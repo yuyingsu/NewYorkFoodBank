@@ -13,7 +13,7 @@ const register = (organization_name, contact_name, phone, type, address, geocode
     const { data } = await Axios.post("http://127.0.0.1:5000/add", { organization_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), "user_id": userInfo.user_id
     }, {
       headers: {
-        Authorization: ' Bearer ' + userInfo.token
+        "Authorization": ' Bearer ' + userInfo.access_token
       }
     });
     dispatch({ type: ORG_REGISTER_SUCCESS, payload: data });

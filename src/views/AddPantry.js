@@ -25,31 +25,30 @@ import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
-import { register } from '../actions/orgActions';
+import { register } from '../actions/pantryAction';
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
   range.map(dateString => new Date(dateString)),
 );
 
-function AddOrganization() {
-  const [organization_name, setOrganizationName] = React.useState("");
+function AddPantry(props) {
+  const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [type, setType] = React.useState("");
   const [address, setAddress] = React.useState("");
   const [geocode, setGeocode] = React.useState("");
-  const [hours, setHours] = React.useState("");
   const [schedule, setSchedule] = useState(defaultSchedule);
   const [showSchedule, setShowSchedule] = useState(false);
-  const orgRegister = useSelector(state => state.orgRegister);
-  const { loading, orgInfo, error } = orgRegister;
+  const pantryRegister = useSelector(state => state.pantryRegister);
+  const { loading, pantryInfo, error } = pantryRegister;
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let test = JSON.stringify({
-      "organization_name": organization_name,
+      "pantry_name": pantry_name,
       "contact_name": contact_name,
       "phone": phone,
       "type": type,
@@ -58,7 +57,7 @@ function AddOrganization() {
       "hours": JSON.stringify({schedule})
     });
     console.log(test);
-    dispatch(register(organization_name, contact_name, phone, type, address, geocode, schedule));
+    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, 1));
   }
 
   return (
@@ -77,7 +76,7 @@ function AddOrganization() {
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
-                      <h5>Add Organization</h5>
+                      <h5>Add Pantry</h5>
                     </div>
                   </CardHeader>
                   <CardBody>
@@ -88,11 +87,9 @@ function AddOrganization() {
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
-                       <option key={0} value={null}> {"Organization Type"} </option>
-                      <option>Pantry</option>
+                      <option key={0} value={null}> {"Pantry Type"} </option>
                       <option>Soup Kitchen</option>
-                      <option>Mobile Pantry</option>
-                      <option>Mobile Soup Kitchen</option>
+                      <option>Food Bank</option>
                       <option>Senior Service</option>
                       <option>Home Delivery</option>
                     </Input>
@@ -104,9 +101,9 @@ function AddOrganization() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Organization Name"
+                        placeholder="pantry Name"
                         type="text"
-                        onChange={(e) => setOrganizationName(e.target.value)}
+                        onChange={(e) => setPantryName(e.target.value)}
                       ></Input>
                     </InputGroup>
                     <InputGroup>
@@ -141,7 +138,7 @@ function AddOrganization() {
                    />
                    <Button
                      onClick={() => setShowSchedule(true)}
-                   >Set Organization Hours</Button>
+                   >Set Pantry Hours</Button>
                    {showSchedule &&
                       <div
                       className="root"
@@ -187,4 +184,4 @@ function AddOrganization() {
   );
 }
 
-export default AddOrganization;
+export default AddPantry;

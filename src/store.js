@@ -3,6 +3,9 @@ import thunk from "redux-thunk";
 import {
   orgRegisterReducer
  } from './reducers/orgReducers';
+ import {
+  pantryListReducer, pantryRegisterReducer
+ } from './reducers/pantryReducers';
 import {
   userSigninReducer,
   userRegisterReducer
@@ -18,7 +21,9 @@ const initialState = {
 const rootReducer = combineReducers({
   orgRegister: orgRegisterReducer,
   userSignin: userSigninReducer,
-  userRegister: userRegisterReducer
+  userRegister: userRegisterReducer,
+  pantryList: pantryListReducer,
+  pantryRegister: pantryRegisterReducer
 });
 
 const storeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
