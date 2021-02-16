@@ -2,7 +2,9 @@ import './App.css';
 import NavbarIndex from './components/NavbarIndex';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AddOrganization, LandingPage, Login, MapHouseholdIncome, Register } from './views/';
-import AddPantry from 'views/AddPantry';
+import AddPantry from './views/AddPantry';
+import SinglePantry from './views/SinglePantry';
+import SingleOrg from './views/SingleOrg';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route exact path="/info" component={MapHouseholdIncome} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route path='/org/:id' exact render={({match}) =>  <SingleOrg id={match.params.id} /> } />
+          <Route path='/pantry/:id' exact render={({match}) =>  <SinglePantry id={match.params.id} /> } />
         </header>
       </div>
     </BrowserRouter>
