@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { removeOrg, updateOrg } from '../actions/orgActions';
 import { Button, Container, Col, Row } from 'reactstrap';
+import CardOrg from '../components/CardOrg'
 
 class SingleOrg extends Component {
   constructor(props){
@@ -31,10 +32,10 @@ class SingleOrg extends Component {
   render(){
     const { org, pantries } = this.props;
     const hrs = JSON.parse(org.hours).schedule;
-    const hours = hrs.map((hr)=>{
-        hr[0].toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + hr[1].toLocaleString('en-US', { hour: 'numeric', hour12: true }) +"/n"
+    const hours = hrs.map((hr)=> {
+        return hr[0].toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + hr[1].toLocaleString('en-US', { hour: 'numeric', hour12: true }) +"/n"
     })
-    
+
     if (this.state.firstName === "redirect") {
       return (<Redirect to={`/orgs`}/>)
     }
@@ -70,7 +71,7 @@ class SingleOrg extends Component {
                 <h5> This organization has the following pantries locations: </h5>
               </div>
               <Row>
-                <Col className="mx-auto" xs="12" s="6" m="3" l="3" xl="3"><CardOrg delete={false} organization_name={org.organization_name} id={organization.id} imageUrl={"https://www.k3ma.com/wp-content/uploads/2017/04/default-image.jpg"} /></Col>
+                <Col className="mx-auto" xs="12" s="6" m="3" l="3" xl="3"><CardOrg delete={false} organization_name={org.organization_name} id={org.id} imageUrl={"https://www.k3ma.com/wp-content/uploads/2017/04/default-image.jpg"} /></Col>
               </Row>
               <br></br>
             </Fragment>
