@@ -4,8 +4,25 @@ import {
   ORG_REGISTER_FAIL,
   LIST_ORG_REQUEST,
   LIST_ORG_SUCCESS,
-  LIST_ORG_FAIL
+  LIST_ORG_FAIL,
+  MY_ORG_LIST_REQUEST,
+  MY_ORG_LIST_SUCCESS,
+  MY_ORG_LIST_FAIL,
 } from "../constants/orgConstants";
+
+function myOrgListReducer(state = {
+  orgs: []
+}, action) {
+  switch (action.type) {
+    case MY_ORG_LIST_REQUEST:
+      return { loading: true };
+    case MY_ORG_LIST_SUCCESS:
+      return { loading: false, orgs: action.payload };
+    case MY_ORG_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default: return state;
+  }
+}
 
 function orgRegisterReducer(state = {}, action) {
   switch (action.type) {
@@ -32,5 +49,5 @@ function orgListReducer(state = {}, action) {
 }
 
 export {
-  orgRegisterReducer, orgListReducer
+  myOrgListReducer, orgRegisterReducer, orgListReducer
 }
