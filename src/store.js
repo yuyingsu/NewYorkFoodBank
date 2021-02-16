@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from "redux-thunk";
 import {
+  orgListReducer,
   orgRegisterReducer
  } from './reducers/orgReducers';
  import {
@@ -20,10 +21,11 @@ const initialState = {
 
 const rootReducer = combineReducers({
   orgRegister: orgRegisterReducer,
+  orgList: orgListReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   pantryList: pantryListReducer,
-  pantryRegister: pantryRegisterReducer
+  pantryRegister: pantryRegisterReducer,
 });
 
 const storeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;

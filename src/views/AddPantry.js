@@ -32,7 +32,7 @@ const defaultSchedule = rangeStrings.map(range =>
   range.map(dateString => new Date(dateString)),
 );
 
-function AddPantry(props) {
+function AddPantry() {
   const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState("");
