@@ -8,7 +8,23 @@ import {
   MY_ORG_LIST_REQUEST,
   MY_ORG_LIST_SUCCESS,
   MY_ORG_LIST_FAIL,
+  GET_ORG_REQUEST,
+  GET_ORG_SUCCESS,
+  GET_ORG_FAIL
 } from "../constants/orgConstants";
+
+
+function orgReducer(state = {}, action) {
+  switch (action.type) {
+    case GET_ORG_REQUEST:
+      return { loading: true };
+    case GET_ORG_SUCCESS:
+      return { loading: false, org: action.payload };
+    case GET_ORG_FAIL:
+      return { loading: false, error: action.payload };
+    default: return state;
+  }
+}
 
 function myOrgListReducer(state = {
   orgs: []
@@ -49,5 +65,5 @@ function orgListReducer(state = {}, action) {
 }
 
 export {
-  myOrgListReducer, orgRegisterReducer, orgListReducer
+  myOrgListReducer, orgReducer, orgRegisterReducer, orgListReducer
 }

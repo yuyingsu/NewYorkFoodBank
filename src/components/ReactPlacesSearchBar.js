@@ -102,7 +102,7 @@ class ReactPlacesSearchBar extends React.Component {
           value={address}
           onSelect={this.handleSelect}
           onError={this.handleError}
-          shouldFetchSuggestions={address.length > 2}
+          shouldFetchSuggestions={address.length > 0}
         >
           {({ getInputProps, suggestions, getSuggestionItemProps }) => {
             return (
@@ -115,8 +115,9 @@ class ReactPlacesSearchBar extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
+                       value={this.props.value}
                     {...getInputProps({
-                      placeholder: 'Search Places...',
+                      placeholder: 'Address',
                       className: 'Demo__search-input',
                     })}
                   />
@@ -125,22 +126,22 @@ class ReactPlacesSearchBar extends React.Component {
                 {suggestions.length > 0 && (
                   <div style={{color:"black"}} className="Demo__autocomplete-container">
                     {suggestions.map(suggestion => {
-                      const className = classnames('Demo__suggestion-item', {
-                        'Demo__suggestion-item--active': suggestion.active,
-                      });
-
-                      return (
-                        /* eslint-disable react/jsx-key */
-                        <div
-                          {...getSuggestionItemProps(suggestion, { className })}
-                        >
-                          <strong>
-                            {suggestion.formattedSuggestion.mainText}
-                          </strong>{' '}
-                          <small>
-                            {suggestion.formattedSuggestion.secondaryText}
-                          </small>
-                        </div>
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: '#bf544e', cursor: 'pointer' }
+                  : { backgroundColor: '#8B4513', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
                       );
                       /* eslint-enable react/jsx-key */
                     })}
@@ -160,26 +161,6 @@ class ReactPlacesSearchBar extends React.Component {
         </PlacesAutocomplete>}
         {errorMessage.length > 0 && (
           <div className="Demo__error-message">{this.state.errorMessage}</div>
-        )}
-
-        {((latitude && longitude) || isGeocoding) && (
-          <div>
-            <h3 className="Demo__geocode-result-header">Geocode result</h3>
-            {isGeocoding ? (
-              <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
-              </div>
-            ) : (
-              <div>
-                <div style={{color:"black"}}>
-                  <label>Latitude:</label>
-                  <span>{latitude}</span>
-                  <label>Longitude:</label>
-                  <span>{longitude}</span>
-                </div>
-              </div>
-            )}
-          </div>
         )}
 
       </div>

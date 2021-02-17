@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { listMyOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Container, Row, Col } from 'reactstrap';
+import { CardOrg } from '../components/'
 
 function MyOrgs(props) {
   const dispatch = useDispatch();
@@ -13,31 +15,24 @@ function MyOrgs(props) {
     return () => {};
   }, [])
 
-  return <div className="profile-orders content-margined">
+  return <div className="orgs content-margined">
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>CONTACT</th>
-            <th>PHONE</th>
-            <th>ADDRESS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orgs.map(org => <tr key={org.organization_id}>
-            <td>{org.organization_id}</td>
-            <td>{org.contact_name}</td>
-            <td>{org.phone}</td>
-            <td>{org.address}</td>
-            <td>
-              <Link to={"/orgs/" + org.organization_id}>DETAILS</Link>
-            </td>
-          </tr>)}
-        </tbody>
-      </table>
+          <Container>
+            <Row>{orgs.map(org =>
+              <Col xs="3">
+                <CardOrg id={org.id}
+                  name={org.organization_name}
+                  address={org.address}
+                  phone={org.phone}
+                  type={org.type}
+                  url={org.url}
+                />
+              </Col>
+              )}
+            </Row>
+          </Container>
+
   }
   </div>
 }

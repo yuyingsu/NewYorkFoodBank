@@ -11,15 +11,18 @@ import {
   MY_ORG_LIST_FAIL,
   REMOVE_ORG_REQUEST,
   REMOVE_ORG_SUCCESS,
-  REMOVE_ORG_FAIL
+  REMOVE_ORG_FAIL,
+  GET_ORG_REQUEST,
+  GET_ORG_SUCCESS,
+  GET_ORG_FAIL
 } from "../constants/orgConstants";
 
-const register = (organization_name, contact_name, phone, type, address, geocode, schedule) => async (dispatch, getState) => {
+const register = (organization_name, phone, type, address, url) => async (dispatch, getState) => {
   try {
-    dispatch({ type: ORG_REGISTER_REQUEST, payload: {organization_name, contact_name, phone, type, address, geocode, schedule} });
+    dispatch({ type: ORG_REGISTER_REQUEST, payload: {organization_name, phone, type, address, url} });
     const { userSignin: { userInfo } } = getState();
     console.log(userInfo)
-    const { data } = await Axios.post("http://127.0.0.1:5000/add", { organization_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), "user_id": userInfo.user_id
+    const { data } = await Axios.post("http://127.0.0.1:5000/add", { organization_name, phone, type, address, url, "user_id": userInfo.user_id
     }, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.access_token
@@ -28,6 +31,20 @@ const register = (organization_name, contact_name, phone, type, address, geocode
     dispatch({ type: ORG_REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ORG_REGISTER_FAIL, payload: error.message });
+  }
+}
+
+const listOrg = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: GET_ORG_REQUEST });
+    const { userSignin: { userInfo } } = getState();
+    const { data } = await Axios.get("http://127.0.0.1:5000/org/" + id, {
+      headers:
+        { Authorization: 'Bearer ' + userInfo.access_token }
+    });
+    dispatch({ type: GET_ORG_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({ type: GET_ORG_FAIL, payload: error.message });
   }
 }
 
@@ -51,7 +68,7 @@ const listMyOrgs = () => async (dispatch, getState) => {
     const user_id = userInfo.user_id;
     const temp = {user_id};
     console.log(temp)
-    const { data } = await Axios.get("http://127.0.0.1:5000/myorganizations", {user_id}, {
+    const { data } = await Axios.get("http://127.0.0.1:5000/myorganizations/" + user_id, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
@@ -85,4 +102,4 @@ const updateOrg = (org_id, organization_name) => async (dispatch) => {
   }
 }
 
-export { register, listOrgs, listMyOrgs, removeOrg, updateOrg };
+export { register, listOrg, listOrgs, listMyOrgs, removeOrg, updateOrg };

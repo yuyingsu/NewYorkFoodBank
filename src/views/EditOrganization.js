@@ -21,18 +21,34 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
-import { register } from '../actions/orgActions';
+import { listOrg, updateOrg } from '../actions/orgActions';
 
 
-function AddOrganization() {
-  const [organization_name, setOrganizationName] = React.useState("");
-  const [phone, setPhone] = React.useState();
-  const [type, setType] = React.useState("");
-  const [address, setAddress] = React.useState("");
+function EditOrganization(props) {
+  const [organization_name, setOrganizationName] = useState("");
+  const [phone, setPhone] = useState();
+  const [type, setType] = useState("");
+  const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
-  const orgRegister = useSelector(state => state.orgRegister);
-  const { loading, orgInfo, error } = orgRegister;
+  const currentOrg = useSelector(state => state.org);
+  const { loading, org, error } = currentOrg;
   const dispatch = useDispatch();
+
+
+  useEffect((async) => {
+    dispatch(listOrg(props.id));
+    if (org) {
+      console.log(org[0].address);
+      setAddress(org[0].address);
+      setOrganizationName(org[0].organization_name);
+      setPhone(org[0].phone);
+      setType(org[0].type);
+      setUrl(org[0].url);
+    }
+    return () => {};
+  }, []);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,12 +60,15 @@ function AddOrganization() {
       "url": url,
     });
     console.log(test);
-    dispatch(register(organization_name, phone, type, address, url));
+    //dispatch(updateOrg(organization_name, phone, type, address, website));
   }
 
-  return (
+  return <div className="orgs content-margined">
+  { loading ? <div>Loading...</div> :
+    error ? <div>{error}</div> :
     <>
       <div className="page-header clear-filter" filter-color="blue">
+      {console.log(org)}
         <div
           className="page-header-image"
           style={{
@@ -63,7 +82,7 @@ function AddOrganization() {
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
-                      <h5>Add Organization</h5>
+                      <h5>Edit Organization</h5>
                     </div>
                   </CardHeader>
                   <CardBody>
@@ -71,6 +90,7 @@ function AddOrganization() {
                     <ReactstrapInput
                       type="select"
                       name="select"
+                      defaultValue={type}
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
@@ -91,12 +111,23 @@ function AddOrganization() {
                       <ReactstrapInput
                         placeholder="Organization Name"
                         type="text"
+                        value={organization_name}
                         onChange={(e) => setOrganizationName(e.target.value)}
                       ></ReactstrapInput>
                     </InputGroup>
-                    <ReactPlacesSearchBar
-                     address={setAddress}
-                   />
+                    <InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons users_circle-08"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <ReactstrapInput
+                        placeholder="Address"
+                        type="textarea"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      ></ReactstrapInput>
+                    </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -122,6 +153,7 @@ function AddOrganization() {
                         placeholder="URL"
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
+                        value={url}
                       ></ReactstrapInput>
                     </InputGroup>
                   </CardBody>
@@ -133,7 +165,7 @@ function AddOrganization() {
                       onClick={handleSubmit}
                       size="lg"
                     >
-                      Submit
+                      Update
                     </Button>
                   </CardFooter>
                 </Form>
@@ -143,7 +175,7 @@ function AddOrganization() {
         </div>
       </div>
     </>
-  );
+  }</div>
 }
 
-export default AddOrganization;
+export default EditOrganization;
