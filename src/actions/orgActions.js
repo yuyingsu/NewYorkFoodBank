@@ -53,6 +53,7 @@ const listOrgs = () => async (dispatch) => {
   dispatch({ type: LIST_ORG_REQUEST});
   const { data } = await Axios.get("http://127.0.0.1:5000/allorganizations", {}, {
   });
+  console.log("data: " + data);
   dispatch({ type: LIST_ORG_SUCCESS, payload: data });
   }
   catch(error){

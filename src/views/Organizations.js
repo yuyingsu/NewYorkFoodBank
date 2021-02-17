@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { listMyOrgs } from '../actions/orgActions';
+import { listOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { CardOrg } from '../components/'
 
-function MyOrgs(props) {
+function Organizations(props) {
   const dispatch = useDispatch();
-  const myOrgList = useSelector(state => state.myOrgList);
-  const { loading: loadingOrgs, orgs, error: errorOrgs } = myOrgList;
+  const OrgList = useSelector(state => state.orgList);
+  const { loading: loadingOrgs, orgs, error: errorOrgs } = OrgList;
 
   useEffect(() => {
-    dispatch(listMyOrgs());
+    dispatch(listOrgs());
     return () => {};
   }, [])
 
+  console.log(loadingOrgs);
   return <div className="orgs content-margined">
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
@@ -27,7 +28,6 @@ function MyOrgs(props) {
                   phone={org.phone}
                   type={org.type}
                   url={org.url}
-                  logged={true}
                 />
               </Col>
               )}
@@ -38,4 +38,4 @@ function MyOrgs(props) {
   </div>
 }
 
-export default MyOrgs;
+export default Organizations;

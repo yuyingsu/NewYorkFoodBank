@@ -43,13 +43,25 @@ const HeaderIndex = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/info" style={{color: "white"}}>Info</NavLink>
+              <NavLink href="/info" style={{color: "white"}}>Poverty Map</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/pantrymap" style={{color: "white"}}>Pantries Map</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/addorg" style={{color: "white"}}>Add Org</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/addpantry" style={{color: "white"}}>Add Pantry</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/myorgs" style={{color: "white"}}>My Orgs</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/orgs" style={{color: "white"}}>Orgs</NavLink>
             </NavItem>
             <NavItem>
               {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} >Logout</NavLink> : <NavLink tag={Link} to="/login">Login</NavLink>}
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap" style={{color: "white"}}>GitHub</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

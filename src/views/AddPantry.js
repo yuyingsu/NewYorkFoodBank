@@ -88,8 +88,10 @@ function AddPantry() {
                       onChange={(e) => setType(e.target.value)}
                     >
                       <option key={0} value={null}> {"Pantry Type"} </option>
+                      <option>Pantry</option>
                       <option>Soup Kitchen</option>
-                      <option>Food Bank</option>
+                      <option>Mobile Pantry</option>
+                      <option>Mobile Soup Kitchen</option>
                       <option>Senior Service</option>
                       <option>Home Delivery</option>
                     </Input>
@@ -101,11 +103,15 @@ function AddPantry() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="pantry Name"
+                        placeholder="Pantry Name"
                         type="text"
                         onChange={(e) => setPantryName(e.target.value)}
                       ></Input>
                     </InputGroup>
+                    <ReactPlacesSearchBar
+                        address={setAddress}
+                        geocode={setGeocode}
+                      />
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -131,11 +137,7 @@ function AddPantry() {
                         maxLength="10"
                         onChange={(e) => setPhone(e.target.value)}
                       ></Input>
-                    </InputGroup>
-                   <ReactPlacesSearchBar
-                     address={setAddress}
-                     geocode={setGeocode}
-                   />
+                    </InputGroup><br></br>
                    <Button
                      onClick={() => setShowSchedule(true)}
                    >Set Pantry Hours</Button>

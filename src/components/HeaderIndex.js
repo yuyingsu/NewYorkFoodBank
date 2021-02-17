@@ -6,7 +6,7 @@ import header from '../assets/img/elaine-casap-qgHGDbbSNm8-unsplash.jpg';
 function HeaderIndex() {
   return (
     <>
-      <div className="page-header clear-filter" filter-color="blue">
+      <div className="page-header">
         <div
           className="page-header-image"
           style={{

@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 const attributes = {
   border: "5em",
   color: "white",
+  height: "400px",
   background: "rgba(0,0,0,0.5)"
 }
 
