@@ -31,24 +31,23 @@ function EditOrganization(props) {
   const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
   const currentOrg = useSelector(state => state.org);
-  const { loading, org, error } = currentOrg;
   const dispatch = useDispatch();
+  const myOrgList = useSelector(state => state.myOrgList);
+  const { loading, orgs, error } = useSelector(state => state.myOrgList);
+  const org = orgs.find(org => org.id == props.id);
+  console.log(org);
 
-
-  useEffect((async) => {
-    dispatch(listOrg(props.id));
-    if (org) {
-      console.log(org[0].address);
-      setAddress(org[0].address);
-      setOrganizationName(org[0].organization_name);
-      setPhone(org[0].phone);
-      setType(org[0].type);
-      setUrl(org[0].url);
+  useEffect(() => {
+    {
+      console.log(org.address);
+      setAddress(org.address);
+      setOrganizationName(org.organization_name);
+      setPhone(org.phone);
+      setType(org.type);
+      setUrl(org.url);
     }
     return () => {};
   }, []);
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();

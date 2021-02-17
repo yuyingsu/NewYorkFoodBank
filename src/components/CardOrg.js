@@ -30,7 +30,7 @@ console.log(props)
           <p>{props.address}</p>
           <p>{formatPhoneNumber(props.phone)}</p>
           <p>{props.url}</p>
-
+          {props.logged &&
           <Container>
             <Row>
             <Link to={`/org/edit/${props.id}`}>
@@ -42,6 +42,7 @@ console.log(props)
               </Button>
             </Row>
           </Container>
+          }
         </CardBody>
       </Card>
     </div>
