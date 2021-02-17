@@ -9,7 +9,7 @@ class AddressBar extends React.Component {
     super(props);
     this.state = { address: '', ready: false }
   }
-  
+
   componentDidMount() {
     this.loadGoogleMaps(() => {
     this.setState({ ready: true });
@@ -45,14 +45,14 @@ unloadGoogleMaps = () => {
   handleChange = address => {
     this.setState({ address });
   };
- 
+
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
   };
- 
+
   render() {
     return (
      <div>
@@ -65,7 +65,7 @@ unloadGoogleMaps = () => {
           <div>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Address',
                 className: 'location-search-input',
               })}
             />
