@@ -77,6 +77,7 @@ function AddOrganization() {
                        <option key={0} value={null}> {"Organization Type"} </option>
                       <option>Food Distribution</option>
                       <option>Food Processing</option>
+                      <option>Religion</option>
                       <option>Government</option>
                       <option>Research</option>
                       <option>Other</option>

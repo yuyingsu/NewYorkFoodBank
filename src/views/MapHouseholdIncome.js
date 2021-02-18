@@ -34,12 +34,6 @@ function InfoPage() {
               <Map></Map>
               </Col>
             </Row>
-            <Row>
-              <Col style={{color:"black"}}className="text-center">
-                A Map to visualize the pantry locations on the Google Map
-              <MyMapComponent></MyMapComponent>
-              </Col>
-            </Row>
           </Container>
         </div>
 

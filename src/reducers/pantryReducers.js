@@ -6,7 +6,7 @@ import {
     LIST_PANTRY_SUCCESS,
     LIST_PANTRY_FAIL,
   } from "../constants/pantryConstants";
-  
+
   function pantryRegisterReducer(state = {}, action) {
     switch (action.type) {
       case PANTRY_REGISTER_REQUEST:
@@ -19,7 +19,7 @@ import {
     }
   }
 
-  function pantryListReducer(state = {}, action) {
+  function pantryListReducer(state = { loading: true }, action) {
     switch (action.type) {
       case LIST_PANTRY_REQUEST:
         return { loading: true };
@@ -30,8 +30,7 @@ import {
       default: return state;
     }
   }
-  
+
   export {
     pantryRegisterReducer, pantryListReducer
   }
-  

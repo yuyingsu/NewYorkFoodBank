@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// reactstrap components
+import Input from 'react-phone-number-input/input'
 import {
   Button,
   Card,
@@ -10,7 +10,7 @@ import {
   CardFooter,
   Form,
   FormGroup,
-  Input,
+  Input as ReactstrapInput,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
@@ -25,7 +25,7 @@ import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
-import { register } from '../actions/pantryAction';
+import { register } from '../actions/pantryActions';
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -35,7 +35,7 @@ const defaultSchedule = rangeStrings.map(range =>
 function AddPantry() {
   const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
-  const [phone, setPhone] = React.useState("");
+  const [phone, setPhone] = React.useState();
   const [type, setType] = React.useState("");
   const [address, setAddress] = React.useState("");
   const [geocode, setGeocode] = React.useState("");
@@ -81,7 +81,7 @@ function AddPantry() {
                   </CardHeader>
                   <CardBody>
                   <FormGroup>
-                    <Input
+                    <ReactstrapInput
                       type="select"
                       name="select"
                       id="exampleSelect"
@@ -94,7 +94,7 @@ function AddPantry() {
                       <option>Mobile Soup Kitchen</option>
                       <option>Senior Service</option>
                       <option>Home Delivery</option>
-                    </Input>
+                    </ReactstrapInput>
                   </FormGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -102,11 +102,11 @@ function AddPantry() {
                           <i className="now-ui-icons users_circle-08"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input
+                      <ReactstrapInput
                         placeholder="Pantry Name"
                         type="text"
                         onChange={(e) => setPantryName(e.target.value)}
-                      ></Input>
+                      ></ReactstrapInput>
                     </InputGroup>
                     <ReactPlacesSearchBar
                         address={setAddress}
@@ -118,11 +118,11 @@ function AddPantry() {
                           <i className="now-ui-icons users_circle-08"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input
+                      <ReactstrapInput
                         placeholder="Contact Name"
                         onChange={(e) => setContactName(e.target.value)}
                         type="text"
-                      ></Input>
+                      ></ReactstrapInput>
                     </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -131,12 +131,13 @@ function AddPantry() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Phone"
-                        type="tel"
-                        minLength="10"
-                        maxLength="10"
-                        onChange={(e) => setPhone(e.target.value)}
-                      ></Input>
+                        className="form-control"
+                        placeholder="Phone Number"
+                        country="US"
+                        value={phone}
+                        minLength="14"
+                        maxLength="14"
+                        onChange={setPhone}/>
                     </InputGroup><br></br>
                    <Button
                      onClick={() => setShowSchedule(true)}
