@@ -10,7 +10,10 @@ import {
   MY_ORG_LIST_FAIL,
   GET_ORG_REQUEST,
   GET_ORG_SUCCESS,
-  GET_ORG_FAIL
+  GET_ORG_FAIL,
+  ORG_UPDATE_REQUEST,
+  ORG_UPDATE_SUCCESS,
+  ORG_UPDATE_FAIL
 } from "../constants/orgConstants";
 
 
@@ -64,6 +67,22 @@ function orgListReducer(state = { loading: true }, action) {
   }
 }
 
+function orgUpdateReducer(state = {}, action) {
+  switch (action.type) {
+    case ORG_UPDATE_REQUEST:
+      return { loading: true };
+    case ORG_UPDATE_SUCCESS:
+      return { loading: false, org: action.payload };
+    case ORG_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    default: return state;
+  }
+}
+
 export {
-  myOrgListReducer, orgReducer, orgRegisterReducer, orgListReducer
+  myOrgListReducer,
+  orgListReducer,
+  orgReducer,
+  orgRegisterReducer,
+  orgUpdateReducer
 }

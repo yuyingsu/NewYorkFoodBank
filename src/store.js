@@ -2,9 +2,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from "redux-thunk";
 import {
   myOrgListReducer,
-  orgReducer,
   orgListReducer,
-  orgRegisterReducer
+  orgReducer,
+  orgRegisterReducer,
+  orgUpdateReducer
  } from './reducers/orgReducers';
  import {
   pantryListReducer, pantryRegisterReducer
@@ -24,8 +25,9 @@ const initialState = {
 const rootReducer = combineReducers({
   myOrgList: myOrgListReducer,
   org: orgReducer,
-  orgRegister: orgRegisterReducer,
   orgList: orgListReducer,
+  orgRegister: orgRegisterReducer,
+  orgUpdate: orgUpdateReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   pantryList: pantryListReducer,

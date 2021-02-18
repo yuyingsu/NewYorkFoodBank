@@ -30,6 +30,7 @@ function EditOrganization(props) {
   const [type, setType] = useState("");
   const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
+  const id = props.id;
   const currentOrg = useSelector(state => state.org);
   const dispatch = useDispatch();
   const myOrgList = useSelector(state => state.myOrgList);
@@ -59,7 +60,7 @@ function EditOrganization(props) {
       "url": url,
     });
     console.log(test);
-    //dispatch(updateOrg(organization_name, phone, type, address, website));
+    dispatch(updateOrg(id, organization_name, phone, type, address, url));
   }
 
   return <div className="orgs content-margined">

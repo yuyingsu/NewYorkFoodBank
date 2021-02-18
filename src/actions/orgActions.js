@@ -14,7 +14,10 @@ import {
   REMOVE_ORG_FAIL,
   GET_ORG_REQUEST,
   GET_ORG_SUCCESS,
-  GET_ORG_FAIL
+  GET_ORG_FAIL,
+  ORG_UPDATE_REQUEST,
+  ORG_UPDATE_SUCCESS,
+  ORG_UPDATE_FAIL
 } from "../constants/orgConstants";
 
 const register = (organization_name, phone, type, address, url) => async (dispatch, getState) => {
@@ -80,7 +83,7 @@ const listMyOrgs = () => async (dispatch, getState) => {
 }
 
 const removeOrg = (organization_name) => async (dispatch) => {
-  try{
+  try {
   dispatch({ type: REMOVE_ORG_REQUEST});
   await Axios.delete("http://127.0.0.1:5000/organization/"+organization_name, {organization_name}, {
   });
@@ -91,15 +94,18 @@ const removeOrg = (organization_name) => async (dispatch) => {
   }
 }
 
-const updateOrg = (org_id, organization_name) => async (dispatch) => {
-  try{
-  dispatch({ type: LIST_ORG_REQUEST});
-  const { data } = await Axios.get("http://127.0.0.1:5000/allorganizations", {organization_name}, {
-  });
-  dispatch({ type: LIST_ORG_SUCCESS, payload: data });
+const updateOrg = (id, organization_name, phone, type, address, url) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORG_UPDATE_REQUEST });
+    const { userSignin: { userInfo } } = getState();
+    const { data } = await Axios.put("http://127.0.0.1:5000/edit", {id, organization_name, phone, type, address, url}, {
+      headers:
+        { Authorization: 'Bearer ' + userInfo.access_token }
+    });
+    dispatch({ type: ORG_UPDATE_SUCCESS, payload: data });
   }
   catch(error){
-      dispatch({ type: LIST_ORG_FAIL, payload: error.message });
+    dispatch({ type: ORG_UPDATE_FAIL, payload: error.message });
   }
 }
 
