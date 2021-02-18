@@ -61,6 +61,9 @@ const HeaderIndex = (props) => {
               <NavLink href="/orgs" style={{color: "white"}}>Orgs</NavLink>
             </NavItem>
             <NavItem>
+            <NavLink href="/pantries" style={{color: "white"}}>Pantries</NavLink>
+            </NavItem>
+            <NavItem>
               {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} >Logout</NavLink> : <NavLink tag={Link} to="/login">Login</NavLink>}
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
