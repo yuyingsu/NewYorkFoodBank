@@ -55,7 +55,7 @@ function orgRegisterReducer(state = {}, action) {
   }
 }
 
-function orgListReducer(state = { loading: true }, action) {
+function orgListReducer(state = { loading: true, orgs: [] }, action) {
   switch (action.type) {
     case LIST_ORG_REQUEST:
       return { loading: true };

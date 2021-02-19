@@ -7,7 +7,7 @@ import { orgListReducer } from 'reducers/orgReducers';
 import { useDispatch } from 'react-redux';
 import { formatPhoneNumber } from 'react-phone-number-input'
 
-const CardOrg = (props) => {
+const CardPantry = (props) => {
   const dispatch = useDispatch();
 
   function handleRemove () {
@@ -50,4 +50,4 @@ console.log(props)
   );
 };
 
-export default CardOrg;
+export default CardPantry;

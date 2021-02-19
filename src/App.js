@@ -10,6 +10,7 @@ import {
   MapHouseholdIncome,
   MyOrgs,
   Pantries,
+  Organization,
   Organizations,
   Register } from './views/';
 import AddPantry from './views/AddPantry';
@@ -33,7 +34,7 @@ function App() {
           <Route exact path="/pantrymap" component={MapAllPantries} />
           <Route exact path="/register" component={Register} />
           <Route path='/org/edit/:id' exact render={({match}) =>  <EditOrganization id={match.params.id} /> } />
-          <Route path='/org/:id' exact render={({match}) =>  <SingleOrg id={match.params.id} /> } />
+          <Route path='/org/:id' exact render={({match}) =>  <Organization id={match.params.id} /> } />
           <Route path='/pantry/:id' exact render={({match}) =>  <SinglePantry id={match.params.id} /> } />
         </header>
       </div>
