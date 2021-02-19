@@ -6,6 +6,9 @@ import {
   LIST_PANTRY_REQUEST,
   LIST_PANTRY_SUCCESS,
   LIST_PANTRY_FAIL,
+  MY_PANTRY_LIST_REQUEST,
+  MY_PANTRY_LIST_SUCCESS,
+  MY_PANTRY_LIST_FAIL,
 } from "../constants/pantryConstants";
 
 const register = (pantry_name, contact_name, phone, type, address, geocode, schedule, organization_id) => async (dispatch, getState) => {
@@ -36,4 +39,21 @@ const listPantries = () => async (dispatch) => {
     }
 }
 
-export { register, listPantries };
+const listMyPantries = (organization_id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: MY_PANTRY_LIST_REQUEST });
+    const { userSignin: { userInfo } } = getState();
+    const user_id = userInfo.user_id;
+    console.log(organization_id);
+    const { data } = await Axios.get("http://127.0.0.1:5000/mypantries/" + organization_id, {}, {
+      headers:
+        { Authorization: 'Bearer ' + userInfo.access_token }
+    });
+    console.log("payload" + JSON.stringify(data));
+    dispatch({ type: MY_PANTRY_LIST_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({ type: MY_PANTRY_LIST_FAIL, payload: error.message });
+  }
+}
+
+export { register, listPantries, listMyPantries };

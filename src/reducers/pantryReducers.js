@@ -5,14 +5,29 @@ import {
     LIST_PANTRY_REQUEST,
     LIST_PANTRY_SUCCESS,
     LIST_PANTRY_FAIL,
+    MY_PANTRY_LIST_REQUEST,
+    MY_PANTRY_LIST_SUCCESS,
+    MY_PANTRY_LIST_FAIL
   } from "../constants/pantryConstants";
+
+  function myPantryListReducer(state = {}, action) {
+    switch (action.type) {
+      case MY_PANTRY_LIST_REQUEST:
+        return { loading: true };
+      case MY_PANTRY_LIST_SUCCESS:
+        return { loading: false, pantries: action.payload };
+      case MY_PANTRY_LIST_FAIL:
+        return { loading: false, error: action.payload };
+      default: return state;
+    }
+  }
 
   function pantryRegisterReducer(state = {}, action) {
     switch (action.type) {
       case PANTRY_REGISTER_REQUEST:
         return { loading: true };
       case PANTRY_REGISTER_SUCCESS:
-        return { loading: false, pantyInfo: action.payload };
+        return { loading: false, pantryInfo: action.payload };
       case PANTRY_REGISTER_FAIL:
         return { loading: false, error: action.payload };
       default: return state;
@@ -32,5 +47,5 @@ import {
   }
 
   export {
-    pantryRegisterReducer, pantryListReducer
+    myPantryListReducer, pantryRegisterReducer, pantryListReducer
   }
