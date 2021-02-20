@@ -26,6 +26,7 @@ import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { register } from '../actions/pantryActions';
+import HeaderIndex from "components/HeaderIndex";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -69,6 +70,7 @@ function AddPantry() {
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
         ></div>
+        <HeaderIndex className="form"></HeaderIndex>
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">

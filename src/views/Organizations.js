@@ -4,6 +4,7 @@ import { listOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { CardOrg } from '../components/'
+import HeaderIndex from "components/HeaderIndex";
 
 function Organizations(props) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Organizations(props) {
 
   console.log(loadingOrgs);
   return <div className="orgs content-margined">
+  <HeaderIndex className="list"></HeaderIndex>
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
           <Container>
