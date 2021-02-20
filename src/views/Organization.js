@@ -190,9 +190,10 @@ function Organization(props) {
                errorPantries ? <div>{errorPantries}</div> :
 
             <Row className="d-flex align-items-center flex-row flex-wrap" style={{marginTop:"40px"}}>
+              {console.log(pantries)}
 
+              {pantries.length > 0 ? pantries.map(pantry =>
 
-              {pantries ? pantries.map(pantry =>
               <Col xs="4" style={{width: "300px", height:"300px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
