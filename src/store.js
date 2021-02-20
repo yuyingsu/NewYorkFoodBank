@@ -10,7 +10,8 @@ import {
  import {
   myPantryListReducer,
   pantryListReducer,
-  pantryRegisterReducer
+  pantryRegisterReducer,
+  singlePantryListReducer
  } from './reducers/pantryReducers';
 import {
   userSigninReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   orgList: orgListReducer,
   orgRegister: orgRegisterReducer,
   orgUpdate: orgUpdateReducer,
+  singlePantry: singlePantryListReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   pantryList: pantryListReducer,
