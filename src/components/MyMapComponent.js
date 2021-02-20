@@ -29,8 +29,8 @@ const MyMapComponent = compose(
 
   <GoogleMap zoom={11} center={{ lat: 40.653124, lng: -73.972951 }}>
     {props.pantries && props.pantries.map((pantry, idx)=>((
-      <Marker onClick={()=>{console.log(idx);props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
-       {props.array[idx] && <InfoBox
+      <Marker key={idx} onClick={()=>{console.log(idx);props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
+       {props.array[idx] && <InfoBox key={idx}
         position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
         >
@@ -57,6 +57,7 @@ const enhance = _.identity;
 function ReactGoogleMaps(){
   const lists = useSelector(state => state.pantryList);
   const [array, setArray] = useState([]);
+  const [currIdx, setCurrentIdx] = useState(-1);
   const { loading, pantries } = lists;
   const dispatch = useDispatch();
 
@@ -75,7 +76,12 @@ function ReactGoogleMaps(){
 
   const onToggleOpen = (idx) => {
     const newArray = [...array];
+    if(currIdx!=-1){
+      newArray[currIdx]=!newArray[currIdx];
+    }
+    setArray(newArray);
     newArray[idx]=!newArray[idx];
+    setCurrentIdx(idx);
     setArray(newArray);
   }
 

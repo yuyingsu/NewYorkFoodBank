@@ -4,6 +4,7 @@ import { listPantries } from '../actions/pantryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { CardOrg } from '../components/'
+import HeaderIndex from "components/HeaderIndex";
 
 function Pantries(props) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Pantries(props) {
   }, [])
 
   return <div className="orgs content-margined">
+  <HeaderIndex className="list"></HeaderIndex> 
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
           <Container>
