@@ -51,7 +51,7 @@ function Pantry(props) {
                     </div>
                   </CardHeader>
                   <CardBody>
-                    <MyMapComponent />
+                    <MyMapComponent pantries={pantry}/>
                   </CardBody>
 
               </Card>

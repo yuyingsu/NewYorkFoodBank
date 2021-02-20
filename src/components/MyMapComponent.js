@@ -6,9 +6,7 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
-import { pantryListReducer } from "reducers/pantryReducers";
-import { listPantries } from "actions/pantryActions";
-import { useSelector, useDispatch } from 'react-redux';
+
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
@@ -54,20 +52,14 @@ const MyMapComponent = compose(
 
 const enhance = _.identity;
 
-function ReactGoogleMaps(){
-  const lists = useSelector(state => state.pantryList);
+function ReactGoogleMaps(props){
   const [array, setArray] = useState([]);
   const [currIdx, setCurrentIdx] = useState(-1);
-  const { loading, pantries } = lists;
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(listPantries());
-    if(!loading){
-    const initArray = new Array(pantries.length);
-    for(let i=0;i<initArray.length;i++){
+    const initArray = new Array(props.pantries.length);
+    for (let i=0;i<initArray.length;i++){
       initArray[i]=false;
-    }
     setArray(initArray);
     }
     return function cleanup() {
@@ -85,7 +77,7 @@ function ReactGoogleMaps(){
     setArray(newArray);
   }
 
-  return <MyMapComponent pantries={pantries} array={array} onToggleOpen={onToggleOpen}/>;
+  return <MyMapComponent pantries={props.pantries} array={array} onToggleOpen={onToggleOpen}/>;
 
 }
 
