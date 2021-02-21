@@ -18,9 +18,10 @@ function MyOrgs(props) {
   return <div className="orgs content-margined">
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
-          <Container>
-            <Row className="d-flex justify-content-center align-items-center" style={{marginTop:"-50%"}}> <h5>Pantries</h5></Row><Row>{orgs.map(org =>
-              <Col  style={{width: "300px", height:"300px"}}>
+          <Container fluid>
+            <Row className="d-flex justify-content-center align-items-center"> <h5>My Organizations</h5></Row>
+            <Row>{orgs.map(org =>
+              <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardOrg id={org.id}
                   name={org.organization_name}
                   address={org.address}

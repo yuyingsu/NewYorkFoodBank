@@ -39,3 +39,16 @@ code {
 .styles-module_day-column__30McI .styles-module_title__2VBFp {
   color: black;
 }
+
+/* basic positioning */
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .a { background-color: rgb(122,0,0); }
+.legend .b { background-color: rgb(163,0,0) }
+.legend .c { background-color: rgb(204,14,0) }
+.legend .d { background-color: rgb(239,51,11) }
+.legend .e { background-color: rgb(254,104,47) }
+.legend .f { background-color: rgb(255,146,87) }
+.legend .g { background-color: rgb(255,186,122) }

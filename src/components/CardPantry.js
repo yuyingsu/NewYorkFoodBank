@@ -19,7 +19,19 @@ const CardPantry = (props) => {
     color: "white",
     background: "rgba(0,0,0,0.5)",
   }
-console.log(props)
+
+
+  const hrs = JSON.parse(props.hours).schedule;
+
+  const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
+  const hours = hrs.map((hr)=> {
+      const dayOfWeek = new Date(hr[0]).getDay()
+        if (schedule[dayOfWeek] === 'Closed') {
+        schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+        } else {
+          schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+        }
+  })
   return (
     <div>
       <Card style={attributes}>
@@ -30,7 +42,16 @@ console.log(props)
           <p>{props.address}</p>
           <p>{props.contact}</p>
           <p>{formatPhoneNumber(props.phone)}</p>
-          <p>{props.hours}</p>
+          <p>
+            {"Hours"}<br></br>
+            {"Sunday: " + schedule[0]}<br></br>
+            {"Monday: " + schedule[1]}<br></br>
+            {"Tuesday: " + schedule[2]}<br></br>
+            {"Wednesday: " + schedule[3]}<br></br>
+            {"Thursday: " + schedule[4]}<br></br>
+            {"Friday: " + schedule[5]}<br></br>
+            {"Saturday: " + schedule[6]}<br></br>
+          </p>
           {props.logged &&
           <Container>
             <Row>

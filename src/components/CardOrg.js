@@ -17,6 +17,7 @@ const CardOrg = (props) => {
   const attributes = {
     border: "5em",
     color: "white",
+    height: "600px",
     background: "rgba(0,0,0,0.5)",
   }
 console.log(props)
