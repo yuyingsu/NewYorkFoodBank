@@ -8,6 +8,7 @@ import {
 import { listPantries } from "actions/pantryActions";
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
 const { compose, withProps } = require("recompose");
@@ -47,31 +48,49 @@ function ReactGoogleMaps(){
   const [currIdx, setCurrentIdx] = useState(-1);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(listPantries());
-    if(!loading){
-    const initArray = new Array(pantries.length);
-    for(let i=0;i<initArray.length;i++){
-      initArray[i]=false;
-    }
+useEffect(() => {
+    const initArray = new Array(props.pantries.length);
+    for (let i=0;i<initArray.length;i++){
+     initArray[i]=false;
     setArray(initArray);
     let box = [];
     pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
-      position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
-      options={{ closeBoxURL: ``, enableEventPropagation: true }}
-      >
-      <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
-        <div style={{ fontSize: `16px`, color: `white` }}>
-          {pantry.pantry_name}<br></br>
-          {pantry.type}<br></br>
-          {pantry.address}<br></br>
-          {pantry.contact}<br></br>
-          {formatPhoneNumber(pantry.phone)}<br></br>
-          {pantry.hours}
+        position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
+        options={{ closeBoxURL: ``, enableEventPropagation: true }}
+        >
+        <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
+          <div style={{ fontSize: `16px`, color: `white` }}>
+            {"Name: " + pantry.pantry_name}<br></br>
+            {"Type: " + pantry.type}<br></br>
+            {"Address: " + pantry.address}<br></br>
+            {"Contact: " + pantry.contact}<br></br>
+            {"Phone: " + formatPhoneNumber(pantry.phone)}<br></br>
+            <br></br>{"Hours"}<br></br>
+            {"Sunday: " + props.hours[idx][0]}<br></br>
+            {"Monday: " + props.hours[idx][1]}<br></br>
+            {"Tuesday: " + props.hours[idx][2]}<br></br>
+            {"Wednesday: " + props.hours[idx][3]}<br></br>
+            {"Thursday: " + props.hours[idx][4]}<br></br>
+            {"Friday: " + props.hours[idx][5]}<br></br>
+            {"Saturday: " + props.hours[idx][6]}<br></br>
+          </div>
         </div>
-      </div>
-    </InfoBox>)));
+      </InfoBox>)));
     setBoxes(box);
+    const pantryHours = [];
+    props.pantries.forEach(pantry => {
+    const hrs = JSON.parse(pantry.hours).schedule;
+    const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
+    const hours = hrs.map((hr)=> {
+    const dayOfWeek = new Date(hr[0]).getDay()
+      if (schedule[dayOfWeek] === 'Closed') {
+      schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+      } else {
+        schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+      }
+    })
+    pantryHours.push(schedule);
+  })
     }
     return function cleanup() {
     };
@@ -89,7 +108,7 @@ function ReactGoogleMaps(){
     setCurrentIdx(idx);
   }
 
-  return <MyMapComponent pantries={pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
+  return <MyMapComponent hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
 
 }
 

@@ -19,18 +19,39 @@ const CardPantry = (props) => {
     color: "white",
     background: "rgba(0,0,0,0.5)",
   }
-console.log(props)
+
+
+  const hrs = JSON.parse(props.hours).schedule;
+
+  const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
+  const hours = hrs.map((hr)=> {
+      const dayOfWeek = new Date(hr[0]).getDay()
+        if (schedule[dayOfWeek] === 'Closed') {
+        schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+        } else {
+          schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+        }
+  })
   return (
     <div>
       <Card style={attributes}>
         <CardImg top width="100%" src={"https://www.k3ma.com/wp-content/uploads/2017/04/default-image.jpg"} alt="Card image cap" />
         <CardBody  className="d-flex flex-column">
-          <Link to={`/org/${props.id}/`}><CardTitle tag="h5">{props.name}</CardTitle></Link>
+          <Link to={`/pantry/${props.id}/`}><CardTitle tag="h5">{props.name}</CardTitle></Link>
           <p>{props.type}</p>
           <p>{props.address}</p>
           <p>{props.contact}</p>
           <p>{formatPhoneNumber(props.phone)}</p>
-          <p>{props.hours}</p>
+          <p>
+            {"Hours"}<br></br>
+            {"Sunday: " + schedule[0]}<br></br>
+            {"Monday: " + schedule[1]}<br></br>
+            {"Tuesday: " + schedule[2]}<br></br>
+            {"Wednesday: " + schedule[3]}<br></br>
+            {"Thursday: " + schedule[4]}<br></br>
+            {"Friday: " + schedule[5]}<br></br>
+            {"Saturday: " + schedule[6]}<br></br>
+          </p>
           {props.logged &&
           <Container>
             <Row>

@@ -21,9 +21,10 @@ function Organizations(props) {
   <HeaderIndex className="list"></HeaderIndex>
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
-          <Container>
+          <Container fluid>
+            <Row className="d-flex justify-content-center align-items-center"> <h5 >Organizations</h5></Row>
             <Row>{orgs.map(org =>
-              <Col className="d-flex justify-content-center align-items-center" style={{width: "300px", height:"300px"}}>
+              <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardOrg id={org.id}
                   name={org.organization_name}
                   address={org.address}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { listPantries } from '../actions/pantryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
-import { CardOrg } from '../components/'
+import { CardPantry } from '../components/'
 import HeaderIndex from "components/HeaderIndex";
 
 function Pantries(props) {
@@ -17,13 +17,14 @@ function Pantries(props) {
   }, [])
 
   return <div className="orgs content-margined">
-  <HeaderIndex className="list"></HeaderIndex> 
+  <HeaderIndex className="list"></HeaderIndex>
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-          <Container>
+          <Container fluid>
+             <Row className="d-flex justify-content-center align-items-center"> <h5 >Pantries</h5></Row>
             <Row>{pantries.map(pantry =>
-              <Col className="d-flex justify-content-center align-items-center" style={{width: "300px", height:"300px"}}>
-                <CardOrg id={pantry.id}
+              <Col xs="4" style={{marginBottom:"30px"}}>
+                <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}
                   address={pantry.address}
@@ -35,7 +36,6 @@ function Pantries(props) {
               )}
             </Row>
           </Container>
-
   }
   </div>
 }
