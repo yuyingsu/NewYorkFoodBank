@@ -1,16 +1,17 @@
 import _ from "lodash";
-import React, { useState } from "react";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
 } from "react-google-maps";
-
+import { listPantries } from "actions/pantryActions";
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
-const { compose, withProps, withStateHandlers } = require("recompose");
+const { compose, withProps } = require("recompose");
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 const MyMapComponent = compose(
@@ -23,12 +24,37 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(props => (
-
+)(props => {
+  return(
   <GoogleMap zoom={11} center={{ lat: 40.653124, lng: -73.972951 }}>
     {props.pantries && props.pantries.map((pantry, idx)=>((
-      <Marker key={idx} onClick={()=>{console.log(idx);props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
-       {props.array[idx] && <InfoBox key={idx}
+      <Marker key={idx} onClick={()=>{props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
+       {props.array[idx] && props.boxes[idx]}
+      </Marker>
+      )))
+    }
+  </GoogleMap>
+  )
+  }
+);
+
+const enhance = _.identity;
+
+function ReactGoogleMaps(){
+  const lists = useSelector(state => state.pantryList);
+  const { loading, pantries } = lists;
+  const [array, setArray] = useState([]);
+  const [boxes, setBoxes] = useState([]);
+  const [currIdx, setCurrentIdx] = useState(-1);
+  const dispatch = useDispatch();
+
+useEffect(() => {
+    const initArray = new Array(props.pantries.length);
+    for (let i=0;i<initArray.length;i++){
+     initArray[i]=false;
+    setArray(initArray);
+    let box = [];
+    pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
         position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
         >
@@ -49,22 +75,10 @@ const MyMapComponent = compose(
             {"Saturday: " + props.hours[idx][6]}<br></br>
           </div>
         </div>
-      </InfoBox>
-      }
-      </Marker>
-      )))
-    }
-  </GoogleMap>
-));
-
-const enhance = _.identity;
-
-function ReactGoogleMaps(props){
-  const [array, setArray] = useState([]);
-  const [currIdx, setCurrentIdx] = useState(-1);
-
-  const pantryHours = [];
-  props.pantries.forEach(pantry => {
+      </InfoBox>)));
+    setBoxes(box);
+    const pantryHours = [];
+    props.pantries.forEach(pantry => {
     const hrs = JSON.parse(pantry.hours).schedule;
     const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
     const hours = hrs.map((hr)=> {
@@ -77,30 +91,24 @@ function ReactGoogleMaps(props){
     })
     pantryHours.push(schedule);
   })
-
-  React.useEffect(() => {
-    const initArray = new Array(props.pantries.length);
-    for (let i=0;i<initArray.length;i++){
-      initArray[i]=false;
-    setArray(initArray);
     }
     return function cleanup() {
     };
   }, []);
 
   const onToggleOpen = (idx) => {
-    console.log(currIdx+" "+idx);
-    const newArray = [...array];
-    if(currIdx!=-1 && currIdx!=idx){
+    let newArray = [...array];
+    if(currIdx!=-1 && currIdx!=idx && newArray[currIdx]){
       newArray[currIdx]=!newArray[currIdx];
       setArray(newArray);
+      console.log(currIdx+" "+idx);
     }
     newArray[idx]=!newArray[idx];
     setArray(newArray);
     setCurrentIdx(idx);
   }
 
-  return <MyMapComponent hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen}/>;
+  return <MyMapComponent hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
 
 }
 

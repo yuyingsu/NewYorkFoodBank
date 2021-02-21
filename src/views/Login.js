@@ -33,6 +33,7 @@ function LoginPage(props) {
   
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
   
+  console.log(React.version);
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
