@@ -1,18 +1,16 @@
 import _ from "lodash";
-import React, { useState } from "react";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
 } from "react-google-maps";
-import { pantryListReducer } from "reducers/pantryReducers";
 import { listPantries } from "actions/pantryActions";
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
-const { compose, withProps, withStateHandlers } = require("recompose");
+const { compose, withProps } = require("recompose");
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 const MyMapComponent = compose(
@@ -25,43 +23,31 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(props => (
-
+)(props => {
+  return(
   <GoogleMap zoom={11} center={{ lat: 40.653124, lng: -73.972951 }}>
     {props.pantries && props.pantries.map((pantry, idx)=>((
-      <Marker key={idx} onClick={()=>{console.log(idx);props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
-       {props.array[idx] && <InfoBox key={idx}
-        position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
-        options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        >
-        <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
-          <div style={{ fontSize: `16px`, color: `white` }}>
-            {pantry.pantry_name}<br></br>
-            {pantry.type}<br></br>
-            {pantry.address}<br></br>
-            {pantry.contact}<br></br>
-            {formatPhoneNumber(pantry.phone)}<br></br>
-            {pantry.hours}
-          </div>
-        </div>
-      </InfoBox>
-      }
+      <Marker key={idx} onClick={()=>{props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
+       {props.array[idx] && props.boxes[idx]}
       </Marker>
       )))
     }
   </GoogleMap>
-));
+  )
+  }
+);
 
 const enhance = _.identity;
 
 function ReactGoogleMaps(){
   const lists = useSelector(state => state.pantryList);
-  const [array, setArray] = useState([]);
-  const [currIdx, setCurrentIdx] = useState(-1);
   const { loading, pantries } = lists;
+  const [array, setArray] = useState([]);
+  const [boxes, setBoxes] = useState([]);
+  const [currIdx, setCurrentIdx] = useState(-1);
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(listPantries());
     if(!loading){
     const initArray = new Array(pantries.length);
@@ -69,23 +55,41 @@ function ReactGoogleMaps(){
       initArray[i]=false;
     }
     setArray(initArray);
+    let box = [];
+    pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
+      position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
+      options={{ closeBoxURL: ``, enableEventPropagation: true }}
+      >
+      <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
+        <div style={{ fontSize: `16px`, color: `white` }}>
+          {pantry.pantry_name}<br></br>
+          {pantry.type}<br></br>
+          {pantry.address}<br></br>
+          {pantry.contact}<br></br>
+          {formatPhoneNumber(pantry.phone)}<br></br>
+          {pantry.hours}
+        </div>
+      </div>
+    </InfoBox>)));
+    setBoxes(box);
     }
     return function cleanup() {
     };
   }, []);
 
   const onToggleOpen = (idx) => {
-    const newArray = [...array];
-    if(currIdx!=-1){
+    let newArray = [...array];
+    if(currIdx!=-1 && currIdx!=idx && newArray[currIdx]){
       newArray[currIdx]=!newArray[currIdx];
+      setArray(newArray);
+      console.log(currIdx+" "+idx);
     }
-    setArray(newArray);
     newArray[idx]=!newArray[idx];
-    setCurrentIdx(idx);
     setArray(newArray);
+    setCurrentIdx(idx);
   }
 
-  return <MyMapComponent pantries={pantries} array={array} onToggleOpen={onToggleOpen}/>;
+  return <MyMapComponent pantries={pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
 
 }
 
