@@ -24,13 +24,14 @@ const MapboxGLMap = () => {
       map.on("load", () => {
         setMap(map);
         map.resize();
+
       });
     };
 
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
 
-  return <div ref={el => (mapContainer.current = el)} style={styles} />;
+  return <div ref={el => (mapContainer.current = el)} style={styles}/>;
 };
 
 export default MapboxGLMap;

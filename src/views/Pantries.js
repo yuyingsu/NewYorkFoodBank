@@ -17,12 +17,13 @@ function Pantries(props) {
   }, [])
 
   return <div className="orgs content-margined">
-  <HeaderIndex className="list"></HeaderIndex> 
+  <HeaderIndex className="list"></HeaderIndex>
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-          <Container>
+          <Container fluid>
+             <Row className="d-flex justify-content-center align-items-center"> <h5 >Pantries</h5></Row>
             <Row>{pantries.map(pantry =>
-              <Col className="d-flex justify-content-center align-items-center" style={{width: "300px", height:"300px"}}>
+              <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}

@@ -34,12 +34,19 @@ const MyMapComponent = compose(
         >
         <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
           <div style={{ fontSize: `16px`, color: `white` }}>
-            {pantry.pantry_name}<br></br>
-            {pantry.type}<br></br>
-            {pantry.address}<br></br>
-            {pantry.contact}<br></br>
-            {formatPhoneNumber(pantry.phone)}<br></br>
-            {pantry.hours}
+            {"Name: " + pantry.pantry_name}<br></br>
+            {"Type: " + pantry.type}<br></br>
+            {"Address: " + pantry.address}<br></br>
+            {"Contact: " + pantry.contact}<br></br>
+            {"Phone: " + formatPhoneNumber(pantry.phone)}<br></br>
+            <br></br>{"Hours"}<br></br>
+            {"Sunday: " + props.hours[idx][0]}<br></br>
+            {"Monday: " + props.hours[idx][1]}<br></br>
+            {"Tuesday: " + props.hours[idx][2]}<br></br>
+            {"Wednesday: " + props.hours[idx][3]}<br></br>
+            {"Thursday: " + props.hours[idx][4]}<br></br>
+            {"Friday: " + props.hours[idx][5]}<br></br>
+            {"Saturday: " + props.hours[idx][6]}<br></br>
           </div>
         </div>
       </InfoBox>
@@ -56,6 +63,21 @@ function ReactGoogleMaps(props){
   const [array, setArray] = useState([]);
   const [currIdx, setCurrentIdx] = useState(-1);
 
+  const pantryHours = [];
+  props.pantries.forEach(pantry => {
+    const hrs = JSON.parse(pantry.hours).schedule;
+    const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
+    const hours = hrs.map((hr)=> {
+    const dayOfWeek = new Date(hr[0]).getDay()
+      if (schedule[dayOfWeek] === 'Closed') {
+      schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+      } else {
+        schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+      }
+    })
+    pantryHours.push(schedule);
+  })
+
   React.useEffect(() => {
     const initArray = new Array(props.pantries.length);
     for (let i=0;i<initArray.length;i++){
@@ -67,17 +89,18 @@ function ReactGoogleMaps(props){
   }, []);
 
   const onToggleOpen = (idx) => {
+    console.log(currIdx+" "+idx);
     const newArray = [...array];
-    if(currIdx!=-1){
+    if(currIdx!=-1 && currIdx!=idx){
       newArray[currIdx]=!newArray[currIdx];
+      setArray(newArray);
     }
-    setArray(newArray);
     newArray[idx]=!newArray[idx];
-    setCurrentIdx(idx);
     setArray(newArray);
+    setCurrentIdx(idx);
   }
 
-  return <MyMapComponent pantries={props.pantries} array={array} onToggleOpen={onToggleOpen}/>;
+  return <MyMapComponent hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen}/>;
 
 }
 
