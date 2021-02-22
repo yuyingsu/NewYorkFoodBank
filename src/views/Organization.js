@@ -192,7 +192,7 @@ function Organization(props) {
 
               {pantries.length > 0 ? pantries.map(pantry =>
 
-              <Col xs="4" style={{marginBottom: "30px"}}>
+              <Col style={{marginBottom: "30px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}
