@@ -1,10 +1,7 @@
-/*eslint-disable*/
+import { Link } from 'react-router-dom';
 import React from "react";
-
-// reactstrap components
 import { Container, Row, Col } from "reactstrap";
 
-// core components
 const attributes = {
   background: "rgba(0,0,0,0.5)",
   width: "100%",
@@ -20,47 +17,41 @@ function Footer() {
         <Container style={{margin:"0", padding:"0"}} fluid>
           <Row>
             <Col>
-                <a
-                  href="http://presentation.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
+                <Link
+                  href="/"
                 >
                   About Us
-                </a>
+                </Link>
             </Col>
             <Col>
-                <a
-                  href="http://presentation.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
+                <Link
+                  to ="/contact"
                 >
                   Contact Us
-                </a>
+                </Link>
             </Col>
               <Col>
-                <a
-                  href="http://presentation.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
+                <Link
+                  to="/donate"
                 >
                   Donate
-                </a>
+                </Link>
               </Col>
           </Row>
           <Row style={attributes} className="copyright" id="copyright">
             <Col xs="5">
             © {new Date().getFullYear()} New York Food Bank
             </Col>
-            <Col xs="7"><a
-              href="https://www.invisionapp.com?ref=nukr-default-footer"
-              target="_blank"
+            <Col xs="7"><Link
+              to="/terms"
             >
               Terms and Conditions
-            </a>
+            </Link>
             &nbsp;|&nbsp;
-            <a
-              href="https://www.creative-tim.com?ref=nukr-default-footer"
-              target="_blank"
+            <Link to="/privacy"
             >
                Privacy Policy
-            </a>
+            </Link>
             </Col>
           </Row>
         </Container>

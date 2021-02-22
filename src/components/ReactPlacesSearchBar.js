@@ -131,8 +131,8 @@ class ReactPlacesSearchBar extends React.Component {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#bf544e', cursor: 'pointer' }
-                  : { backgroundColor: '#8B4513', cursor: 'pointer' };
+                  ? { color: "black", backgroundColor: '#98c2f2', cursor: 'pointer' }
+                  : { color: "white", backgroundColor: 'rgba(0,0,0,0.5)', cursor: 'pointer' };
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
