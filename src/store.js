@@ -11,6 +11,7 @@ import {
   myPantryListReducer,
   pantryListReducer,
   pantryRegisterReducer,
+  pantryUpdateReducer,
   singlePantryListReducer
  } from './reducers/pantryReducers';
 import {
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   userRegister: userRegisterReducer,
   pantryList: pantryListReducer,
   pantryRegister: pantryRegisterReducer,
+  pantryUpdate: pantryUpdateReducer
 });
 
 const storeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;

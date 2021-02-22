@@ -1,6 +1,7 @@
 export { default as AddOrganization } from './AddOrganization'
 export { default as Contact } from './Contact'
 export { default as EditOrganization } from './EditOrganization'
+export { default as EditPantry } from './EditPantry'
 export { default as LandingPage } from './LandingPage'
 export { default as Login } from './Login'
 export { default as MapAllPantries } from './MapAllPantries'

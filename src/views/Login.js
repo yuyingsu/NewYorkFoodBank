@@ -30,23 +30,13 @@ function LoginPage(props) {
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-  
+
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
-  
-  console.log(React.version);
+
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
     }
-    document.body.classList.add("login-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    return function cleanup() {
-      document.body.classList.remove("login-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
   }, [userInfo]);
 
   const submitHandler = (e) => {
@@ -69,13 +59,13 @@ function LoginPage(props) {
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
+                      <h5>Log In</h5>
                     </div>
                   </CardHeader>
                   <CardBody>
                     <InputGroup
                       className={
-                        "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
+                        "no-border input-lg"
                       }
                     >
                       <InputGroupAddon addonType="prepend">
@@ -84,10 +74,8 @@ function LoginPage(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Username..."
+                        placeholder="Username"
                         type="text"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
                         onChange={(e) => setUsername(e.target.value)}
                       ></Input>
                     </InputGroup>
@@ -103,10 +91,8 @@ function LoginPage(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Password..."
+                        placeholder="Password"
                         type="password"
-                        onFocus={() => setLastFocus(true)}
-                        onBlur={() => setLastFocus(false)}
                         onChange={(e) => setPassword(e.target.value)}
                       ></Input>
                     </InputGroup>
@@ -120,7 +106,7 @@ function LoginPage(props) {
                       onClick={submitHandler}
                       size="lg"
                     >
-                      Log In
+                      Submit
                     </Button>
                     <div className="pull-left">
                       <h6>

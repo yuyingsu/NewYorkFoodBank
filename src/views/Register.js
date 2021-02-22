@@ -70,6 +70,7 @@ function Register(props) {
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
+                      <h5>Register</h5>
                     </div>
                   </CardHeader>
                   <CardBody>

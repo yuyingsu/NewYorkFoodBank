@@ -25,14 +25,15 @@ import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
-import { register } from '../actions/pantryActions';
+import { update } from '../actions/pantryActions';
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
   range.map(dateString => new Date(dateString)),
 );
 
-function AddPantry() {
+function EditPantry(props) {
+  console.log(props)
   const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState();
@@ -41,13 +42,27 @@ function AddPantry() {
   const [geocode, setGeocode] = React.useState("");
   const [schedule, setSchedule] = useState(defaultSchedule);
   const [showSchedule, setShowSchedule] = useState(false);
-  const pantryRegister = useSelector(state => state.pantryRegister);
-  const { loading, pantryInfo, error } = pantryRegister;
+  const PantryList = useSelector(state => state.myPantryList);
+  const { loading, pantries, error } = PantryList;
+  const pantry = pantries.find(pantry => pantry.id == props.id);
   const dispatch = useDispatch();
+  const pantry_id = props.id;
+
+  useEffect(() => {
+    {
+      console.log(pantry.pantry_name)
+      setPantryName(pantry.pantry_name);
+      setContactName(pantry.contact_name);
+      setPhone(pantry.phone);
+      setType(pantry.type);
+      setAddress(pantry.address);
+    }
+    return () => {};
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let test = JSON.stringify({
+   /* let test = JSON.stringify({
       "pantry_name": pantry_name,
       "contact_name": contact_name,
       "phone": phone,
@@ -56,8 +71,8 @@ function AddPantry() {
       "geocode": geocode,
       "hours": JSON.stringify({schedule})
     });
-    console.log(test);
-    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, 1));
+    console.log(test);*/
+    dispatch(update(pantry_name, pantry_id, contact_name, phone, type, address, geocode, schedule));
   }
 
   return (
@@ -76,7 +91,7 @@ function AddPantry() {
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
-                      <h5>Add Pantry</h5>
+                      <h5>Edit Pantry</h5>
                     </div>
                   </CardHeader>
                   <CardBody>
@@ -84,6 +99,8 @@ function AddPantry() {
                     <ReactstrapInput
                       type="select"
                       name="select"
+                      defaultValue={type}
+                      value={type}
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
@@ -105,12 +122,14 @@ function AddPantry() {
                       <ReactstrapInput
                         placeholder="Pantry Name"
                         type="text"
+                        value={pantry_name}
                         onChange={(e) => setPantryName(e.target.value)}
                       ></ReactstrapInput>
                     </InputGroup>
                     <ReactPlacesSearchBar
                         address={setAddress}
                         geocode={setGeocode}
+                        value={address}
                       />
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -120,6 +139,7 @@ function AddPantry() {
                       </InputGroupAddon>
                       <ReactstrapInput
                         placeholder="Contact Name"
+                        value={contact_name}
                         onChange={(e) => setContactName(e.target.value)}
                         type="text"
                       ></ReactstrapInput>
@@ -187,4 +207,4 @@ function AddPantry() {
   );
 }
 
-export default AddPantry;
+export default EditPantry;
