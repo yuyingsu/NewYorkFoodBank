@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { listMyOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import { CardOrg } from '../components/'
 
 function MyOrgs(props) {
@@ -18,7 +18,7 @@ function MyOrgs(props) {
   return <div className="orgs content-margined">
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
-          <Container fluid>
+          <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addorg'><Button>Add Organization</Button></Link></Row>
             <Row className="d-flex justify-content-center align-items-center"> <h5>My Organizations</h5></Row>
             <Row>{orgs.map(org =>
               <Col xs="4" style={{marginBottom:"30px"}}>

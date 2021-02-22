@@ -180,10 +180,8 @@ function Organization(props) {
             </Col>
             </Row>
             </Container>
-            <Container>
-            <Row className="d-flex justify-content-center align-items-center">
-              <h5 className="text-center">Pantries</h5>
-            </Row>
+            <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addpantry'><Button>Add Pantry</Button></Link></Row>
+            <Row className="d-flex justify-content-center align-items-center"> <h5>My Organizations</h5></Row>
             </Container>
             <Container className="d-flex" fluid>
             { loadingPantries ? <div>Loading...</div> :

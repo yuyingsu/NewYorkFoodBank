@@ -40,44 +40,14 @@ const MyMapComponent = compose(
 
 const enhance = _.identity;
 
-function ReactGoogleMaps(){
+function ReactGoogleMaps(props) {
   const lists = useSelector(state => state.pantryList);
   const { loading, pantries } = lists;
   const [array, setArray] = useState([]);
   const [boxes, setBoxes] = useState([]);
   const [currIdx, setCurrentIdx] = useState(-1);
   const dispatch = useDispatch();
-
-useEffect(() => {
-    const initArray = new Array(props.pantries.length);
-    for (let i=0;i<initArray.length;i++){
-     initArray[i]=false;
-    setArray(initArray);
-    let box = [];
-    pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
-        position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
-        options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        >
-        <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
-          <div style={{ fontSize: `16px`, color: `white` }}>
-            {"Name: " + pantry.pantry_name}<br></br>
-            {"Type: " + pantry.type}<br></br>
-            {"Address: " + pantry.address}<br></br>
-            {"Contact: " + pantry.contact}<br></br>
-            {"Phone: " + formatPhoneNumber(pantry.phone)}<br></br>
-            <br></br>{"Hours"}<br></br>
-            {"Sunday: " + props.hours[idx][0]}<br></br>
-            {"Monday: " + props.hours[idx][1]}<br></br>
-            {"Tuesday: " + props.hours[idx][2]}<br></br>
-            {"Wednesday: " + props.hours[idx][3]}<br></br>
-            {"Thursday: " + props.hours[idx][4]}<br></br>
-            {"Friday: " + props.hours[idx][5]}<br></br>
-            {"Saturday: " + props.hours[idx][6]}<br></br>
-          </div>
-        </div>
-      </InfoBox>)));
-    setBoxes(box);
-    const pantryHours = [];
+  const pantryHours = [];
     props.pantries.forEach(pantry => {
     const hrs = JSON.parse(pantry.hours).schedule;
     const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
@@ -91,6 +61,37 @@ useEffect(() => {
     })
     pantryHours.push(schedule);
   })
+
+useEffect(() => {
+    const initArray = new Array(props.pantries.length);
+    for (let i=0;i<initArray.length;i++){
+     initArray[i]=false;
+    setArray(initArray);
+    let box = [];
+    props.pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
+        position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
+        options={{ closeBoxURL: ``, enableEventPropagation: true }}
+        >
+        <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
+          <div style={{ fontSize: `16px`, color: `white` }}>
+            {"Name: " + pantry.pantry_name}<br></br>
+            {"Type: " + pantry.type}<br></br>
+            {"Address: " }<a href={`https://www.google.com/maps/search/?api=1&query=${pantry.address}`}>{pantry.address}</a><br></br><br></br>
+            {"Contact: " + pantry.contact_name}<br></br>
+            {"Phone: " + formatPhoneNumber(pantry.phone)}<br></br>
+            <br></br>{"Hours"}<br></br>
+            {"Sunday: " + pantryHours[idx][0]}<br></br>
+            {"Monday: " + pantryHours[idx][1]}<br></br>
+            {"Tuesday: " + pantryHours[idx][2]}<br></br>
+            {"Wednesday: " + pantryHours[idx][3]}<br></br>
+            {"Thursday: " + pantryHours[idx][4]}<br></br>
+            {"Friday: " + pantryHours[idx][5]}<br></br>
+            {"Saturday: " + pantryHours[idx][6]}<br></br>
+          </div>
+        </div>
+      </InfoBox>)));
+    setBoxes(box);
+
     }
     return function cleanup() {
     };
