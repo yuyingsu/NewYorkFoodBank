@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import {
   AddOrganization,
   EditOrganization,
+  EditPantry,
   LandingPage,
   Login,
   MapAllPantries,
@@ -18,6 +19,7 @@ import {
   Terms
  } from './views/';
 import AddPantry from './views/AddPantry';
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -33,13 +35,15 @@ function App() {
           <Route exact path='/myorgs' component={MyOrgs} />
           <Route path='/org/edit/:id' exact render={({match}) =>  <EditOrganization id={match.params.id} /> } />
           <Route path='/org/:id' exact render={({match}) =>  <Organization id={match.params.id} /> } />          <Route exact path="/orgs" component={Organizations} />
+          <Route path='/pantry/edit/:id' exact render={({match}) =>  <EditPantry id={match.params.id} /> } />
           <Route path='/pantry/:id' exact render={({match}) =>  <Pantry id={match.params.id} /> } />          <Route exact path="/pantries" component={Pantries} />
           <Route exact path="/pantrymap" component={MapAllPantries} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
-        </header>
+             </header>
       </div>
+
     </BrowserRouter>
   );
 }

@@ -11,7 +11,10 @@ import {
   MY_PANTRY_LIST_FAIL,
   SINGLE_PANTRY_LIST_REQUEST,
   SINGLE_PANTRY_LIST_SUCCESS,
-  SINGLE_PANTRY_LIST_FAIL
+  SINGLE_PANTRY_LIST_FAIL,
+  PANTRY_UPDATE_REQUEST,
+  PANTRY_UPDATE_SUCCESS,
+  PANTRY_UPDATE_FAIL
 } from "../constants/pantryConstants";
 
 const register = (pantry_name, contact_name, phone, type, address, geocode, schedule, organization_id) => async (dispatch, getState) => {
@@ -74,9 +77,27 @@ const listSinglePantry = (pantry_id) => async (dispatch, getState) => {
   }
 }
 
+const update = (pantry_name, contact_name, phone, type, address, geocode, schedule, pantry_id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PANTRY_UPDATE_REQUEST, payload: { pantry_name, contact_name, phone, type, address, geocode, schedule, pantry_id } });
+    const { userSignin: { userInfo } } = getState();
+    const { data } = await Axios.put("http://127.0.0.1:5000/editPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), "id": pantry_id
+    }, {
+      headers: {
+        Authorization: ' Bearer ' + userInfo.access_token
+      }
+    });
+    console.log(JSON.stringify(data))
+    dispatch({ type: PANTRY_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PANTRY_UPDATE_FAIL, payload: error.message });
+  }
+}
+
 export {
   register,
   listPantries,
   listMyPantries,
-  listSinglePantry
+  listSinglePantry,
+  update
 };

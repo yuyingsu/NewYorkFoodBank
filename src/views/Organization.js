@@ -181,18 +181,18 @@ function Organization(props) {
             </Row>
             </Container>
             <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addpantry'><Button>Add Pantry</Button></Link></Row>
-            <Row className="d-flex justify-content-center align-items-center"> <h5>My Organizations</h5></Row>
+            <Row className="d-flex justify-content-center align-items-center"><h5>Pantries</h5></Row>
             </Container>
-            <Container className="d-flex" fluid>
+            <Container fluid>
             { loadingPantries ? <div>Loading...</div> :
                errorPantries ? <div>{errorPantries}</div> :
 
-            <Row className="d-flex align-items-center flex-row flex-wrap" style={{marginTop:"40px"}}>
+            <Row>
               {console.log(pantries)}
 
               {pantries.length > 0 ? pantries.map(pantry =>
 
-              <Col xs="4" style={{width: "300px", height:"300px"}}>
+              <Col xs="4" style={{marginBottom: "30px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}

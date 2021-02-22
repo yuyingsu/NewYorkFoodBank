@@ -37,6 +37,9 @@ class ReactPlacesSearchBar extends React.Component {
   }
 
   componentDidMount () {
+    if (this.props.value) {
+      this.setState({address: this.props.value})
+    }
     window.initMap = this.initMap
     const gmapScriptEl = document.createElement(`script`)
     gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBReJVSyI6er0EIqUfX4xLI0aZWsxo07sE&libraries=places&callback=initMap`
@@ -115,6 +118,7 @@ class ReactPlacesSearchBar extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
+                      type="textarea"
                        value={this.props.value}
                     {...getInputProps({
                       placeholder: 'Address',

@@ -22,6 +22,7 @@ import {
 import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { listMyOrgs, updateOrg } from '../actions/orgActions';
+import { useHistory } from "react-router-dom";
 
 function EditOrganization(props) {
   const [organization_name, setOrganizationName] = useState("");
@@ -36,6 +37,7 @@ function EditOrganization(props) {
   const { loading, orgs, error } = useSelector(state => state.myOrgList);
   const org = orgs.find(org => org.id == props.id);
   console.log(org);
+  let history = useHistory();
 
   useEffect(() => {
     {
@@ -60,6 +62,7 @@ function EditOrganization(props) {
     });
     console.log(test);
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
+    history.push('/myorgs/');
   }
 
   return <div className="orgs content-margined">
@@ -90,10 +93,11 @@ function EditOrganization(props) {
                       type="select"
                       name="select"
                       defaultValue={type}
+                      value={type}
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
-                       <option key={0} value={null}> {"Type: " + type} </option>
+                       <option key={0} value={null}> {"Organization Type"} </option>
                       <option>Food Distribution</option>
                       <option>Food Processing</option>
                       <option>Government</option>

@@ -19,7 +19,7 @@ function MyOrgs(props) {
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
           <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addorg'><Button>Add Organization</Button></Link></Row>
-            <Row className="d-flex justify-content-center align-items-center"> <h5>My Organizations</h5></Row>
+            <Row className="d-flex justify-content-center align-items-center"> <h5>Pantries</h5></Row>
             <Row>{orgs.map(org =>
               <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardOrg id={org.id}
