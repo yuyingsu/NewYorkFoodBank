@@ -77,11 +77,12 @@ const listSinglePantry = (pantry_id) => async (dispatch, getState) => {
   }
 }
 
-const update = (pantry_name, contact_name, phone, type, address, geocode, schedule, pantry_id) => async (dispatch, getState) => {
+const update = (pantry_name, contact_name, phone, type, address, geocode, schedule, id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: PANTRY_UPDATE_REQUEST, payload: { pantry_name, contact_name, phone, type, address, geocode, schedule, pantry_id } });
+    dispatch({ type: PANTRY_UPDATE_REQUEST, payload: { pantry_name, contact_name, phone, type, address, geocode, schedule, id } });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.put("http://127.0.0.1:5000/editPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), "id": pantry_id
+    console.log("id" + id)
+    const { data } = await Axios.put("http://127.0.0.1:5000/editPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), id
     }, {
       headers: {
         Authorization: ' Bearer ' + userInfo.access_token

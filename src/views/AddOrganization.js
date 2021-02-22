@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { register } from '../actions/orgActions';
 import HeaderIndex from "components/HeaderIndex";
-
+import { useHistory } from "react-router-dom";
 
 function AddOrganization() {
   const [organization_name, setOrganizationName] = React.useState("");
@@ -34,6 +34,7 @@ function AddOrganization() {
   const orgRegister = useSelector(state => state.orgRegister);
   const { loading, orgInfo, error } = orgRegister;
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +47,7 @@ function AddOrganization() {
     });
     console.log(test);
     dispatch(register(organization_name, phone, type, address, url));
+    history.push('/myorgs/');
   }
 
   return (

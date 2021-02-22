@@ -46,7 +46,7 @@ function EditPantry(props) {
   const { loading, pantries, error } = PantryList;
   const pantry = pantries.find(pantry => pantry.id == props.id);
   const dispatch = useDispatch();
-  const pantry_id = props.id;
+  const id = props.id;
 
   useEffect(() => {
     {
@@ -62,17 +62,18 @@ function EditPantry(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   /* let test = JSON.stringify({
+    let test = JSON.stringify({
       "pantry_name": pantry_name,
       "contact_name": contact_name,
       "phone": phone,
       "type": type,
       "address": address,
       "geocode": geocode,
-      "hours": JSON.stringify({schedule})
+      "hours": JSON.stringify({schedule}),
+      "id": id
     });
-    console.log(test);*/
-    dispatch(update(pantry_name, pantry_id, contact_name, phone, type, address, geocode, schedule));
+    console.log(test);
+    dispatch(update(pantry_name, contact_name, phone, type, address, geocode, schedule, id));
   }
 
   return (
