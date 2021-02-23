@@ -16,7 +16,9 @@ import {
   Pantries,
   Privacy,
   Register,
-  Terms
+  Terms,
+  DonationPage,
+  Contact
  } from './views/';
 import AddPantry from './views/AddPantry';
 import Footer from './components/Footer'
@@ -41,7 +43,9 @@ function App() {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
-             </header>
+          <Route exact path="/donate" component={DonationPage} />
+          <Route exact path="/contact" component={Contact} />
+          </header>
       </div>
 
     </BrowserRouter>

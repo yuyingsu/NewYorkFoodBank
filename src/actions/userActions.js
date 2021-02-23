@@ -9,7 +9,13 @@ import {
   USER_SIGNIN_FAIL, 
   USER_LOGOUT_REQUEST, 
   USER_LOGOUT_SUCCESS, 
-  USER_LOGOUT_FAIL
+  USER_LOGOUT_FAIL,
+  USER_DONATE_REQUEST,
+  USER_DONATE_SUCCESS,
+  USER_DONATE_FAIL,
+  LIST_DONATE_REQUEST,
+  LIST_DONATE_SUCCESS,
+  LIST_DONATE_FAIL
 } from "../constants/userConstants";
 
 const signin = (username, password) => async (dispatch) => {
@@ -57,4 +63,31 @@ const logout = () => async (dispatch, getState) => {
     dispatch({ type: USER_LOGOUT_FAIL, payload: error.message });
   }
 }
-export { signin, register, logout };
+
+const donate = (amount) => async (dispatch, getState) => {
+  
+  const { userSignin: { userInfo } } = getState();
+  
+  dispatch({ type: USER_DONATE_REQUEST });
+
+  try {
+    await Axios.post("http://127.0.0.1:5000/pay", { "user_id": userInfo.user_id, "amount": amount }, {});
+    dispatch({ type: USER_DONATE_SUCCESS });
+  } catch (error) {
+    dispatch({ type: USER_DONATE_FAIL, payload: error.message });
+  }
+}
+
+const listDonation = () => async (dispatch) => {
+
+  dispatch({ type: LIST_DONATE_REQUEST });
+  
+  try {
+    const { data } = await Axios.get("http://127.0.0.1:5000/pay", { });
+    dispatch({ type: LIST_DONATE_SUCCESS, payload:data });
+  } catch (error) {
+    dispatch({ type: LIST_DONATE_FAIL, payload: error.message });
+  }
+}
+
+export { signin, register, logout, donate, listDonation };

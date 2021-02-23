@@ -16,7 +16,9 @@ import {
  } from './reducers/pantryReducers';
 import {
   userSigninReducer,
-  userRegisterReducer
+  userRegisterReducer,
+  userDonateReducer,
+  listDonateReducer
 } from './reducers/userReducers';
 import Cookie from 'js-cookie';
 import { persistStore, persistReducer } from 'redux-persist'
@@ -38,6 +40,8 @@ const rootReducer = combineReducers({
   singlePantry: singlePantryListReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  userDonate: userDonateReducer,
+  listDonate: listDonateReducer,
   pantryList: pantryListReducer,
   pantryRegister: pantryRegisterReducer,
   pantryUpdate: pantryUpdateReducer
