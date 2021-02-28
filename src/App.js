@@ -46,12 +46,11 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
           <Route path='/vieworg/:id' exact render={({match}) =>  <OrganizationPublic id={match.params.id} /> } />
-             </div>
-             <Footer />
-             </header>
           <Route exact path="/donate" component={DonationPage} />
           <Route exact path="/contact" component={Contact} />
-          </header>
+          </div>
+             <Footer />
+             </header>
       </div>
 
     </BrowserRouter>

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { donate, listDonation } from '../actions/userActions';
 // core components
-import HeaderIndex from "../components/HeaderIndex.js";
+import { Header } from "../components/";
 import Ticker from 'react-ticker';
 import Cards from 'react-credit-cards';
 import {
@@ -26,7 +26,7 @@ import { useDispatch,useSelector } from 'react-redux';
 
 function DonationPage() {
   const [amount, setAmount] = useState(0);
-  const [message, setMessage] = useState(""); 
+  const [message, setMessage] = useState("");
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -39,7 +39,7 @@ function DonationPage() {
     {
         dispatch(listDonation());
         if(!loading){
-            const elems=[];        
+            const elems=[];
             payload.map((elem)=>{elems.push("User Id: "+elem.user_id+" Donation Amount: "+elem.amount)});
             setMessage(elems.join(" "));
         }
@@ -49,8 +49,8 @@ function DonationPage() {
 
   const submitPayment = () =>{
     dispatch(donate(amount));
-  } 
-  
+  }
+
   const handleInputChange = ({ target }) => {
     if (target.name === "number") {
       target.value = formatCreditCardNumber(target.value);
@@ -70,8 +70,8 @@ function DonationPage() {
   return (
     <>
       <div className="wrapper">
-        <HeaderIndex />
-        {!loading && <Ticker> 
+        <Header />
+        {!loading && <Ticker>
             {() => message ? (
             <p style={{ whiteSpace: "nowrap" }}>{message.toString()}</p>
             ) : (

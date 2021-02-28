@@ -173,11 +173,10 @@ function AddPantry(props) {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
                       onClick={handleSubmit}
                       size="lg"
                     >
-                      Get Started
+                      Submit
                     </Button>
                   </CardFooter>
                 </Form>
