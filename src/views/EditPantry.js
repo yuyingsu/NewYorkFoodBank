@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
-import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
+import { Header, ReactPlacesSearchBar } from "../components/";
 // core components
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
@@ -77,7 +77,7 @@ function EditPantry(props) {
   }
 
   return (
-    <>
+    <><Header className="form" />
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"

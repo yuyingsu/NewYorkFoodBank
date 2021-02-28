@@ -19,10 +19,14 @@ import { logout } from '../actions/userActions';
 
 const attributes = {
   background: "rgba(0,0,0,0.5)",
-  zIndex: "5"
+  zIndex: "5",
+  position: "absolute",
+  left: "0",
+  right: "0",
+  top: "0"
 }
 
-const HeaderIndex = (props) => {
+const NavbarIndex = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -100,4 +104,4 @@ const HeaderIndex = (props) => {
   );
 }
 
-export default HeaderIndex;
+export default NavbarIndex

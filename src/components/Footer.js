@@ -7,14 +7,16 @@ const attributes = {
   width: "100%",
   left: "0",
   right: "0",
-  position: "absolute"
 }
 
 function Footer() {
   return (
     <>
       <footer className="footer footer-default">
-        <Container style={{margin:"0", padding:"0"}} fluid>
+        <Container style={{margin:"0", padding:"0",   left: "0",
+  right: "0",
+  bottom: "0",
+  position: "absolute"}} fluid>
           <Row>
             <Col>
                 <Link
@@ -39,7 +41,7 @@ function Footer() {
               </Col>
           </Row>
           <Row style={attributes} className="copyright" id="copyright">
-            <Col xs="5">
+            <Col xs="5" style={{color:"white"}}>
             © {new Date().getFullYear()} New York Food Bank
             </Col>
             <Col xs="7"><Link

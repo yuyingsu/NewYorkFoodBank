@@ -18,6 +18,7 @@ import {
   Col,
   Label
 } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
@@ -26,14 +27,14 @@ import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { register } from '../actions/pantryActions';
-import HeaderIndex from "components/HeaderIndex";
+import Header from "components/Header";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
   range.map(dateString => new Date(dateString)),
 );
 
-function AddPantry() {
+function AddPantry(props) {
   const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState();
@@ -58,7 +59,7 @@ function AddPantry() {
       "hours": JSON.stringify({schedule})
     });
     console.log(test);
-    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, 1));
+    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
   }
 
   return (
@@ -70,7 +71,7 @@ function AddPantry() {
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
         ></div>
-        <HeaderIndex className="form"></HeaderIndex>
+        <Header className="form" />
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">

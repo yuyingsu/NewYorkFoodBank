@@ -17,11 +17,11 @@ import { listPantries } from "actions/pantryActions";
 import { useSelector, useDispatch } from 'react-redux';
 
 // core components
-import HeaderIndex from "../components/HeaderIndex.js";
+import Header from "../components/Header.js";
 import MyMapComponent from "../components/MyMapComponent";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
-function MapAllPantries(props) {
+function MapPantries(props) {
   const dispatch = useDispatch();
   const lists = useSelector(state => state.pantryList);
   const { loading, error, pantries } = lists;
@@ -40,7 +40,7 @@ function MapAllPantries(props) {
           <Container>
             <Row>
               <Col style={{color:"black"}}className="text-center">
-                A Map to visualize the pantry locations on the Google Map
+                New York City Pantry Map
               <MyMapComponent pantries={pantries} />
               </Col>
             </Row>
@@ -53,4 +53,4 @@ function MapAllPantries(props) {
   );
 }
 
-export default MapAllPantries;
+export default MapPantries;

@@ -5,7 +5,7 @@ import header from '../assets/img/elaine-casap-qgHGDbbSNm8-unsplash.jpg';
 import form from '../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg';
 import list from '../assets/img/ricardo-gomez-angel-ltDrvSoyllA-unsplash.jpg';
 
-function HeaderIndex(props) {
+function Header(props) {
   return (
     <>
       <div className="page-header">
@@ -38,7 +38,7 @@ function HeaderIndex(props) {
         }
         { !props.className?
         <Container>
-          <Col xs="5" style={{paddingTop: "40%", paddingBottom: "40%"}}><CardLink /></Col>
+          <Col xs="5" style={{paddingTop: "40%", paddingBottom: "40%"}}><CardLink text="Write a proposal explaining what you want to study about the space. You are to include a research question you formulate, 3 scholarly sources that help you write about the space, its history, or something related to its social formation."/></Col>
           <div className="content-center brand">
 
             <h1 className="h1-seo">New York Food Bank</h1>
@@ -51,4 +51,4 @@ function HeaderIndex(props) {
   );
 }
 
-export default HeaderIndex;
+export default Header;

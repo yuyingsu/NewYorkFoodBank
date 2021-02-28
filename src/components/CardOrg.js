@@ -25,11 +25,13 @@ console.log(props)
       <Card style={attributes}>
         <CardImg top width="100%" src={"https://www.k3ma.com/wp-content/uploads/2017/04/default-image.jpg"} alt="Card image cap" />
         <CardBody  className="d-flex flex-column">
-          <Link to={`/org/${props.id}/`}><CardTitle tag="h5">{props.name}</CardTitle></Link>
+          {props.public ?
+            <Link to={`/vieworg/${props.id}/`}><CardTitle tag="h4">{props.name}</CardTitle></Link>
+            : <Link to={`/org/${props.id}/`}><CardTitle tag="h4">{props.name}</CardTitle></Link>}
           <p>{props.type}</p>
           <p>{props.address}</p>
           <p>{formatPhoneNumber(props.phone)}</p>
-          <p>{props.url}</p>
+          <p><a href={`https://${props.url}`}>{props.url}</a></p>
           {props.logged &&
           <Container>
             <Row>

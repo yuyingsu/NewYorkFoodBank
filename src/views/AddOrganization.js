@@ -22,7 +22,7 @@ import {
 import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { register } from '../actions/orgActions';
-import HeaderIndex from "components/HeaderIndex";
+import Header from "components/Header";
 import { useHistory } from "react-router-dom";
 
 function AddOrganization() {
@@ -59,7 +59,7 @@ function AddOrganization() {
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
         ></div>
-        <HeaderIndex className="form"></HeaderIndex>
+        <Header className="form" />
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">

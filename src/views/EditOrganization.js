@@ -20,7 +20,7 @@ import {
   Label
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
+import { Header, ReactPlacesSearchBar } from "../components/";
 import { listMyOrgs, updateOrg } from '../actions/orgActions';
 import { useHistory } from "react-router-dom";
 
@@ -66,6 +66,7 @@ function EditOrganization(props) {
   }
 
   return <div className="orgs content-margined">
+    <Header className="form" />
   { loading ? <div>Loading...</div> :
     error ? <div>{error}</div> :
     <>
