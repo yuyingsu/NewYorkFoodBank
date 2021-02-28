@@ -23,7 +23,7 @@ function Pantries(props) {
           <Container fluid>
              <Row className="d-flex justify-content-center align-items-center"> <h5 style={{color:"white"}}>Pantries</h5></Row><br></br>
             <Row>{pantries.map(pantry =>
-              <Col xs="6" style={{marginBottom:"30px"}}>
+              <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}
