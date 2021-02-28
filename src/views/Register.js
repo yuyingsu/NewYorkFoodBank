@@ -17,8 +17,8 @@ import {
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
-// core components
-
+import { Header } from '../components/'
+import { useHistory } from "react-router-dom";
 
 function Register(props) {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -29,18 +29,11 @@ function Register(props) {
   const userRegister = useSelector(state => state.userRegister);
   const { loading, userInfo, error } = userRegister;
   const dispatch = useDispatch();
-
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+  let history = useHistory();
 
   useEffect(() => {
-    if (userInfo) {
-        props.history.push(redirect);
-      }
-    document.body.classList.add("register-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
+
+
     return function cleanup() {
       document.body.classList.remove("register-page");
       document.body.classList.remove("sidebar-collapse");
@@ -50,10 +43,12 @@ function Register(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(register(username, email, password));
+    if (!error) history.push('/myorgs/');
   }
 
   return (
     <>
+    <Header className="form" />
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -75,10 +70,6 @@ function Register(props) {
                   </CardHeader>
                   <CardBody>
                     <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
-                      }
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -86,7 +77,7 @@ function Register(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Username..."
+                        placeholder="Username"
                         type="text"
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
@@ -94,10 +85,6 @@ function Register(props) {
                       ></Input>
                     </InputGroup>
                     <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
-                      }
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -105,18 +92,12 @@ function Register(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Email..."
+                        placeholder="Email"
                         type="text"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
                         onChange={(e) => setEmail(e.target.value)}
                       ></Input>
                     </InputGroup>
                     <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (lastFocus ? " input-group-focus" : "")
-                      }
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -124,10 +105,8 @@ function Register(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Password..."
+                        placeholder="Password"
                         type="password"
-                        onFocus={() => setLastFocus(true)}
-                        onBlur={() => setLastFocus(false)}
                         onChange={(e) => setPassword(e.target.value)}
                       ></Input>
                     </InputGroup>
@@ -141,7 +120,7 @@ function Register(props) {
                       onClick={submitHandler}
                       size="lg"
                     >
-                      Register
+                      Submit
                     </Button>
                   </CardFooter>
                 </Form>

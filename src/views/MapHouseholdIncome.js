@@ -14,9 +14,7 @@ import {
 } from "reactstrap";
 
 // core components
-import HeaderIndex from "../components/HeaderIndex.js";
-import MyMapComponent from "../components/MyMapComponent";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
+import { Footer, Header, MyMapComponent } from "../components/";
 
 function InfoPage() {
   React.useEffect(() => {
@@ -27,10 +25,10 @@ function InfoPage() {
     <>
       <div className="wrapper">
         <div className="section section-heat-map">
-          <Container>
+          <Container style={{marginTop:"30px"}}>
             <Row>
               <Col style={{color:"black"}}className="text-center">
-                A Map to visualize the poverty status distribution in NYC
+                <h5>Median Household Income Map</h5>
               <Map></Map>
               <ul class="legend">
                 <li><span class="a"></span>0-10000</li>
@@ -47,7 +45,7 @@ function InfoPage() {
           </Container>
         </div>
 
-        {/*<DefaultFooter />*/}
+        <Footer />
       </div>
     </>
   );

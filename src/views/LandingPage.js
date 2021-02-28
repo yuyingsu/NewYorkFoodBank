@@ -14,30 +14,17 @@ import {
 
 // core components
 import Footer from "../components/Footer";
-import HeaderIndex from "../components/HeaderIndex";
+import Header from "../components/Header";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 import centerImage from '../assets/img/joel-muniz-3k3l2brxmwQ-unsplash.jpg';
 import leftImage from '../assets/img/nico-smit-NFoerQuvzrs-unsplash.jpg';
 import CardLink from '../components/CardLink'
 
 function LandingPage() {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
-  React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
-  }, []);
   return (
     <>
       <div className="wrapper">
-        <HeaderIndex />
+        <Header />
         <div className="section section-about-us">
           <Container>
             <Row>
@@ -74,7 +61,8 @@ function LandingPage() {
                         backgroundImage: `url(${leftImage})`,
                         height: "90vh",
                         width: "100%",
-                        zIndex: "0"
+                        zIndex: "0",
+                        backgroundRepeat: "no-repeat"
                       }}
                     >
                     </div>

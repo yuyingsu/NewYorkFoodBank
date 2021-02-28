@@ -52,3 +52,10 @@ code {
 .legend .e { background-color: rgb(254,104,47) }
 .legend .f { background-color: rgb(255,146,87) }
 .legend .g { background-color: rgb(255,186,122) }
+
+@media (min-width: 2000px) {
+  #container-map {
+    width: 1000px !important;
+  }
+}
+

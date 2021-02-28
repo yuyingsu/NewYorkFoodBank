@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { listMyOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Row, Col } from 'reactstrap';
-import { CardOrg } from '../components/'
+import { CardOrg, Header } from '../components/'
 
 function MyOrgs(props) {
   const dispatch = useDispatch();
@@ -16,10 +16,11 @@ function MyOrgs(props) {
   }, [])
 
   return <div className="orgs content-margined">
+      <Header className="list" />
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
           <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addorg'><Button>Add Organization</Button></Link></Row>
-            <Row className="d-flex justify-content-center align-items-center"> <h5>Pantries</h5></Row>
+            <Row className="d-flex justify-content-center align-items-center"> <h5 style={{color:"white"}}>My Organizations</h5></Row>
             <Row>{orgs.map(org =>
               <Col xs="4" style={{marginBottom:"30px"}}>
                 <CardOrg id={org.id}

@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
-// core components
+import { Header } from '../components/'
 
 
 function LoginPage(props) {
@@ -45,9 +45,10 @@ function LoginPage(props) {
   }
   return (
     <>
+      <Header className="form" />
       <div className="page-header clear-filter" filter-color="blue">
         <div
-          className="page-header-image"
+          className="epage-header-imag"
           style={{
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}

@@ -1,3 +1,6 @@
 export { default as CardOrg } from './CardOrg'
 export { default as CardPantry } from './CardPantry'
+export { default as Footer } from './Footer'
+export { default as Header } from './Header'
 export { default as MyMapComponent } from './MyMapComponent'
+export { default as ReactPlacesSearchBar } from './ReactPlacesSearchBar'

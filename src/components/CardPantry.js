@@ -37,7 +37,7 @@ const CardPantry = (props) => {
       <Card style={attributes}>
         <CardImg top width="100%" src={"https://www.k3ma.com/wp-content/uploads/2017/04/default-image.jpg"} alt="Card image cap" />
         <CardBody  className="d-flex flex-column">
-          <Link to={`/pantry/${props.id}/`}><CardTitle tag="h5">{props.name}</CardTitle></Link>
+          <Link to={`/pantry/${props.id}/`}><CardTitle tag="h4">{props.name}</CardTitle></Link>
           <p>{props.type}</p>
           <p>{props.address}</p>
           <p>{props.contact}</p>

@@ -19,14 +19,14 @@ const MyMapComponent = compose(
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBReJVSyI6er0EIqUfX4xLI0aZWsxo07sE&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `80vh`, width: `80vw` }} />,
+    containerElement: <div id="container-map" style={{ height: `80vh`, width: `75vw` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
   withGoogleMap
 )(props => {
   return(
-  <GoogleMap zoom={11} center={{ lat: 40.653124, lng: -73.972951 }}>
+    <GoogleMap zoom={13} center={{ lat: parseFloat(props.pantries[0].geocode.split(",")[0]), lng: parseFloat(props.pantries[0].geocode.split(",")[1]) }}>
     {props.pantries && props.pantries.map((pantry, idx)=>((
       <Marker key={idx} onClick={()=>{props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
        {props.array[idx] && props.boxes[idx]}
@@ -34,6 +34,7 @@ const MyMapComponent = compose(
       )))
     }
   </GoogleMap>
+
   )
   }
 );

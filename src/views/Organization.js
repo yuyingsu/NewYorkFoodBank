@@ -27,6 +27,7 @@ import { CardPantry } from '../components/'
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { listMyPantries } from '../actions/pantryActions';
 import { listOrg, listOrgs, updateOrg } from '../actions/orgActions';
+import { Header } from '../components/'
 
 function Organization(props) {
   const [organization_name, setOrganizationName] = useState("");
@@ -43,6 +44,7 @@ function Organization(props) {
   const { loading: loadingPantries, pantries, error: errorPantries } = PantryList;
   const org = orgs.find(org => org.id == props.id);
   console.log("my pantries" + JSON.stringify(PantryList))
+
   useEffect(() => {
     {
       dispatch(listMyPantries(props.id))
@@ -72,6 +74,7 @@ function Organization(props) {
   }
 
   return <div className="orgs content-margined">
+    <Header className="list" />
   { loading ? <div>Loading...</div> :
     error ? <div>{error}</div> :
     <>
@@ -82,14 +85,14 @@ function Organization(props) {
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
         ></div>
-        <div className="content">
+        <div className="content" style={{marginTop:"30px"}}>
           <Container>
             <Row><Col className="ml-auto mr-auto">
               <Card className="card-login card-plain">
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
                     <div className="logo-container">
-                      <h5>Edit Organization</h5>
+                      <h5>Organization</h5>
                     </div>
                   </CardHeader>
                   <CardBody>
@@ -98,10 +101,11 @@ function Organization(props) {
                       type="select"
                       name="select"
                       defaultValue={type}
+                      value={type}
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
-                       <option key={0} value={null}> {"Type: " + type} </option>
+                       <option key={0} value={null}> {"Type"} </option>
                       <option>Food Distribution</option>
                       <option>Food Processing</option>
                       <option>Government</option>
@@ -179,9 +183,9 @@ function Organization(props) {
               </Card>
             </Col>
             </Row>
-            </Container>
-            <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addpantry'><Button>Add Pantry</Button></Link></Row>
-            <Row className="d-flex justify-content-center align-items-center"><h5>Pantries</h5></Row>
+            </Container><br></br><br></br>
+            <Container fluid style={{padding: "0px"}} fluid><Row className="d-flex align-items-end justify-content-end" ><Link to={`/org/${props.id}/addpantry`}><Button>Add Pantry</Button></Link></Row>
+            <Row className="d-flex align-items-center" ><Col><h5 style={{color:"white"}}>Pantries</h5></Col><br></br><br></br></Row>
             </Container>
             <Container fluid>
             { loadingPantries ? <div>Loading...</div> :
@@ -192,7 +196,7 @@ function Organization(props) {
 
               {pantries.length > 0 ? pantries.map(pantry =>
 
-              <Col style={{marginBottom: "30px"}}>
+              <Col xs="6" style={{marginBottom: "30px"}}>
                 <CardPantry id={pantry.id}
                   name={pantry.pantry_name}
                   contact={pantry.contact_name}
@@ -205,7 +209,7 @@ function Organization(props) {
               </Col>
               )
             :
-            <Col><h5>No pantries exist for this organization. Add a pantry.</h5></Col>
+            <Col><h5 style={{color:"white"}}>No pantries exist for this organization.</h5></Col>
 
 
             }</Row>}

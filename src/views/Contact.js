@@ -13,14 +13,14 @@ import {
 } from "reactstrap";
 
 // core components
-import HeaderIndex from "../components/HeaderIndex.js";
+import Header from "../components/Header.js";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function Contact() {
   return (
     <>
       <div className="wrapper">
-        <HeaderIndex />
+        <Header />
         <div className="section section-contact-us text-center">
           <Container>
             <h2 className="title">Want to work with us?</h2>
