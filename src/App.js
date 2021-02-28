@@ -20,9 +20,8 @@ import {
   Pantries,
   Privacy,
   Register,
-  Terms
+  Terms,
  } from './views/';
-import { Footer } from './components/'
 
 function App() {
   return (
@@ -50,9 +49,10 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           </div>
              <Footer />
-             </header>
+          <Route exact path="/donate" component={Donate} />
+          <Route exact path="/contact" component={Contact} />
+          </header>
       </div>
-
     </BrowserRouter>
   );
 }

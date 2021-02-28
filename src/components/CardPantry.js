@@ -1,30 +1,20 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImg,CardTitle, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardTitle, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { removeOrg } from '../actions/orgActions';
-import { connect } from 'react-redux';
-import { orgListReducer } from 'reducers/orgReducers';
 import { useDispatch } from 'react-redux';
 import { formatPhoneNumber } from 'react-phone-number-input'
 
 const CardPantry = (props) => {
   const dispatch = useDispatch();
-
-  function handleRemove () {
-    dispatch(removeOrg(props.org));
-  }
-
+  const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
   const attributes = {
     border: "5em",
     color: "white",
     background: "rgba(0,0,0,0.5)",
   }
-
-
   const hrs = JSON.parse(props.hours).schedule;
-
-  const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
-  const hours = hrs.map((hr)=> {
+  hrs.map((hr)=> {
       const dayOfWeek = new Date(hr[0]).getDay()
         if (schedule[dayOfWeek] === 'Closed') {
         schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
@@ -32,6 +22,11 @@ const CardPantry = (props) => {
           schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
         }
   })
+
+  function handleRemove () {
+    dispatch(removeOrg(props.org));
+  }
+
   return (
     <div>
       <Card style={attributes}>
@@ -55,12 +50,14 @@ const CardPantry = (props) => {
           {props.logged &&
           <Container>
             <Row>
-            <Link to={`/pantry/edit/${props.id}`}>
-              <Button className="align-self-center mr-auto mt-auto" color="warning" >
-              Edit
-              </Button></Link>
+              <Link to={`/pantry/edit/${props.id}`}>
+                <Button className="align-self-center mr-auto mt-auto" color="warning" >
+                Edit
+                </Button>
+              </Link>
               <Button className="align-self-center ml-auto mt-auto" color="danger"
-              onClick={handleRemove}>Delete
+              onClick={handleRemove}>
+              Delete
               </Button>
             </Row>
           </Container>

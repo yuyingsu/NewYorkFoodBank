@@ -1,5 +1,4 @@
-import React from "react";
-// reactstrap components
+import React, { Fragment } from "react";
 import {
   Button,
   Card,
@@ -14,15 +13,13 @@ import {
   Container,
   Col,
 } from "reactstrap";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
 import { Header } from '../components/'
 import { useHistory } from "react-router-dom";
 
 function Register(props) {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,25 +28,16 @@ function Register(props) {
   const dispatch = useDispatch();
   let history = useHistory();
 
-  useEffect(() => {
-
-
-    return function cleanup() {
-      document.body.classList.remove("register-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
-  }, [userInfo]);
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(register(username, email, password));
-    if (!error) history.push('/');
+    history.go(-1);
   }
 
   return (
-    <>
+    <Fragment>
     <Header className="form" />
-      <div className="page-header clear-filter" filter-color="blue">
+      <div className="page-header">
         <div
           className="page-header-image"
           style={{
@@ -69,8 +57,7 @@ function Register(props) {
                     </div>
                   </CardHeader>
                   <CardBody>
-                    <InputGroup
-                    >
+                    <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons users_circle-08"></i>
@@ -79,13 +66,11 @@ function Register(props) {
                       <Input
                         placeholder="Username"
                         type="text"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
                         onChange={(e) => setUsername(e.target.value)}
-                      ></Input>
+                      >
+                      </Input>
                     </InputGroup>
-                    <InputGroup
-                    >
+                    <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons users_circle-08"></i>
@@ -95,10 +80,10 @@ function Register(props) {
                         placeholder="Email"
                         type="text"
                         onChange={(e) => setEmail(e.target.value)}
-                      ></Input>
+                      >
+                      </Input>
                     </InputGroup>
-                    <InputGroup
-                    >
+                    <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons text_caps-small"></i>
@@ -108,7 +93,8 @@ function Register(props) {
                         placeholder="Password"
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
-                      ></Input>
+                      >
+                      </Input>
                     </InputGroup>
                   </CardBody>
                   <CardFooter className="text-center">
@@ -116,7 +102,6 @@ function Register(props) {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
                       onClick={submitHandler}
                       size="lg"
                     >
@@ -129,7 +114,7 @@ function Register(props) {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

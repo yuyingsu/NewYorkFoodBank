@@ -1,25 +1,12 @@
-import React from "react";
-import Map from "../components/Map";
-import AGoogleMap from "../components/MapPantry";
-// reactstrap components
+import React, { Fragment } from "react";
 import {
-  Button,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Row,
   Col,
 } from "reactstrap";
-import { pantryListReducer } from "reducers/pantryReducers";
 import { listPantries } from "actions/pantryActions";
 import { useSelector, useDispatch } from 'react-redux';
-
-// core components
-import Header from "../components/Header.js";
 import MapPantry from "../components/MapPantry";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function MapPantries(props) {
   const dispatch = useDispatch();
@@ -31,11 +18,12 @@ function MapPantries(props) {
     return function cleanup() {
     };
   }, []);
+
   return (
-    <>{ loading ? <div>Loading...</div> :
+    <Fragment>
+      { loading ? <div>Loading...</div> :
        error ? <div>{error}</div> :
       <div className="wrapper">
-
         <div className="section section-heat-map">
           <Container>
             <Row>
@@ -46,10 +34,8 @@ function MapPantries(props) {
             </Row>
           </Container>
         </div>
-
-        {/*<DefaultFooter />*/}
       </div>}
-    </>
+    </Fragment>
   );
 }
 

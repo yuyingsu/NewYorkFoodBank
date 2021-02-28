@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
-// reactstrap components
 import {
   Button,
   Card,
@@ -17,12 +16,10 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
-import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { register } from '../actions/orgActions';
-import Header from "components/Header";
+import { Header } from "../components/";
 import { useHistory } from "react-router-dom";
 
 function AddOrganization() {
@@ -31,10 +28,10 @@ function AddOrganization() {
   const [type, setType] = React.useState("");
   const [address, setAddress] = React.useState("");
   const [url, setUrl] = useState("");
-  const orgRegister = useSelector(state => state.orgRegister);
-  const { loading, orgInfo, error } = orgRegister;
   const dispatch = useDispatch();
   let history = useHistory();
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const intialValues = { organization_name: "", phone: "", type: "", address: "", url: "" };
 
@@ -45,12 +42,11 @@ function AddOrganization() {
   //form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate());
     setIsSubmitting(true);
   };
 
-  //form validation handler
-  const validate = (values) => {
+  const validate = () => {
     let errors = {};
 
     if (!organization_name) {
@@ -80,28 +76,14 @@ function AddOrganization() {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
-      let test = JSON.stringify({
-        "organization_name": organization_name,
-        "phone": phone,
-        "type": type,
-        "address": address,
-        "url": url,
-      });
-      console.log(test);
       dispatch(register(organization_name, phone, type, address, url));
       history.push('/myorgs/');
     }
   }, [formErrors]);
 
   return (
-    <>
-      <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
-          }}
-        ></div>
+    <Fragment>
+      <div className="page-header">
         <Header className="form" />
         <div className="content">
           <Container>
@@ -122,7 +104,7 @@ function AddOrganization() {
                       onChange={(e) => setType(e.target.value)}
                       className={formErrors.type && "input-error"}
                     >
-                       <option key={0} value={null}> {"Organization Type"} </option>
+                      <option key={0} value={null}> {"Organization Type"} </option>
                       <option>Food Distribution</option>
                       <option>Food Processing</option>
                       <option>Religion</option>
@@ -145,16 +127,21 @@ function AddOrganization() {
                         placeholder="Organization Name"
                         type="text"
                         onChange={(e) => setOrganizationName(e.target.value)}
-                      ></ReactstrapInput>
-
-                    </InputGroup>            {formErrors.organization_name && (
-                    <span className="error">{formErrors.organization_name}</span>
-          )}
-                    <div className={formErrors.address && "input-error"}><ReactPlacesSearchBar
-                     address={setAddress}
-                   /></div>{formErrors.address && (
+                      >
+                      </ReactstrapInput>
+                    </InputGroup>
+                    {formErrors.organization_name && (
+                      <span className="error">{formErrors.organization_name}</span>
+                    )}
+                    <div className={formErrors.address && "input-error"}>
+                      <ReactPlacesSearchBar
+                        address={setAddress}
+                      />
+                    </div>{formErrors.address && (
                     <span className="error">{formErrors.address}</span>
-          )}
+                    )}
+                      >
+                    </ReactstrapInput>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -171,8 +158,8 @@ function AddOrganization() {
                         onChange={setPhone}/>
                     </InputGroup>
                     {formErrors.phone && (
-                    <span className="error">{formErrors.phone}</span>
-          )}
+                      <span className="error">{formErrors.phone}</span>
+                    )}
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -184,11 +171,12 @@ function AddOrganization() {
                         className={formErrors.url && "input-error"}
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
-                      ></ReactstrapInput>
-
-                    </InputGroup>    {formErrors.url && (
-                    <span className="error">{formErrors.url}</span>
-          )}
+                      >
+                      </ReactstrapInput>
+                    </InputGroup>
+                    {formErrors.url && (
+                      <span className="error">{formErrors.url}</span>
+                    )}
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button
@@ -207,7 +195,7 @@ function AddOrganization() {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

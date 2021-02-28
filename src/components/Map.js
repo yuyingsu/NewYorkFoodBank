@@ -7,7 +7,7 @@ const styles = {
   height: "80vh"
 };
 
-const MapboxGLMap = () => {
+const Map = () => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
@@ -24,7 +24,6 @@ const MapboxGLMap = () => {
       map.on("load", () => {
         setMap(map);
         map.resize();
-
       });
     };
 
@@ -34,4 +33,4 @@ const MapboxGLMap = () => {
   return <div id="container-map" ref={el => (mapContainer.current = el)} style={styles}/>;
 };
 
-export default MapboxGLMap;
+export default Map;

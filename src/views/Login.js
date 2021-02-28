@@ -1,6 +1,4 @@
-import React from "react";
-
-// reactstrap components
+import React, { Fragment } from "react";
 import {
   Button,
   Card,
@@ -16,37 +14,30 @@ import {
   Col,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
 import { Header } from '../components/'
 import { useHistory } from "react-router-dom";
 
 function Login(props) {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-  let history = useHistory();
+  const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(username, password));
-    if (!error) history.push('/');
+    history.go(-1);
   }
+
   return (
-    <>
+    <Fragment>
       <Header className="form" />
-      <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="epage-header-imag"
-          style={{
-            backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
-          }}
-        ></div>
+      <div className="page-header">
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">
@@ -75,10 +66,6 @@ function Login(props) {
                       ></Input>
                     </InputGroup>
                     <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (lastFocus ? " input-group-focus" : "")
-                      }
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -97,7 +84,6 @@ function Login(props) {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
                       onClick={submitHandler}
                       size="lg"
                     >
@@ -114,7 +100,7 @@ function Login(props) {
                       <h6>
                         <a
                           className="link"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           Need Help?
@@ -128,7 +114,7 @@ function Login(props) {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

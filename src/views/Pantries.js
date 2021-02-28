@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { listPantries } from '../actions/pantryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
@@ -20,22 +19,27 @@ function Pantries(props) {
   <Header className="list"></Header>
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-          <Container fluid>
-             <Row className="d-flex justify-content-center align-items-center"> <h5 style={{color:"white"}}>Pantries</h5></Row><br></br>
-            <Row>{pantries.map(pantry =>
-              <Col xs="4" style={{marginBottom:"30px"}}>
-                <CardPantry id={pantry.id}
-                  name={pantry.pantry_name}
-                  contact={pantry.contact_name}
-                  address={pantry.address}
-                  phone={pantry.phone}
-                  type={pantry.type}
-                  hours={pantry.hours}
-                />
-              </Col>
-              )}
-            </Row>
-          </Container>
+      <Container fluid>
+        <Row className="d-flex justify-content-center align-items-center">
+          <h5 style={{color:"white"}}>
+            Pantries
+          </h5>
+        </Row><br></br>
+        <Row>
+          {pantries.map(pantry =>
+            <Col xs="4" style={{marginBottom:"30px"}}>
+              <CardPantry id={pantry.id}
+                name={pantry.pantry_name}
+                contact={pantry.contact_name}
+                address={pantry.address}
+                phone={pantry.phone}
+                type={pantry.type}
+                hours={pantry.hours}
+              />
+            </Col>
+          )}
+        </Row>
+      </Container>
   }
   </div>
 }

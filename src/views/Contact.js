@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
-// reactstrap components
 import {
   Button,
   Input,
@@ -12,36 +11,26 @@ import {
   Col,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-// core components
-import Header from "../components/Header.js";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
+import { Header } from "../components/";
 
 function Contact() {
   const intialValues = { name: "", email: "", message: "" };
-
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   let history = useHistory();
 
-  const submit = () => {
-    console.log(formValues);
-  };
-
-  //input change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  //form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmitting(true);
   };
 
-  //form validation handler
   const validate = (values) => {
     let errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -72,7 +61,7 @@ function Contact() {
   }, [formErrors]);
 
   return (
-    <>
+    <Fragment>
       <div className="wrapper">
         <Header className="form"/>
         <div className="section section-contact-us text-center">
@@ -82,8 +71,7 @@ function Contact() {
             <p className="description" style={{color:"white"}}>We'd love to hear from you. Fill out this form to reach us.</p>
             <Row>
               <Col className="text-center ml-auto mr-auto" lg="6" md="8">
-                <InputGroup
-                >
+                <InputGroup>
                   <Input
                     placeholder="Name"
                     type="name"
@@ -92,13 +80,12 @@ function Contact() {
                     value={formValues.name}
                     onChange={handleChange}
                     className={formErrors.name && "input-error"}
-                  >
-                    </Input>
-                </InputGroup>{formErrors.name && (
-                    <span className="error">{formErrors.name}</span>
-          )}
-                <InputGroup
-                >
+                  />
+                </InputGroup>
+                {formErrors.name && (
+                  <span className="error">{formErrors.name}</span>
+                )}
+                <InputGroup>
                   <Input
                     placeholder="Email"
                     type="email"
@@ -107,11 +94,11 @@ function Contact() {
                     value={formValues.email}
                     onChange={handleChange}
                     className={formErrors.email && "input-error"}
-                  >
-                    </Input>
-                </InputGroup>{formErrors.email && (
-                    <span className="error">{formErrors.email}</span>
-          )}
+                  />
+                </InputGroup>
+                {formErrors.email && (
+                  <span className="error">{formErrors.email}</span>
+                )}
                 <div className="textarea-container">
                   <Input
                     cols="80"
@@ -124,10 +111,10 @@ function Contact() {
                     placeholder="Message"
                     rows="4"
                     type="textarea"
-                  ></Input>
-                          {formErrors.message && (
-            <span className="error">{formErrors.message}</span>
-          )}
+                  />
+                  {formErrors.message && (
+                    <span className="error">{formErrors.message}</span>
+                  )}
                 </div>
                 <div className="send-button">
                   <Button
@@ -146,7 +133,7 @@ function Contact() {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

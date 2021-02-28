@@ -1,21 +1,10 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { classnames } from './ReactPlacesEventHandler';
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Form,
-  FormGroup,
   Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Container,
-  Col,
-  Label
 } from "reactstrap";
 class ReactPlacesSearchBar extends React.Component {
   constructor(props) {
@@ -70,7 +59,6 @@ class ReactPlacesSearchBar extends React.Component {
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
-        console.log('error', error); // eslint-disable-line no-console
       });
   };
 
@@ -135,7 +123,6 @@ class ReactPlacesSearchBar extends React.Component {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
-                // inline style for demonstration purpose
                 const style = suggestion.active
                   ? { color: "black", backgroundColor: '#98c2f2', cursor: 'pointer' }
                   : { color: "white", backgroundColor: 'rgba(0,0,0,0.5)', cursor: 'pointer' };
@@ -149,15 +136,8 @@ class ReactPlacesSearchBar extends React.Component {
                     <span>{suggestion.description}</span>
                   </div>
                       );
-                      /* eslint-enable react/jsx-key */
                     })}
                     <div className="Demo__dropdown-footer">
-                      <div>
-                 {/*} <img
-                          src={require('../images/powered_by_google_default.png')}
-                          className="Demo__dropdown-footer-image"
-                  />*/}
-                      </div>
                     </div>
                   </div>
                 )}
@@ -168,7 +148,6 @@ class ReactPlacesSearchBar extends React.Component {
         {errorMessage.length > 0 && (
           <div className="Demo__error-message">{this.state.errorMessage}</div>
         )}
-
       </div>
     );
   }

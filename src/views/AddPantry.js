@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
 import {
   Button,
@@ -16,18 +16,14 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-
-import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
-// core components
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { register } from '../actions/pantryActions';
-import Header from "components/Header";
+import { Header } from "../components/";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -43,21 +39,19 @@ function AddPantry(props) {
   const [geocode, setGeocode] = React.useState("");
   const [schedule, setSchedule] = useState(defaultSchedule);
   const [showSchedule, setShowSchedule] = useState(false);
-  const pantryRegister = useSelector(state => state.pantryRegister);
-  const { loading, pantryInfo, error } = pantryRegister;
   const dispatch = useDispatch();
   let history = useHistory();
   const [formValues, setFormValues] = useState("");
-  const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate());
     setIsSubmitting(true);
   };
 
-  const validate = (values) => {
+  const validate = () => {
+
     let errors = {};
 
     if (!pantry_name) {
@@ -95,23 +89,14 @@ function AddPantry(props) {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
-    let test = JSON.stringify({
-      "pantry_name": pantry_name,
-      "contact_name": contact_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "geocode": geocode,
-      "hours": JSON.stringify({schedule})
-    });
-    console.log(test);
-    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
-    history.back();
-  }
-}, [formErrors]);
+      dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
+      history.go(-1);
+    }
+  }, [formErrors]);
+
 
   return (
-    <>
+    <Fragment>
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -171,7 +156,7 @@ function AddPantry(props) {
                         address={setAddress}
                         geocode={setGeocode}
                       />
-                                          {formErrors.address && (
+                    {formErrors.address && (
                       <span className="error">{formErrors.address}</span>
                     )}
                     <InputGroup>
@@ -204,7 +189,8 @@ function AddPantry(props) {
                         minLength="14"
                         maxLength="14"
                         onChange={setPhone}/>
-                    </InputGroup>                    {formErrors.phone && (
+                    </InputGroup>
+                    {formErrors.phone && (
                       <span className="error">{formErrors.phone}</span>
                     )}<br></br>
                    <Button
@@ -232,7 +218,7 @@ function AddPantry(props) {
                       />
                     </div>
                    }
-                                       {formErrors.schedule && (
+                    {formErrors.schedule && (
                       <span className="error">{formErrors.schedule}</span>
                     )}
                   </CardBody>
@@ -253,7 +239,7 @@ function AddPantry(props) {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
