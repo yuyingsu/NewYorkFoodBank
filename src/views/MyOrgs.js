@@ -4,11 +4,13 @@ import { listMyOrgs } from '../actions/orgActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Row, Col } from 'reactstrap';
 import { CardOrg, Header } from '../components/'
+import { useHistory } from "react-router-dom";
 
 function MyOrgs(props) {
   const dispatch = useDispatch();
   const myOrgList = useSelector(state => state.myOrgList);
   const { loading: loadingOrgs, orgs, error: errorOrgs } = myOrgList;
+  let history = useHistory();
 
   useEffect(() => {
     dispatch(listMyOrgs());

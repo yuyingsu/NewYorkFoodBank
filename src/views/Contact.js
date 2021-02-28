@@ -63,11 +63,12 @@ function Contact() {
   return (
     <Fragment>
       <div className="wrapper">
-        <Header />
+        <Header className="form"/>
         <div className="section section-contact-us text-center">
           <Container>
-            <h2 className="title">Want to work with us?</h2>
-            <p className="description">Your project is very important to us.</p>
+            <form onSubmit={handleSubmit} noValidate>
+            <h2 className="title" style={{color:"white"}}>Get in touch</h2>
+            <p className="description" style={{color:"white"}}>We'd love to hear from you. Fill out this form to reach us.</p>
             <Row>
               <Col className="text-center ml-auto mr-auto" lg="6" md="8">
                 <InputGroup>
@@ -101,8 +102,13 @@ function Contact() {
                 <div className="textarea-container">
                   <Input
                     cols="80"
-                    name="name"
-                    placeholder="Type a message..."
+                    type="message"
+                    name="message"
+                    id="message"
+                    value={formValues.message}
+                    onChange={handleChange}
+                    className={formErrors.message && "input-error"}
+                    placeholder="Message"
                     rows="4"
                     type="textarea"
                   />
@@ -115,8 +121,7 @@ function Contact() {
                     block
                     className="btn-round"
                     color="info"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    type="submit"
                     size="lg"
                   >
                     Send Message
@@ -124,6 +129,7 @@ function Contact() {
                 </div>
               </Col>
             </Row>
+            </form>
           </Container>
         </div>
       </div>

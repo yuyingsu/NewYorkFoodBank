@@ -22,7 +22,6 @@ import {
   Register,
   Terms,
  } from './views/';
-import Footer from './components/Footer'
 
 function App() {
   return (
@@ -46,13 +45,14 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
           <Route path='/vieworg/:id' exact render={({match}) =>  <OrganizationPublic id={match.params.id} /> } />
-             </div>
+          <Route exact path="/donate" component={Donate} />
+          <Route exact path="/contact" component={Contact} />
+          </div>
              <Footer />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
           </header>
       </div>
-
     </BrowserRouter>
   );
 }

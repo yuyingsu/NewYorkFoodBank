@@ -27,11 +27,13 @@ function Login(props) {
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
   const history = useHistory();
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(username, password));
     history.go(-1);
   }
+
   return (
     <Fragment>
       <Header className="form" />

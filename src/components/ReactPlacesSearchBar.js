@@ -81,6 +81,7 @@ class ReactPlacesSearchBar extends React.Component {
     const {
       address,
       errorMessage,
+      formErrors ={address:""},
       latitude,
       longitude,
       isGeocoding,
@@ -107,6 +108,7 @@ class ReactPlacesSearchBar extends React.Component {
                       </InputGroupAddon>
                       <Input
                       type="textarea"
+                      className={formErrors.address && "input-error"}
                        value={this.props.value}
                     {...getInputProps({
                       placeholder: 'Address',

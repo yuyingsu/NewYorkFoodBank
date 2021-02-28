@@ -33,6 +33,13 @@ function AddOrganization() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const intialValues = { organization_name: "", phone: "", type: "", address: "", url: "" };
+
+  const [formValues, setFormValues] = useState(intialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  //form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate());
@@ -82,7 +89,7 @@ function AddOrganization() {
           <Container>
             <Col className="ml-auto mr-auto" md="12">
               <Card className="card-login card-plain">
-                <Form action="" className="form" method="">
+                <Form onSubmit={handleSubmit} noValidate>
                   <CardHeader className="text-center">
                     <div className="logo-container">
                       <h5>Add Organization</h5>
@@ -92,9 +99,10 @@ function AddOrganization() {
                   <FormGroup>
                     <ReactstrapInput
                       type="select"
-                      name="select"
-                      id="exampleSelect"
+                      name="type"
+                      id="type"
                       onChange={(e) => setType(e.target.value)}
+                      className={formErrors.type && "input-error"}
                     >
                       <option key={0} value={null}> {"Organization Type"} </option>
                       <option>Food Distribution</option>
@@ -104,6 +112,9 @@ function AddOrganization() {
                       <option>Research</option>
                       <option>Other</option>
                     </ReactstrapInput>
+                    {formErrors.type && (
+                      <span className="error">{formErrors.type}</span>
+                    )}
                   </FormGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -112,6 +123,7 @@ function AddOrganization() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <ReactstrapInput
+                        className={formErrors.organization_name && "input-error"}
                         placeholder="Organization Name"
                         type="text"
                         onChange={(e) => setOrganizationName(e.target.value)}
@@ -128,6 +140,8 @@ function AddOrganization() {
                     </div>{formErrors.address && (
                     <span className="error">{formErrors.address}</span>
                     )}
+                      >
+                    </ReactstrapInput>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -154,6 +168,7 @@ function AddOrganization() {
                       </InputGroupAddon>
                       <ReactstrapInput
                         placeholder="URL"
+                        className={formErrors.url && "input-error"}
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
                       >
@@ -168,7 +183,7 @@ function AddOrganization() {
                       block
                       className="btn-round"
                       color="info"
-                      onClick={handleSubmit}
+                      type="submit"
                       size="lg"
                     >
                       Submit

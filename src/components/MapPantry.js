@@ -5,8 +5,10 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
+import { listPantries } from "actions/pantryActions";
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
 const { compose, withProps } = require("recompose");
@@ -40,6 +42,8 @@ const MapPantry = compose(
 const enhance = _.identity;
 
 function ReactGoogleMaps(props) {
+  const lists = useSelector(state => state.pantryList);
+  const { loading, pantries } = lists;
   const [array, setArray] = useState([]);
   const [boxes, setBoxes] = useState([]);
   const [currIdx, setCurrentIdx] = useState(-1);
@@ -94,6 +98,45 @@ useEffect(() => {
   const onToggleOpen = (idx) => {
     let newArray = [...array];
     if (currIdx!=-1 && currIdx!=idx && newArray[currIdx]) {
+      newArray[currIdx]=!newArray[currIdx];
+      setArray(newArray);
+    const initArray = new Array(props.pantries.length);
+    for (let i=0;i<initArray.length;i++){
+     initArray[i]=false;
+    setArray(initArray);
+    let box = [];
+    props.pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
+        position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
+        options={{ closeBoxURL: ``, enableEventPropagation: true }}
+        >
+        <div style={{ backgroundColor: `black`, opacity: 0.6, padding: `12px` }}>
+          <div style={{ fontSize: `16px`, color: `white` }}>
+            {"Name: " + pantry.pantry_name}<br></br>
+            {"Type: " + pantry.type}<br></br>
+            {"Address: " }<a href={`https://www.google.com/maps/search/?api=1&query=${pantry.address}`}>{pantry.address}</a><br></br><br></br>
+            {"Contact: " + pantry.contact_name}<br></br>
+            {"Phone: " + formatPhoneNumber(pantry.phone)}<br></br>
+            <br></br>{"Hours"}<br></br>
+            {"Sunday: " + pantryHours[idx][0]}<br></br>
+            {"Monday: " + pantryHours[idx][1]}<br></br>
+            {"Tuesday: " + pantryHours[idx][2]}<br></br>
+            {"Wednesday: " + pantryHours[idx][3]}<br></br>
+            {"Thursday: " + pantryHours[idx][4]}<br></br>
+            {"Friday: " + pantryHours[idx][5]}<br></br>
+            {"Saturday: " + pantryHours[idx][6]}<br></br>
+          </div>
+        </div>
+      </InfoBox>)));
+    setBoxes(box);
+
+    }
+    return function cleanup() {
+    };
+  }, []);
+
+  const onToggleOpen = (idx) => {
+    let newArray = [...array];
+    if(currIdx!=-1 && currIdx!=idx && newArray[currIdx]){
       newArray[currIdx]=!newArray[currIdx];
       setArray(newArray);
     }

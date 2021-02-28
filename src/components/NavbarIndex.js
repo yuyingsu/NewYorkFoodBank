@@ -50,7 +50,7 @@ const NavbarIndex = (props) => {
               <DropdownToggle style={{color:"white"}} nav caret>
                 Pantries
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu right >
                 <DropdownItem>
                   <NavItem>
                     <NavLink href="/pantries" style={{color: "black"}}>Pantries</NavLink>
@@ -61,11 +61,13 @@ const NavbarIndex = (props) => {
                     <NavLink href="/pantrymap" style={{color: "black"}}>Pantries Map</NavLink>
                   </NavItem>
                 </DropdownItem>
-                <DropdownItem divider />
                 <DropdownItem>
                   <NavItem>
                     <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
                   </NavItem>
+                <NavItem>
+              <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
+            </NavItem>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -77,11 +79,13 @@ const NavbarIndex = (props) => {
                 <DropdownItem>
                 <NavItem>
                   <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
+                <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
                 </NavItem>
                 </DropdownItem>
                 {userInfo && <DropdownItem>
                   <NavItem>
                     <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
+                  <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
                   </NavItem>
                 </DropdownItem>}
               </DropdownMenu>
