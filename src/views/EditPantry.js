@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
@@ -16,12 +16,8 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
-
-import { Link } from "react-router-dom";
 import { Header, ReactPlacesSearchBar } from "../components/";
-// core components
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
@@ -33,7 +29,6 @@ const defaultSchedule = rangeStrings.map(range =>
 );
 
 function EditPantry(props) {
-  console.log(props)
   const [pantry_name, setPantryName] = React.useState("");
   const [contact_name, setContactName] = React.useState("");
   const [phone, setPhone] = React.useState();
@@ -49,42 +44,24 @@ function EditPantry(props) {
   const id = props.id;
 
   useEffect(() => {
-    {
-      console.log(pantry.pantry_name)
-      setPantryName(pantry.pantry_name);
-      setContactName(pantry.contact_name);
-      setPhone(pantry.phone);
-      setType(pantry.type);
-      setAddress(pantry.address);
-    }
+    setPantryName(pantry.pantry_name);
+    setContactName(pantry.contact_name);
+    setPhone(pantry.phone);
+    setType(pantry.type);
+    setAddress(pantry.address);
+
     return () => {};
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let test = JSON.stringify({
-      "pantry_name": pantry_name,
-      "contact_name": contact_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "geocode": geocode,
-      "hours": JSON.stringify({schedule}),
-      "id": id
-    });
-    console.log(test);
     dispatch(update(pantry_name, contact_name, phone, type, address, geocode, schedule, id));
   }
 
   return (
-    <><Header className="form" />
-      <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
-          }}
-        ></div>
+    <Fragment>
+      <Header className="form" />
+      <div className="page-header">
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">
@@ -204,7 +181,7 @@ function EditPantry(props) {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

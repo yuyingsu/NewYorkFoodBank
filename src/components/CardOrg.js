@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImg,CardTitle, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardTitle, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { removeOrg } from '../actions/orgActions';
-import { connect } from 'react-redux';
-import { orgListReducer } from 'reducers/orgReducers';
 import { useDispatch } from 'react-redux';
 import { formatPhoneNumber } from 'react-phone-number-input'
 
@@ -19,7 +17,7 @@ const CardOrg = (props) => {
     color: "white",
     background: "rgba(0,0,0,0.5)",
   }
-console.log(props)
+
   return (
     <div>
       <Card style={attributes}>
@@ -35,12 +33,14 @@ console.log(props)
           {props.logged &&
           <Container>
             <Row>
-            <Link to={`/org/edit/${props.id}`}>
-              <Button className="align-self-center mr-auto mt-auto" color="warning" >
-              Edit
-              </Button></Link>
+              <Link to={`/org/edit/${props.id}`}>
+                <Button className="align-self-center mr-auto mt-auto" color="warning" >
+                Edit
+                </Button>
+              </Link>
               <Button className="align-self-center ml-auto mt-auto" color="danger"
-              onClick={handleRemove}>Delete
+              onClick={handleRemove}>
+                Delete
               </Button>
             </Row>
           </Container>

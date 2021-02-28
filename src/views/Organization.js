@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
-
-// reactstrap components
 import {
   Button,
   Card,
@@ -19,12 +17,9 @@ import {
   Container,
   Col,
   Row,
-  Label,
-  ListGroupItemHeading
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { CardPantry } from '../components/'
-import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { listMyPantries } from '../actions/pantryActions';
 import { listOrg, listOrgs, updateOrg } from '../actions/orgActions';
 import { Header } from '../components/'
@@ -36,83 +31,74 @@ function Organization(props) {
   const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
   const id = props.id;
-  const currentOrg = useSelector(state => state.org);
   const dispatch = useDispatch();
   const OrgList = useSelector(state => state.myOrgList);
   const { loading, orgs, error } = OrgList;
   const PantryList = useSelector(state => state.myPantryList);
   const { loading: loadingPantries, pantries, error: errorPantries } = PantryList;
   const org = orgs.find(org => org.id == props.id);
-  console.log("my pantries" + JSON.stringify(PantryList))
 
   useEffect(() => {
-    {
-      dispatch(listMyPantries(props.id))
-      dispatch(listOrg(props.id));
+    dispatch(listMyPantries(props.id))
+    dispatch(listOrg(props.id));
     if (org) {
       setAddress(org.address)
-    setOrganizationName(org.organization_name)
-    setPhone(org.phone)
-    setType(org.type)
-    setUrl(org.url)
+      setOrganizationName(org.organization_name)
+      setPhone(org.phone)
+      setType(org.type)
+      setUrl(org.url)
     }
-    }
+
     return () => {};
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let test = JSON.stringify({
-      "organization_name": organization_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "url": url,
-    });
-    console.log(test);
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
   }
 
   return <div className="orgs content-margined">
     <Header className="list" />
-  { loading ? <div>Loading...</div> :
-    error ? <div>{error}</div> :
-    <>
+    { loading ? <div>Loading...</div> :
+      error ? <div>{error}</div> :
+    <Fragment>
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
           style={{
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
-        ></div>
+        >
+        </div>
         <div className="content" style={{marginTop:"30px"}}>
           <Container>
-            <Row><Col className="ml-auto mr-auto">
-              <Card className="card-login card-plain">
-                <Form action="" className="form" method="">
-                  <CardHeader className="text-center">
-                    <div className="logo-container">
-                      <h5>Organization</h5>
-                    </div>
-                  </CardHeader>
-                  <CardBody>
-                  <FormGroup>
-                    <ReactstrapInput
-                      type="select"
-                      name="select"
-                      defaultValue={type}
-                      value={type}
-                      id="exampleSelect"
-                      onChange={(e) => setType(e.target.value)}
-                    >
-                       <option key={0} value={null}> {"Type"} </option>
-                      <option>Food Distribution</option>
-                      <option>Food Processing</option>
-                      <option>Government</option>
-                      <option>Research</option>
-                      <option>Other</option>
-                    </ReactstrapInput>
-                  </FormGroup>
+            <Row>
+              <Col className="ml-auto mr-auto">
+                <Card className="card-login card-plain">
+                  <Form action="" className="form" method="">
+                    <CardHeader className="text-center">
+                      <div className="logo-container">
+                        <h5>Organization</h5>
+                      </div>
+                    </CardHeader>
+                    <CardBody>
+                      <FormGroup>
+                        <ReactstrapInput
+                          type="select"
+                          name="select"
+                          defaultValue={type}
+                          value={type}
+                          id="exampleSelect"
+                          onChange={(e) => setType(e.target.value)}
+                        >
+                          <option key={0} value={null}> {"Type"} </option>
+                          <option>Food Distribution</option>
+                          <option>Food Processing</option>
+                          <option>Government</option>
+                          <option>Research</option>
+                          <option>Other</option>
+                        </ReactstrapInput>
+                      </FormGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -124,7 +110,8 @@ function Organization(props) {
                         type="text"
                         value={organization_name}
                         onChange={(e) => setOrganizationName(e.target.value)}
-                      ></ReactstrapInput>
+                      >
+                      </ReactstrapInput>
                     </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -137,7 +124,8 @@ function Organization(props) {
                         type="textarea"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
-                      ></ReactstrapInput>
+                      >
+                      </ReactstrapInput>
                     </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -165,7 +153,8 @@ function Organization(props) {
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
                         value={url}
-                      ></ReactstrapInput>
+                      >
+                      </ReactstrapInput>
                     </InputGroup>
                   </CardBody>
                   <CardFooter className="text-center">
@@ -184,41 +173,53 @@ function Organization(props) {
             </Col>
             </Row>
             </Container><br></br><br></br>
-            <Container fluid style={{padding: "0px"}} fluid><Row className="d-flex align-items-end justify-content-end" ><Link to={`/org/${props.id}/addpantry`}><Button>Add Pantry</Button></Link></Row>
-            <Row className="d-flex align-items-center" ><Col><h5 style={{color:"white"}}>Pantries</h5></Col><br></br><br></br></Row>
+            <Container fluid style={{padding: "0px"}} fluid>
+              <Row className="d-flex align-items-end justify-content-end">
+                <Link to={`/org/${props.id}/addpantry`}>
+                  <Button>
+                    Add Pantry
+                  </Button>
+                </Link>
+              </Row>
+              <Row className="d-flex align-items-center" >
+                <Col>
+                  <h5 style={{color:"white"}}>
+                    Pantries
+                  </h5>
+                </Col><br></br><br></br>
+              </Row>
             </Container>
             <Container fluid>
             { loadingPantries ? <div>Loading...</div> :
                errorPantries ? <div>{errorPantries}</div> :
-
             <Row>
-              {console.log(pantries)}
-
               {pantries.length > 0 ? pantries.map(pantry =>
-
-              <Col xs="6" style={{marginBottom: "30px"}}>
-                <CardPantry id={pantry.id}
-                  name={pantry.pantry_name}
-                  contact={pantry.contact_name}
-                  address={pantry.address}
-                  phone={pantry.phone}
-                  type={pantry.type}
-                  hours={pantry.hours}
-                  logged={true}
-                />
-              </Col>
+                <Col xs="6" style={{marginBottom: "30px"}}>
+                  <CardPantry id={pantry.id}
+                    name={pantry.pantry_name}
+                    contact={pantry.contact_name}
+                    address={pantry.address}
+                    phone={pantry.phone}
+                    type={pantry.type}
+                    hours={pantry.hours}
+                    logged={true}
+                  />
+                </Col>
               )
             :
-            <Col><h5 style={{color:"white"}}>No pantries exist for this organization.</h5></Col>
-
-
-            }</Row>}
-
+              <Col>
+                <h5 style={{color:"white"}}>
+                  No pantries exist for this organization.
+                </h5>
+              </Col>
+              }
+            </Row>}
           </Container>
         </div>
       </div>
-    </>
-  }</div>
+    </Fragment>
+  }
+  </div>
 }
 
 export default Organization;

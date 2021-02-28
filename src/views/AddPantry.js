@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
 import {
   Button,
@@ -16,18 +16,14 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-
-import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
-// core components
 import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { register } from '../actions/pantryActions';
-import Header from "components/Header";
+import { Header } from "../components/";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -43,9 +39,8 @@ function AddPantry(props) {
   const [geocode, setGeocode] = React.useState("");
   const [schedule, setSchedule] = useState(defaultSchedule);
   const [showSchedule, setShowSchedule] = useState(false);
-  const pantryRegister = useSelector(state => state.pantryRegister);
-  const { loading, pantryInfo, error } = pantryRegister;
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,10 +55,62 @@ function AddPantry(props) {
     });
     console.log(test);
     dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
+=======
+  let history = useHistory();
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate());
+    setIsSubmitting(true);
+  };
+
+  const validate = () => {
+    let errors = {};
+
+    if (!pantry_name) {
+      errors.pantry_name = "Cannot be blank";
+    }
+
+    if (!contact_name) {
+      errors.contact_name = "Cannot be blank";
+    }
+
+    if (!phone) {
+      errors.phone = "Cannot be blank";
+    } else if (phone.length < 12) {
+      errors.phone = "Phone numbers must be 9 digits";
+    }
+
+    if (!type) {
+      errors.type = "Cannot be blank";
+    }
+
+    if (!address) {
+      errors.address = "Cannot be blank";
+    }
+
+    if (!geocode) {
+      errors.geocode = "Cannot be blank";
+    }
+
+    if (!schedule) {
+      errors.geocode = "Cannot be blank";
+    }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
+    history.go(-1);
+>>>>>>> Stashed changes
   }
 
   return (
-    <>
+    <Fragment>
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -115,6 +162,12 @@ function AddPantry(props) {
                         address={setAddress}
                         geocode={setGeocode}
                       />
+<<<<<<< Updated upstream
+=======
+                    {formErrors.address && (
+                      <span className="error">{formErrors.address}</span>
+                    )}
+>>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -141,7 +194,14 @@ function AddPantry(props) {
                         minLength="14"
                         maxLength="14"
                         onChange={setPhone}/>
+<<<<<<< Updated upstream
                     </InputGroup><br></br>
+=======
+                    </InputGroup>
+                    {formErrors.phone && (
+                      <span className="error">{formErrors.phone}</span>
+                    )}<br></br>
+>>>>>>> Stashed changes
                    <Button
                      onClick={() => setShowSchedule(true)}
                    >Set Pantry Hours</Button>
@@ -167,6 +227,12 @@ function AddPantry(props) {
                       />
                     </div>
                    }
+<<<<<<< Updated upstream
+=======
+                    {formErrors.schedule && (
+                      <span className="error">{formErrors.schedule}</span>
+                    )}
+>>>>>>> Stashed changes
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button
@@ -186,7 +252,7 @@ function AddPantry(props) {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

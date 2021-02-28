@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Collapse,
   Navbar,
@@ -14,7 +14,7 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logout } from '../actions/userActions';
 
 const attributes = {
@@ -76,24 +76,65 @@ const NavbarIndex = (props) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
+<<<<<<< Updated upstream
                   Option 1
                 </DropdownItem>
                 <DropdownItem>
                   Option 2
+=======
+                  <NavItem>
+                    <NavLink href="/pantries" style={{color: "black"}}>Pantries</NavLink>
+                  </NavItem>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavItem>
+                    <NavLink href="/pantrymap" style={{color: "black"}}>Pantries Map</NavLink>
+                  </NavItem>
+>>>>>>> Stashed changes
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
+<<<<<<< Updated upstream
                   Reset
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+=======
+                  <NavItem>
+                    <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
+                  </NavItem>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle style={{color:"white"}} nav caret>
+                Organizations
+              </DropdownToggle>
+              <DropdownMenu right >
+                <DropdownItem>
+                <NavItem>
+                  <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
+                </NavItem>
+                </DropdownItem>
+                {userInfo && <DropdownItem>
+                  <NavItem>
+                    <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
+                  </NavItem>
+                </DropdownItem>}
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <NavItem>
+              <NavLink href="/donate" style={{color: "white"}}>Donate</NavLink>
+            </NavItem>
+          </Nav>
+          <Nav>
+            <NavItem>
+              {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} style={{color: "white"}}>Logout</NavLink> : <NavLink tag={Link} to="/login" style={{color: "white"}}>Log In</NavLink>}
+            </NavItem>
+>>>>>>> Stashed changes
           </Nav>
           <NavbarText>
-            {userInfo ? (
-              userInfo.username
-            ) : (
-              "Guest"
-            )}
+            {userInfo ? (userInfo.username) : ("Guest")}
           </NavbarText>
         </Collapse>
       </Navbar>

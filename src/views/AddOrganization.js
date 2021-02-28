@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
-// reactstrap components
 import {
   Button,
   Card,
@@ -17,12 +16,10 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
-import { Link } from "react-router-dom";
 import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { register } from '../actions/orgActions';
-import Header from "components/Header";
+import { Header } from "../components/";
 import { useHistory } from "react-router-dom";
 
 function AddOrganization() {
@@ -31,10 +28,9 @@ function AddOrganization() {
   const [type, setType] = React.useState("");
   const [address, setAddress] = React.useState("");
   const [url, setUrl] = useState("");
-  const orgRegister = useSelector(state => state.orgRegister);
-  const { loading, orgInfo, error } = orgRegister;
   const dispatch = useDispatch();
   let history = useHistory();
+<<<<<<< Updated upstream
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,16 +45,55 @@ function AddOrganization() {
     dispatch(register(organization_name, phone, type, address, url));
     history.push('/myorgs/');
   }
+=======
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate());
+    setIsSubmitting(true);
+  };
+
+  const validate = () => {
+    let errors = {};
+
+    if (!organization_name) {
+      errors.organization_name = "Cannot be blank";
+    }
+
+    if (!phone) {
+      errors.phone = "Cannot be blank";
+    } else if (phone.length < 12) {
+      errors.phone = "Phone numbers must be 9 digits";
+    }
+
+    if (!type) {
+      errors.type = "Cannot be blank";
+    }
+
+    if (!address) {
+      errors.address = "Cannot be blank";
+    }
+
+    if (!url) {
+      errors.url = "Cannot be blank";
+    }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      dispatch(register(organization_name, phone, type, address, url));
+      history.push('/myorgs/');
+    }
+  }, [formErrors]);
+>>>>>>> Stashed changes
 
   return (
-    <>
-      <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
-          }}
-        ></div>
+    <Fragment>
+      <div className="page-header">
         <Header className="form" />
         <div className="content">
           <Container>
@@ -78,7 +113,7 @@ function AddOrganization() {
                       id="exampleSelect"
                       onChange={(e) => setType(e.target.value)}
                     >
-                       <option key={0} value={null}> {"Organization Type"} </option>
+                      <option key={0} value={null}> {"Organization Type"} </option>
                       <option>Food Distribution</option>
                       <option>Food Processing</option>
                       <option>Religion</option>
@@ -97,11 +132,27 @@ function AddOrganization() {
                         placeholder="Organization Name"
                         type="text"
                         onChange={(e) => setOrganizationName(e.target.value)}
+<<<<<<< Updated upstream
                       ></ReactstrapInput>
                     </InputGroup>
                     <ReactPlacesSearchBar
                      address={setAddress}
                    />
+=======
+                      >
+                      </ReactstrapInput>
+                    </InputGroup>
+                    {formErrors.organization_name && (
+                      <span className="error">{formErrors.organization_name}</span>
+                    )}
+                    <div className={formErrors.address && "input-error"}>
+                      <ReactPlacesSearchBar
+                        address={setAddress}
+                      />
+                    </div>{formErrors.address && (
+                    <span className="error">{formErrors.address}</span>
+                    )}
+>>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -117,6 +168,12 @@ function AddOrganization() {
                         maxLength="14"
                         onChange={setPhone}/>
                     </InputGroup>
+<<<<<<< Updated upstream
+=======
+                    {formErrors.phone && (
+                      <span className="error">{formErrors.phone}</span>
+                    )}
+>>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -127,8 +184,17 @@ function AddOrganization() {
                         placeholder="URL"
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
+<<<<<<< Updated upstream
                       ></ReactstrapInput>
                     </InputGroup>
+=======
+                      >
+                      </ReactstrapInput>
+                    </InputGroup>
+                    {formErrors.url && (
+                      <span className="error">{formErrors.url}</span>
+                    )}
+>>>>>>> Stashed changes
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button
@@ -147,7 +213,7 @@ function AddOrganization() {
           </Container>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

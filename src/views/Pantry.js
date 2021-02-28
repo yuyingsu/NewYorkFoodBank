@@ -1,28 +1,21 @@
-import React, { Component } from "react";
-import { useEffect, useState } from 'react';
+import React, { Fragment } from "react";
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+<<<<<<< Updated upstream
 import { MyMapComponent } from '../components/'
 // reactstrap components
+=======
+import { MapPantry } from '../components/'
+>>>>>>> Stashed changes
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
-  Form,
-  FormGroup,
   Input as ReactstrapInput,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Col,
   Row,
-  Label,
-  ListGroupItemHeading
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import { CardPantry } from '../components/'
 import { listSinglePantry } from '../actions/pantryActions';
 
 function Pantry(props) {
@@ -30,7 +23,6 @@ function Pantry(props) {
   const SinglePantry = useSelector(state => state.singlePantry);
   const { loading, pantry, error } = SinglePantry;
 
-  console.log(pantry);
   useEffect(() => {
     dispatch(listSinglePantry(props.id))
     return () => {};
@@ -39,12 +31,13 @@ function Pantry(props) {
   return <div className="orgs content-margined">
   { loading ? <div>Loading...</div> :
     error ? <div>{error}</div> :
-    <>
-        <div className="content">
-          <Container>
-            <Row>
-              <Col className="ml-auto mr-auto">
+    <Fragment>
+      <div className="content">
+        <Container>
+          <Row>
+            <Col className="ml-auto mr-auto">
               <Card className="card-login card-plain">
+<<<<<<< Updated upstream
                   <CardHeader className="text-center">
                     <div className="logo-container">
                       <h5>Pantry Map</h5>
@@ -54,13 +47,24 @@ function Pantry(props) {
                     <MyMapComponent pantries={pantry}/>
                   </CardBody>
 
+=======
+                <CardHeader className="text-center">
+                  <div className="logo-container">
+                    <h5>Pantry Map</h5>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <MapPantry pantries={pantry}/>
+                </CardBody>
+>>>>>>> Stashed changes
               </Card>
             </Col>
-            </Row>
-            </Container>
-        </div>
-    </>
-  }</div>
+          </Row>
+        </Container>
+      </div>
+    </Fragment>
+  }
+  </div>
 }
 
 export default Pantry;

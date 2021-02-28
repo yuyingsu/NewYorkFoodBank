@@ -18,23 +18,30 @@ function Pantries(props) {
   return <div className="orgs content-margined">
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-    <Container style={{padding: "0px"}} fluid><Row className="d-flex justify-content-end align-items-end"><Link to='/addpantry'><Button>Add Pantry</Button></Link></Row>
-            <Row>{pantries.map(pantry =>
-              <Col className="d-flex justify-content-center align-items-center" style={{width: "300px", height:"300px"}}>
-                <CardOrg id={pantry.id}
-                  name={pantry.pantry_name}
-                  contact={pantry.contact_name}
-                  address={pantry.address}
-                  phone={pantry.phone}
-                  type={pantry.type}
-                  hours={pantry.hours}
-                  logged={true}
-                />
-              </Col>
-              )}
-            </Row>
-          </Container>
-
+    <Container style={{padding: "0px"}} fluid>
+      <Row className="d-flex justify-content-end align-items-end">
+        <Link to='/addpantry'>
+          <Button>
+           Add Pantry
+          </Button>
+        </Link>
+      </Row>
+      <Row>
+        {pantries.map(pantry =>
+          <Col className="d-flex justify-content-center align-items-center" style={{width: "300px", height:"300px"}}>
+            <CardOrg id={pantry.id}
+              name={pantry.pantry_name}
+              contact={pantry.contact_name}
+              address={pantry.address}
+              phone={pantry.phone}
+              type={pantry.type}
+              hours={pantry.hours}
+              logged={true}
+            />
+          </Col>
+        )}
+      </Row>
+    </Container>
   }
   </div>
 }

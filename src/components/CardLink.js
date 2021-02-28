@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
-import { Link, withRouter } from "react-router-dom";
+import { Card, CardText, CardTitle } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 const attributes = {
   border: "5em",

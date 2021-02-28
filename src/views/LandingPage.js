@@ -1,28 +1,18 @@
-import React from "react";
-
-// reactstrap components
+import React, { Fragment } from "react";
 import {
-  Button,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Row,
   Col,
 } from "reactstrap";
-
-// core components
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
 import centerImage from '../assets/img/joel-muniz-3k3l2brxmwQ-unsplash.jpg';
 import leftImage from '../assets/img/nico-smit-NFoerQuvzrs-unsplash.jpg';
 import CardLink from '../components/CardLink'
 
 function LandingPage() {
   return (
-    <>
+    <Fragment>
       <div className="wrapper">
         <Header />
         <div className="section section-about-us">
@@ -50,32 +40,24 @@ function LandingPage() {
             <div className="section-story-overview">
               <Row>
                 <Col md="6">
-                <div className="span12" style={{position: "absolute", zIndex: "1", width:"94%"}}>
-                      <CardLink />
-                    </div>
-                    <div
-                      className="rounded"
-                      style={{
-                        position: "relative",
-                        paddingTop: "20px",
-                        backgroundImage: `url(${leftImage})`,
-                        height: "90vh",
-                        width: "100%",
-                        zIndex: "0",
-                        backgroundRepeat: "no-repeat"
-                      }}
-                    >
-                    </div>
-
-                  </Col>
-                <Col md="5">
-                  {/*<div
-                    className="image-container image-right"
+                  {/*<div className="span12" style={{position: "absolute", zIndex: "1", width:"100%"}}>
+                    <CardLink />
+                  </div>*/}
+                  <div
+                    className="rounded"
                     style={{
-                      backgroundImage:
-                        `url(${centerImage})`
+                      position: "relative",
+                      paddingTop: "20px",
+                      backgroundImage: `url(${leftImage})`,
+                      height: "90vh",
+                      width: "100%",
+                      zIndex: "0",
+                      backgroundRepeat: "no-repeat"
                     }}
-                  ></div>*/}
+                  >
+                  </div>
+                </Col>
+                <Col md="5">
                   <h3>
                     So what does the new record for the lowest level of winter
                     ice actually mean
@@ -105,10 +87,8 @@ function LandingPage() {
             </div>
           </Container>
         </div>
-
-        <Footer />
       </div>
-    </>
+    </Fragment>
   );
 }
 

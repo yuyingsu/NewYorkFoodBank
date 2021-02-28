@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Input from 'react-phone-number-input/input'
-// reactstrap components
 import {
   Button,
   Card,
@@ -17,11 +16,9 @@ import {
   InputGroup,
   Container,
   Col,
-  Label
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import { Header, ReactPlacesSearchBar } from "../components/";
-import { listMyOrgs, updateOrg } from '../actions/orgActions';
+import { Header } from "../components/";
+import { updateOrg } from '../actions/orgActions';
 import { useHistory } from "react-router-dom";
 
 function EditOrganization(props) {
@@ -31,53 +28,41 @@ function EditOrganization(props) {
   const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
   const id = props.id;
-  const currentOrg = useSelector(state => state.org);
   const dispatch = useDispatch();
-  const myOrgList = useSelector(state => state.myOrgList);
   const { loading, orgs, error } = useSelector(state => state.myOrgList);
   const org = orgs.find(org => org.id == props.id);
-  console.log(org);
   let history = useHistory();
 
   useEffect(() => {
-    {
-      console.log(org.address);
-      setAddress(org.address);
-      setOrganizationName(org.organization_name);
-      setPhone(org.phone);
-      setType(org.type);
-      setUrl(org.url);
-    }
+    setAddress(org.address);
+    setOrganizationName(org.organization_name);
+    setPhone(org.phone);
+    setType(org.type);
+    setUrl(org.url);
+
     return () => {};
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let test = JSON.stringify({
-      "organization_name": organization_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "url": url,
-    });
-    console.log(test);
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
     history.push('/myorgs/');
   }
 
   return <div className="orgs content-margined">
     <Header className="form" />
-  { loading ? <div>Loading...</div> :
-    error ? <div>{error}</div> :
-    <>
-      <div className="page-header clear-filter" filter-color="blue">
+    { loading ? <div>Loading...</div> :
+      error ? <div>{error}</div> :
+    <Fragment>
+      <div className="page-header">
       {console.log(org)}
         <div
           className="page-header-image"
           style={{
             backgroundImage: "url(" + require("../assets/img/benjamin-brunner-bAcMAhWciiM-unsplash.jpg") + ")",
           }}
-        ></div>
+        >
+        </div>
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" md="12">
@@ -89,23 +74,23 @@ function EditOrganization(props) {
                     </div>
                   </CardHeader>
                   <CardBody>
-                  <FormGroup>
-                    <ReactstrapInput
-                      type="select"
-                      name="select"
-                      defaultValue={type}
-                      value={type}
-                      id="exampleSelect"
-                      onChange={(e) => setType(e.target.value)}
-                    >
-                       <option key={0} value={null}> {"Organization Type"} </option>
-                      <option>Food Distribution</option>
-                      <option>Food Processing</option>
-                      <option>Government</option>
-                      <option>Research</option>
-                      <option>Other</option>
-                    </ReactstrapInput>
-                  </FormGroup>
+                    <FormGroup>
+                      <ReactstrapInput
+                        type="select"
+                        name="select"
+                        defaultValue={type}
+                        value={type}
+                        id="exampleSelect"
+                        onChange={(e) => setType(e.target.value)}
+                      >
+                        <option key={0} value={null}> {"Organization Type"} </option>
+                        <option>Food Distribution</option>
+                        <option>Food Processing</option>
+                        <option>Government</option>
+                        <option>Research</option>
+                        <option>Other</option>
+                      </ReactstrapInput>
+                    </FormGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -178,8 +163,9 @@ function EditOrganization(props) {
           </Container>
         </div>
       </div>
-    </>
-  }</div>
+    </Fragment>
+  }
+  </div>
 }
 
 export default EditOrganization;
