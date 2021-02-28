@@ -15,17 +15,8 @@ import {
   USER_REGISTER_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
-<<<<<<< Updated upstream
-  USER_SIGNIN_FAIL, 
-  USER_LOGOUT_REQUEST, 
-  USER_LOGOUT_SUCCESS, 
-  USER_LOGOUT_FAIL
-=======
   USER_SIGNIN_FAIL,
->>>>>>> Stashed changes
 } from "../constants/userConstants";
-
-
 
 const donate = (amount) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
@@ -63,9 +54,6 @@ const logout = () => async (dispatch, getState) => {
     dispatch({ type: USER_LOGOUT_FAIL, payload: error.message });
   }
 }
-<<<<<<< Updated upstream
-export { signin, register, logout };
-=======
 
 const register = (username, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password } });
@@ -96,4 +84,3 @@ export {
   register,
   signin
 };
->>>>>>> Stashed changes

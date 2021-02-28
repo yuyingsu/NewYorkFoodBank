@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-import { USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT_SUCCESS, USER_LOGOUT_REQUEST, USER_LOGOUT_FAIL } from "../constants/userConstants";
-=======
 import {
   LIST_DONATE_REQUEST,
   LIST_DONATE_SUCCESS,
@@ -18,7 +15,6 @@ import {
   USER_SIGNIN_SUCCESS,
   USER_SIGNIN_FAIL,
 } from "../constants/userConstants";
->>>>>>> Stashed changes
 
 function listDonateReducer(state = {}, action) {
   switch (action.type) {
@@ -45,10 +41,6 @@ function userDonateReducer(state = {}, action) {
   }
 }
 
-<<<<<<< Updated upstream
-export {
-  userSigninReducer, userRegisterReducer
-=======
 function userRegisterReducer(state = {}, action) {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
@@ -84,5 +76,4 @@ export {
   userDonateReducer,
   userRegisterReducer,
   userSigninReducer
->>>>>>> Stashed changes
 }
