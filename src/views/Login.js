@@ -20,9 +20,9 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
 import { Header } from '../components/'
+import { useHistory } from "react-router-dom";
 
-
-function LoginPage(props) {
+function Login(props) {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
   const [username, setUsername] = useState('');
@@ -30,18 +30,12 @@ function LoginPage(props) {
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
-
-  useEffect(() => {
-    if (userInfo) {
-      props.history.push(redirect);
-    }
-  }, [userInfo]);
+  let history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(username, password));
+    if (!error) history.push('/');
   }
   return (
     <>
@@ -138,4 +132,4 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage;
+export default Login;

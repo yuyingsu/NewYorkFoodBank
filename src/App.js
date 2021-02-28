@@ -3,6 +3,9 @@ import NavbarIndex from './components/NavbarIndex';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {
   AddOrganization,
+  AddPantry,
+  Contact,
+  Donate,
   EditOrganization,
   EditPantry,
   LandingPage,
@@ -17,12 +20,9 @@ import {
   Pantries,
   Privacy,
   Register,
-  Terms,
-  DonationPage,
-  Contact
+  Terms
  } from './views/';
-import AddPantry from './views/AddPantry';
-import Footer from './components/Footer'
+import { Footer } from './components/'
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
           <Route path='/vieworg/:id' exact render={({match}) =>  <OrganizationPublic id={match.params.id} /> } />
-          <Route exact path="/donate" component={DonationPage} />
+          <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
           </div>
              <Footer />

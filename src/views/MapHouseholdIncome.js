@@ -1,6 +1,6 @@
 import React from "react";
 import Map from "../components/Map";
-import AGoogleMap from "../components/MyMapComponent";
+import AGoogleMap from "../components/MapPantry";
 // reactstrap components
 import {
   Button,
@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 
 // core components
-import { Footer, Header, MyMapComponent } from "../components/";
+import { Footer, Header, MapPantry } from "../components/";
 
 function InfoPage() {
   React.useEffect(() => {

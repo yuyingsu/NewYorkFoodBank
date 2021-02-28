@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { MyMapComponent } from '../components/'
+import { MapPantry } from '../components/'
 // reactstrap components
 import {
   Button,
@@ -51,7 +51,7 @@ function Pantry(props) {
                     </div>
                   </CardHeader>
                   <CardBody>
-                    <MyMapComponent pantries={pantry}/>
+                    <MapPantry pantries={pantry}/>
                   </CardBody>
 
               </Card>

@@ -46,50 +46,51 @@ const NavbarIndex = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/info" style={{color: "white"}}>Poverty Map</NavLink>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle style={{color:"white"}} nav caret>
+                Pantries
+              </DropdownToggle>
+              <DropdownMenu right >
+                <DropdownItem>
+                <NavItem>
+                <NavLink href="/pantries" style={{color: "black"}}>Pantries</NavLink>
+                </NavItem>
+                </DropdownItem>
+                <DropdownItem>
+                <NavItem>
+                <NavLink href="/pantrymap" style={{color: "black"}}>Pantries Map</NavLink>
+                </NavItem>
+                </DropdownItem>
+                <DropdownItem>
+                <NavItem>
+              <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/pantrymap" style={{color: "white"}}>Pantries Map</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/addorg" style={{color: "white"}}>Add Org</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/addpantry" style={{color: "white"}}>Add Pantry</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/myorgs" style={{color: "white"}}>My Orgs</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/orgs" style={{color: "white"}}>Orgs</NavLink>
-            </NavItem>
-            <NavItem>
-            <NavLink href="/pantries" style={{color: "white"}}>Pantries</NavLink>
-            </NavItem>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle style={{color:"white"}} nav caret>
+                Organizations
+              </DropdownToggle>
+              <DropdownMenu right >
+                <DropdownItem>
+                <NavItem>
+                <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
+                </NavItem>
+                </DropdownItem>
+                {userInfo && <DropdownItem>
+                  <NavItem>
+                  <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
+                  </NavItem>
+                </DropdownItem>}
+              </DropdownMenu>
+            </UncontrolledDropdown>
             <NavItem>
               <NavLink href="/donate" style={{color: "white"}}>Donate</NavLink>
             </NavItem>
             <NavItem>
-              {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} >Logout</NavLink> : <NavLink tag={Link} to="/login">Login</NavLink>}
+              {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} style={{color: "white"}}>Logout</NavLink> : <NavLink tag={Link} to="/login" style={{color: "white"}}>Login</NavLink>}
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
           <NavbarText>
             {userInfo ? (

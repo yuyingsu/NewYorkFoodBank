@@ -62,7 +62,7 @@ function EditOrganization(props) {
     });
     console.log(test);
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
-    history.push('/myorgs/');
+    history.go(-1);
   }
 
   return <div className="orgs content-margined">

@@ -26,6 +26,7 @@ import { TimeGridScheduler, classes } from '@remotelock/react-week-scheduler';
 import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { update } from '../actions/pantryActions';
+import { useHistory } from "react-router-dom";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -47,6 +48,7 @@ function EditPantry(props) {
   const pantry = pantries.find(pantry => pantry.id == props.id);
   const dispatch = useDispatch();
   const id = props.id;
+  let history = useHistory();
 
   useEffect(() => {
     {
@@ -74,6 +76,7 @@ function EditPantry(props) {
     });
     console.log(test);
     dispatch(update(pantry_name, contact_name, phone, type, address, geocode, schedule, id));
+    history.go(-1);
   }
 
   return (

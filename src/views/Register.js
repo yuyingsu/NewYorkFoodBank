@@ -43,7 +43,7 @@ function Register(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(register(username, email, password));
-    if (!error) history.push('/myorgs/');
+    if (!error) history.push('/');
   }
 
   return (

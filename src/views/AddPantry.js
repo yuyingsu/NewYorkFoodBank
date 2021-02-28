@@ -46,9 +46,55 @@ function AddPantry(props) {
   const pantryRegister = useSelector(state => state.pantryRegister);
   const { loading, pantryInfo, error } = pantryRegister;
   const dispatch = useDispatch();
+  let history = useHistory();
+  const [formValues, setFormValues] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmitting(true);
+  };
+
+  const validate = (values) => {
+    let errors = {};
+
+    if (!pantry_name) {
+      errors.pantry_name = "Cannot be blank";
+    }
+
+    if (!contact_name) {
+      errors.contact_name = "Cannot be blank";
+    }
+
+    if (!phone) {
+      errors.phone = "Cannot be blank";
+    } else if (phone.length < 12) {
+      errors.phone = "Phone numbers must be 9 digits";
+    }
+
+    if (!type) {
+      errors.type = "Cannot be blank";
+    }
+
+    if (!address) {
+      errors.address = "Cannot be blank";
+    }
+
+    if (!geocode) {
+      errors.geocode = "Cannot be blank";
+    }
+
+    if (!schedule) {
+      errors.geocode = "Cannot be blank";
+    }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
     let test = JSON.stringify({
       "pantry_name": pantry_name,
       "contact_name": contact_name,
@@ -60,7 +106,9 @@ function AddPantry(props) {
     });
     console.log(test);
     dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
+    history.back();
   }
+}, [formErrors]);
 
   return (
     <>
@@ -76,7 +124,7 @@ function AddPantry(props) {
           <Container>
             <Col className="ml-auto mr-auto" md="12">
               <Card className="card-login card-plain">
-                <Form action="" className="form" method="">
+                <Form onSubmit={handleSubmit} noValidate>
                   <CardHeader className="text-center">
                     <div className="logo-container">
                       <h5>Add Pantry</h5>
@@ -87,7 +135,8 @@ function AddPantry(props) {
                     <ReactstrapInput
                       type="select"
                       name="select"
-                      id="exampleSelect"
+                      id="type"
+                      className={formErrors.type && "input-error"}
                       onChange={(e) => setType(e.target.value)}
                     >
                       <option key={0} value={null}> {"Pantry Type"} </option>
@@ -98,6 +147,9 @@ function AddPantry(props) {
                       <option>Senior Service</option>
                       <option>Home Delivery</option>
                     </ReactstrapInput>
+                    {formErrors.type && (
+                      <span className="error">{formErrors.type}</span>
+                    )}
                   </FormGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -106,15 +158,22 @@ function AddPantry(props) {
                         </InputGroupText>
                       </InputGroupAddon>
                       <ReactstrapInput
+                        className={formErrors.pantry_name && "input-error"}
                         placeholder="Pantry Name"
                         type="text"
                         onChange={(e) => setPantryName(e.target.value)}
                       ></ReactstrapInput>
                     </InputGroup>
+                    {formErrors.pantry_name && (
+                      <span className="error">{formErrors.pantry_name}</span>
+                    )}
                     <ReactPlacesSearchBar
                         address={setAddress}
                         geocode={setGeocode}
                       />
+                                          {formErrors.address && (
+                      <span className="error">{formErrors.address}</span>
+                    )}
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -125,8 +184,12 @@ function AddPantry(props) {
                         placeholder="Contact Name"
                         onChange={(e) => setContactName(e.target.value)}
                         type="text"
+                        className={formErrors.contact_name && "input-error"}
                       ></ReactstrapInput>
                     </InputGroup>
+                    {formErrors.contact_name && (
+                      <span className="error">{formErrors.contact_name}</span>
+                    )}
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -141,7 +204,9 @@ function AddPantry(props) {
                         minLength="14"
                         maxLength="14"
                         onChange={setPhone}/>
-                    </InputGroup><br></br>
+                    </InputGroup>                    {formErrors.phone && (
+                      <span className="error">{formErrors.phone}</span>
+                    )}<br></br>
                    <Button
                      onClick={() => setShowSchedule(true)}
                    >Set Pantry Hours</Button>
@@ -167,13 +232,16 @@ function AddPantry(props) {
                       />
                     </div>
                    }
+                                       {formErrors.schedule && (
+                      <span className="error">{formErrors.schedule}</span>
+                    )}
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button
                       block
                       className="btn-round"
                       color="info"
-                      onClick={handleSubmit}
+                      type="submit"
                       size="lg"
                     >
                       Submit

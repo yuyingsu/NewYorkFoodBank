@@ -1,6 +1,6 @@
 import React from "react";
 import Map from "../components/Map";
-import AGoogleMap from "../components/MyMapComponent";
+import AGoogleMap from "../components/MapPantry";
 // reactstrap components
 import {
   Button,
@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // core components
 import Header from "../components/Header.js";
-import MyMapComponent from "../components/MyMapComponent";
+import MapPantry from "../components/MapPantry";
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function MapPantries(props) {
@@ -41,7 +41,7 @@ function MapPantries(props) {
             <Row>
               <Col style={{color:"black"}}className="text-center">
                 New York City Pantry Map
-              <MyMapComponent pantries={pantries} />
+              <MapPantry pantries={pantries} />
               </Col>
             </Row>
           </Container>

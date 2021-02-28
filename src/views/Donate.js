@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { donate, listDonation } from '../actions/userActions';
 // core components
-import { Header } from "../components/";
+import { Header } from "../components";
 import Ticker from 'react-ticker';
 import Cards from 'react-credit-cards';
 import {
@@ -24,7 +24,7 @@ import { useEffect,useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 //import DefaultFooter from "components/Footers/DefaultFooter.js";
 
-function DonationPage() {
+function Donate() {
   const [amount, setAmount] = useState(0);
   const [message, setMessage] = useState("");
   const [number, setNumber] = useState("");
@@ -70,7 +70,7 @@ function DonationPage() {
   return (
     <>
       <div className="wrapper">
-        <Header />
+        <Header className="form" />
         {!loading && <Ticker>
             {() => message ? (
             <p style={{ whiteSpace: "nowrap" }}>{message.toString()}</p>
@@ -82,7 +82,7 @@ function DonationPage() {
         <div className="section section-contact-us text-center">
           <Container>
             <Row>
-              <Col className="text-center ml-auto mr-auto" lg="6" md="8">
+              <Col className="text-center ml-auto mr-auto">
                 <div className="send-button">
                 <form onSubmit={submitPayment}>
                 <div className="form-group">
@@ -161,4 +161,4 @@ function DonationPage() {
   );
 }
 
-export default DonationPage;
+export default Donate;
