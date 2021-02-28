@@ -41,7 +41,7 @@ function AddPantry(props) {
   const [showSchedule, setShowSchedule] = useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
-  const [formValues, setFormValues] = useState("");
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {

@@ -65,9 +65,6 @@ const NavbarIndex = (props) => {
                   <NavItem>
                     <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
                   </NavItem>
-                <NavItem>
-              <NavLink href="/info" style={{color: "black"}}>Poverty Map</NavLink>
-            </NavItem>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -79,12 +76,10 @@ const NavbarIndex = (props) => {
                 <DropdownItem>
                 <NavItem>
                   <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
-                <NavLink href="/orgs" style={{color: "black"}}>Organizations</NavLink>
                 </NavItem>
                 </DropdownItem>
                 {userInfo && <DropdownItem>
                   <NavItem>
-                    <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
                   <NavLink href="/myorgs" style={{color: "black"}}>My Organizations</NavLink>
                   </NavItem>
                 </DropdownItem>}

@@ -33,13 +33,6 @@ function AddOrganization() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const intialValues = { organization_name: "", phone: "", type: "", address: "", url: "" };
-
-  const [formValues, setFormValues] = useState(intialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  //form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate());
@@ -140,8 +133,6 @@ function AddOrganization() {
                     </div>{formErrors.address && (
                     <span className="error">{formErrors.address}</span>
                     )}
-                      >
-                    </ReactstrapInput>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
