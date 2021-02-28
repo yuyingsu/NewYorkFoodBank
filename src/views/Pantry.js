@@ -1,12 +1,7 @@
 import React, { Fragment } from "react";
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-<<<<<<< Updated upstream
-import { MyMapComponent } from '../components/'
-// reactstrap components
-=======
 import { MapPantry } from '../components/'
->>>>>>> Stashed changes
 import {
   Card,
   CardHeader,
@@ -37,17 +32,6 @@ function Pantry(props) {
           <Row>
             <Col className="ml-auto mr-auto">
               <Card className="card-login card-plain">
-<<<<<<< Updated upstream
-                  <CardHeader className="text-center">
-                    <div className="logo-container">
-                      <h5>Pantry Map</h5>
-                    </div>
-                  </CardHeader>
-                  <CardBody>
-                    <MyMapComponent pantries={pantry}/>
-                  </CardBody>
-
-=======
                 <CardHeader className="text-center">
                   <div className="logo-container">
                     <h5>Pantry Map</h5>
@@ -56,7 +40,6 @@ function Pantry(props) {
                 <CardBody>
                   <MapPantry pantries={pantry}/>
                 </CardBody>
->>>>>>> Stashed changes
               </Card>
             </Col>
           </Row>

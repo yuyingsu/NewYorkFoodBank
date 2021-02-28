@@ -30,22 +30,6 @@ function AddOrganization() {
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
   let history = useHistory();
-<<<<<<< Updated upstream
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let test = JSON.stringify({
-      "organization_name": organization_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "url": url,
-    });
-    console.log(test);
-    dispatch(register(organization_name, phone, type, address, url));
-    history.push('/myorgs/');
-  }
-=======
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -89,7 +73,6 @@ function AddOrganization() {
       history.push('/myorgs/');
     }
   }, [formErrors]);
->>>>>>> Stashed changes
 
   return (
     <Fragment>
@@ -132,13 +115,6 @@ function AddOrganization() {
                         placeholder="Organization Name"
                         type="text"
                         onChange={(e) => setOrganizationName(e.target.value)}
-<<<<<<< Updated upstream
-                      ></ReactstrapInput>
-                    </InputGroup>
-                    <ReactPlacesSearchBar
-                     address={setAddress}
-                   />
-=======
                       >
                       </ReactstrapInput>
                     </InputGroup>
@@ -152,7 +128,6 @@ function AddOrganization() {
                     </div>{formErrors.address && (
                     <span className="error">{formErrors.address}</span>
                     )}
->>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -168,12 +143,9 @@ function AddOrganization() {
                         maxLength="14"
                         onChange={setPhone}/>
                     </InputGroup>
-<<<<<<< Updated upstream
-=======
                     {formErrors.phone && (
                       <span className="error">{formErrors.phone}</span>
                     )}
->>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -184,17 +156,12 @@ function AddOrganization() {
                         placeholder="URL"
                         onChange={(e) => setUrl(e.target.value)}
                         type="url"
-<<<<<<< Updated upstream
-                      ></ReactstrapInput>
-                    </InputGroup>
-=======
                       >
                       </ReactstrapInput>
                     </InputGroup>
                     {formErrors.url && (
                       <span className="error">{formErrors.url}</span>
                     )}
->>>>>>> Stashed changes
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button

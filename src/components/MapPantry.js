@@ -12,7 +12,7 @@ import { formatPhoneNumber } from 'react-phone-number-input';
 const { compose, withProps } = require("recompose");
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
-const MyMapComponent = compose(
+const MapPantry = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBReJVSyI6er0EIqUfX4xLI0aZWsxo07sE&v=3.exp&libraries=geometry,drawing,places",
@@ -25,23 +25,14 @@ const MyMapComponent = compose(
 )(props => {
   return(
     <GoogleMap zoom={13} center={{ lat: parseFloat(props.pantries[0].geocode.split(",")[0]), lng: parseFloat(props.pantries[0].geocode.split(",")[1]) }}>
-<<<<<<< Updated upstream:src/components/MyMapComponent.js
-    {props.pantries && props.pantries.map((pantry, idx)=>((
-      <Marker key={idx} onClick={()=>{props.onToggleOpen(idx)}} position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}>
-=======
 
     {props.pantries && props.pantries.map((pantry, idx) => ((
       <Marker key={idx} onClick={()=>{props.onToggleOpen(idx)}} position={{ lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1]) }}>
->>>>>>> Stashed changes:src/components/MapPantry.js
        {props.array[idx] && props.boxes[idx]}
       </Marker>
       )))
     }
   </GoogleMap>
-<<<<<<< Updated upstream:src/components/MyMapComponent.js
-
-=======
->>>>>>> Stashed changes:src/components/MapPantry.js
   )
   }
 );
@@ -111,12 +102,7 @@ useEffect(() => {
     setCurrentIdx(idx);
   }
 
-<<<<<<< Updated upstream:src/components/MyMapComponent.js
-  return <MyMapComponent hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
-
-=======
   return <MapPantry hours={pantryHours} pantries={props.pantries} array={array} onToggleOpen={onToggleOpen} boxes={boxes}/>;
->>>>>>> Stashed changes:src/components/MapPantry.js
 }
 
 export default enhance(ReactGoogleMaps);

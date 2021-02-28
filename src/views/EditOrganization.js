@@ -46,7 +46,7 @@ function EditOrganization(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
-    history.push('/myorgs/');
+    history.go(-1);
   }
 
   return <div className="orgs content-margined">

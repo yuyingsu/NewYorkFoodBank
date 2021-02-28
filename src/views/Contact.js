@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
-import React from "react";
-
-// reactstrap components
-=======
 import React, { Fragment } from "react";
 import { useEffect, useState } from 'react';
->>>>>>> Stashed changes
 import {
   Button,
   Input,
@@ -16,14 +10,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-<<<<<<< Updated upstream
-
-// core components
-import Header from "../components/Header.js";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
-
-function Contact() {
-=======
 import { useHistory } from "react-router-dom";
 import { Header } from "../components/";
 
@@ -74,7 +60,6 @@ function Contact() {
     }
   }, [formErrors]);
 
->>>>>>> Stashed changes
   return (
     <Fragment>
       <div className="wrapper">
@@ -85,32 +70,6 @@ function Contact() {
             <p className="description">Your project is very important to us.</p>
             <Row>
               <Col className="text-center ml-auto mr-auto" lg="6" md="8">
-<<<<<<< Updated upstream
-                <InputGroup
-                >
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="now-ui-icons users_circle-08"></i>
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="First Name..."
-                    type="text"
-                  ></Input>
-                </InputGroup>
-                <InputGroup
-                >
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="now-ui-icons ui-1_email-85"></i>
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Email..."
-                    type="text"
-                  ></Input>
-                </InputGroup>
-=======
                 <InputGroup>
                   <Input
                     placeholder="Name"
@@ -139,7 +98,6 @@ function Contact() {
                 {formErrors.email && (
                   <span className="error">{formErrors.email}</span>
                 )}
->>>>>>> Stashed changes
                 <div className="textarea-container">
                   <Input
                     cols="80"
@@ -147,14 +105,10 @@ function Contact() {
                     placeholder="Type a message..."
                     rows="4"
                     type="textarea"
-<<<<<<< Updated upstream
-                  ></Input>
-=======
                   />
                   {formErrors.message && (
                     <span className="error">{formErrors.message}</span>
                   )}
->>>>>>> Stashed changes
                 </div>
                 <div className="send-button">
                   <Button
@@ -172,7 +126,6 @@ function Contact() {
             </Row>
           </Container>
         </div>
-        {/*<DefaultFooter />*/}
       </div>
     </Fragment>
   );

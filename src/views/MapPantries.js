@@ -1,11 +1,4 @@
-<<<<<<< Updated upstream
-import React from "react";
-import Map from "../components/Map";
-import AGoogleMap from "../components/MyMapComponent";
-// reactstrap components
-=======
 import React, { Fragment } from "react";
->>>>>>> Stashed changes
 import {
   Container,
   Row,
@@ -13,15 +6,7 @@ import {
 } from "reactstrap";
 import { listPantries } from "actions/pantryActions";
 import { useSelector, useDispatch } from 'react-redux';
-<<<<<<< Updated upstream
-
-// core components
-import Header from "../components/Header.js";
-import MyMapComponent from "../components/MyMapComponent";
-//import DefaultFooter from "components/Footers/DefaultFooter.js";
-=======
 import MapPantry from "../components/MapPantry";
->>>>>>> Stashed changes
 
 function MapPantries(props) {
   const dispatch = useDispatch();
@@ -44,7 +29,7 @@ function MapPantries(props) {
             <Row>
               <Col style={{color:"black"}}className="text-center">
                 New York City Pantry Map
-              <MyMapComponent pantries={pantries} />
+              <MapPantry pantries={pantries} />
               </Col>
             </Row>
           </Container>

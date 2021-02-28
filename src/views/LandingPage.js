@@ -4,7 +4,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import centerImage from '../assets/img/joel-muniz-3k3l2brxmwQ-unsplash.jpg';
 import leftImage from '../assets/img/nico-smit-NFoerQuvzrs-unsplash.jpg';

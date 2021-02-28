@@ -31,11 +31,7 @@ function Register(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(register(username, email, password));
-<<<<<<< Updated upstream
-    if (!error) history.push('/myorgs/');
-=======
     history.go(-1);
->>>>>>> Stashed changes
   }
 
   return (

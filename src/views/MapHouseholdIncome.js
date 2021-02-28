@@ -1,24 +1,12 @@
 import React, { Fragment } from "react";
 import Map from "../components/Map";
-<<<<<<< Updated upstream
-import AGoogleMap from "../components/MyMapComponent";
-// reactstrap components
-=======
->>>>>>> Stashed changes
 import {
   Container,
   Row,
   Col,
 } from "reactstrap";
 
-<<<<<<< Updated upstream
-// core components
-import { Footer, Header, MyMapComponent } from "../components/";
-
-function InfoPage() {
-=======
 function MapHouseholdIncome() {
->>>>>>> Stashed changes
   React.useEffect(() => {
     return function cleanup() {
     };

@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-
-// reactstrap components
 import {
   Button,
   Card,
@@ -20,36 +18,19 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
 import { Header } from '../components/'
+import { useHistory } from "react-router-dom";
 
-<<<<<<< Updated upstream
-
-function LoginPage(props) {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
-=======
 function Login(props) {
->>>>>>> Stashed changes
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const userSignin = useSelector(state => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
-
-  useEffect(() => {
-    if (userInfo) {
-      props.history.push(redirect);
-    }
-  }, [userInfo]);
-
+  const history = useHistory();
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(username, password));
-<<<<<<< Updated upstream
-=======
-    history.push('/');
->>>>>>> Stashed changes
+    history.go(-1);
   }
   return (
     <Fragment>
@@ -135,4 +116,4 @@ function Login(props) {
   );
 }
 
-export default LoginPage;
+export default Login;

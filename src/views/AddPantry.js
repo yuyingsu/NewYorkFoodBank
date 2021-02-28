@@ -40,22 +40,6 @@ function AddPantry(props) {
   const [schedule, setSchedule] = useState(defaultSchedule);
   const [showSchedule, setShowSchedule] = useState(false);
   const dispatch = useDispatch();
-<<<<<<< Updated upstream
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let test = JSON.stringify({
-      "pantry_name": pantry_name,
-      "contact_name": contact_name,
-      "phone": phone,
-      "type": type,
-      "address": address,
-      "geocode": geocode,
-      "hours": JSON.stringify({schedule})
-    });
-    console.log(test);
-    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
-=======
   let history = useHistory();
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -104,10 +88,10 @@ function AddPantry(props) {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
-    dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
-    history.go(-1);
->>>>>>> Stashed changes
-  }
+      dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
+      history.go(-1);
+    }
+  }, [formErrors]);
 
   return (
     <Fragment>
@@ -162,12 +146,9 @@ function AddPantry(props) {
                         address={setAddress}
                         geocode={setGeocode}
                       />
-<<<<<<< Updated upstream
-=======
                     {formErrors.address && (
                       <span className="error">{formErrors.address}</span>
                     )}
->>>>>>> Stashed changes
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -194,14 +175,10 @@ function AddPantry(props) {
                         minLength="14"
                         maxLength="14"
                         onChange={setPhone}/>
-<<<<<<< Updated upstream
-                    </InputGroup><br></br>
-=======
                     </InputGroup>
                     {formErrors.phone && (
                       <span className="error">{formErrors.phone}</span>
                     )}<br></br>
->>>>>>> Stashed changes
                    <Button
                      onClick={() => setShowSchedule(true)}
                    >Set Pantry Hours</Button>
@@ -227,12 +204,9 @@ function AddPantry(props) {
                       />
                     </div>
                    }
-<<<<<<< Updated upstream
-=======
                     {formErrors.schedule && (
                       <span className="error">{formErrors.schedule}</span>
                     )}
->>>>>>> Stashed changes
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button

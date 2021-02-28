@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImg,CardTitle, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardTitle, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { removeOrg } from '../actions/orgActions';
-import { connect } from 'react-redux';
-import { orgListReducer } from 'reducers/orgReducers';
 import { useDispatch } from 'react-redux';
 import { formatPhoneNumber } from 'react-phone-number-input'
 
