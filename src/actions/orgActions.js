@@ -25,7 +25,7 @@ const listMyOrgs = () => async (dispatch, getState) => {
     dispatch({ type: MY_ORG_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
     const user_id = userInfo.user_id;
-    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/myorganizations/" + user_id, {
+    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/myorganizations/" + user_id, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
@@ -39,7 +39,7 @@ const listOrg = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_ORG_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/org/" + id, {
+    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/org/" + id, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
@@ -52,7 +52,7 @@ const listOrg = (id) => async (dispatch, getState) => {
 const listOrgs = () => async (dispatch) => {
   try {
     dispatch({ type: LIST_ORG_REQUEST});
-    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/allorganizations", {}, {
+    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/allorganizations", {}, {
     });
     dispatch({ type: LIST_ORG_SUCCESS, payload: data });
   } catch(error){
@@ -64,7 +64,7 @@ const register = (organization_name, phone, type, address, url) => async (dispat
   try {
     dispatch({ type: ORG_REGISTER_REQUEST, payload: {organization_name, phone, type, address, url} });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.post("https://newyorkfoodbank.netlify.app/add", { organization_name, phone, type, address, url, "user_id": userInfo.user_id
+    const { data } = await Axios.post("https://nyfoodbank.herokuapp.com/add", { organization_name, phone, type, address, url, "user_id": userInfo.user_id
     }, {
       headers: {
         "Authorization": ' Bearer ' + userInfo.access_token
@@ -79,7 +79,7 @@ const register = (organization_name, phone, type, address, url) => async (dispat
 const removeOrg = (organization_name) => async (dispatch) => {
   try {
     dispatch({ type: REMOVE_ORG_REQUEST});
-    await Axios.delete("https://newyorkfoodbank.netlify.app/organization/"+organization_name, {organization_name}, {
+    await Axios.delete("https://nyfoodbank.herokuapp.com/organization/"+organization_name, {organization_name}, {
     });
     dispatch({ type: REMOVE_ORG_SUCCESS, payload: organization_name });
   } catch(error){
@@ -91,7 +91,7 @@ const updateOrg = (id, organization_name, phone, type, address, url) => async (d
   try {
     dispatch({ type: ORG_UPDATE_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.put("https://newyorkfoodbank.netlify.app/edit", {id, organization_name, phone, type, address, url}, {
+    const { data } = await Axios.put("https://nyfoodbank.herokuapp.com/edit", {id, organization_name, phone, type, address, url}, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
