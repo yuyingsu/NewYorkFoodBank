@@ -13,7 +13,6 @@
     "flask": "^0.2.10",
     "js-cookie": "^2.2.1",
     "mapbox-gl": "^2.1.0",
-    "netlify-plugin-csp-generator": "^1.2.2",
     "react": "^17.0.1",
     "react-credit-cards": "^0.8.3",
     "react-dom": "^17.0.1",
