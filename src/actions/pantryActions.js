@@ -21,7 +21,7 @@ const listMyPantries = (organization_id) => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_PANTRY_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("http://127.0.0.1:5000/mypantries/" + organization_id, {}, {
+    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/mypantries/" + organization_id, {}, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
@@ -34,7 +34,7 @@ const listMyPantries = (organization_id) => async (dispatch, getState) => {
 const listPantries = () => async (dispatch) => {
   try {
     dispatch({ type: LIST_PANTRY_REQUEST});
-    const { data } = await Axios.get("http://127.0.0.1:5000/allpantries", {}, {
+    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/allpantries", {}, {
     });
     dispatch({ type: LIST_PANTRY_SUCCESS, payload: data });
   } catch (error){
@@ -46,7 +46,7 @@ const listSinglePantry = (pantry_id) => async (dispatch, getState) => {
   try {
     dispatch({ type: SINGLE_PANTRY_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("http://127.0.0.1:5000/pan/" + pantry_id, {}, {
+    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/pan/" + pantry_id, {}, {
       headers:
         { Authorization: 'Bearer ' + userInfo.access_token }
     });
@@ -60,7 +60,7 @@ const register = (pantry_name, contact_name, phone, type, address, geocode, sche
   try {
     dispatch({ type: PANTRY_REGISTER_REQUEST, payload: { pantry_name, contact_name, phone, type, address, geocode, schedule, organization_id } });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.post("http://127.0.0.1:5000/addPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), organization_id
+    const { data } = await Axios.post("https://newyorkfoodbank.netlify.app/addPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), organization_id
     }, {
       headers: {
         Authorization: ' Bearer ' + userInfo.access_token
@@ -76,7 +76,7 @@ const update = (pantry_name, contact_name, phone, type, address, geocode, schedu
   try {
     dispatch({ type: PANTRY_UPDATE_REQUEST, payload: { pantry_name, contact_name, phone, type, address, geocode, schedule, id } });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.put("http://127.0.0.1:5000/editPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), id
+    const { data } = await Axios.put("https://newyorkfoodbank.netlify.app/editPantry", { pantry_name, contact_name, phone, type, address, geocode, "hours": JSON.stringify({schedule}), id
     }, {
       headers: {
         Authorization: ' Bearer ' + userInfo.access_token
