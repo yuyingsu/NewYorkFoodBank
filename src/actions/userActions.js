@@ -22,7 +22,7 @@ const donate = (amount) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
   dispatch({ type: USER_DONATE_REQUEST });
   try {
-    await Axios.post("http://127.0.0.1:5000/pay", { "user_id": userInfo.user_id, "amount": amount }, {});
+    await Axios.post("https://newyorkfoodbank.netlify.app/pay", { "user_id": userInfo.user_id, "amount": amount }, {});
     dispatch({ type: USER_DONATE_SUCCESS });
   } catch (error) {
     dispatch({ type: USER_DONATE_FAIL, payload: error.message });
@@ -32,7 +32,7 @@ const donate = (amount) => async (dispatch, getState) => {
 const listDonation = () => async (dispatch) => {
   dispatch({ type: LIST_DONATE_REQUEST });
   try {
-    const { data } = await Axios.get("http://127.0.0.1:5000/pay", { });
+    const { data } = await Axios.get("https://newyorkfoodbank.netlify.app/pay", { });
     dispatch({ type: LIST_DONATE_SUCCESS, payload:data });
   } catch (error) {
     dispatch({ type: LIST_DONATE_FAIL, payload: error.message });
@@ -44,7 +44,7 @@ const logout = () => async (dispatch, getState) => {
   Cookie.remove("userInfo");
   dispatch({ type: USER_LOGOUT_REQUEST });
   try {
-    await Axios.post("http://127.0.0.1:5000/logout", {}, {
+    await Axios.post("https://newyorkfoodbank.netlify.app/logout", {}, {
         headers: {
           "Authorization": ' Bearer ' + userInfo.access_token
         }
@@ -58,7 +58,7 @@ const logout = () => async (dispatch, getState) => {
 const register = (username, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password } });
   try {
-    const { data } = await Axios.post("http://127.0.0.1:5000/register", { username, email, password });
+    const { data } = await Axios.post("https://newyorkfoodbank.netlify.app/register", { username, email, password });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
   } catch (error) {
@@ -69,7 +69,7 @@ const register = (username, email, password) => async (dispatch) => {
 const signin = (username, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } });
   try {
-    const { data } = await Axios.post("http://127.0.0.1:5000/login", { username, password });
+    const { data } = await Axios.post("https://newyorkfoodbank.netlify.app/login", { username, password });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
   } catch (error) {
