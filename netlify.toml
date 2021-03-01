@@ -7,6 +7,6 @@
     connect-src * data: blob: 'unsafe-inline';
     img-src * data: blob: 'unsafe-inline';
     frame-src * data: blob: ;
-    worker-src * data: blog: ;
+    worker-src * data: blob: ;
     style-src * data: blob: 'unsafe-inline';
     font-src * data: blob: 'unsafe-inline'; ;'''
