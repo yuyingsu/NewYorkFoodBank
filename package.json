@@ -57,6 +57,8 @@
     ]
   },
   "devDependencies": {
+    "csp-html-webpack-plugin": "^5.1.0",
+    "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.8"
   }
 }
