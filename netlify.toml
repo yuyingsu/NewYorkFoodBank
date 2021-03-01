@@ -2,7 +2,4 @@
   for = "/*"
   [headers.values]
     Content-Security-Policy =
-    "worker-src 'blob:' ;
-    child-src 'blob:' ;
-    img-src 'data:' 'blob:' ;
-    connect-src https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com ;"
+    "default-src 'blob:' ;"
