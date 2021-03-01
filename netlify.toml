@@ -2,7 +2,7 @@
 package = "netlify-plugin-csp-generator"
 
   [plugins.inputs]
-  buildDir = "dist"
+  buildDir = "build"
 
   [plugins.inputs.policies]
     workerSrc = "'*'"
