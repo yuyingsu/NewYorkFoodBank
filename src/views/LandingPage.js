@@ -81,6 +81,16 @@ function LandingPage() {
                     natural reasons, there’s huge variety of the state of the
                     ice.
                   </h5>
+                  <h5>
+                    The Arctic Ocean freezes every winter and much of the
+                    sea-ice then thaws every summer, and that process will
+                    continue whatever happens with climate change. Even if the
+                    Arctic continues to be one of the fastest-warming regions of
+                    the world, it will always be plunged into bitterly cold
+                    polar dark every winter. And year-by-year, for all kinds of
+                    natural reasons, there’s huge variety of the state of the
+                    ice.
+                  </h5>
                 </Col>
               </Row>
             </div>

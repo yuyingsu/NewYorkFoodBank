@@ -19,7 +19,7 @@ function Organizations(props) {
   <Header className="list" />
   { loadingOrgs ? <div>Loading...</div> :
     errorOrgs ? <div>{errorOrgs}</div> :
-      <Container fluid>
+      <Container style={{marginTop: "40px", paddingTop: "30px", paddingBottom:"20px"}} fluid>
         <Row className="d-flex justify-content-center align-items-center">
           <h5 style={{color:"white"}}>
             Organizations

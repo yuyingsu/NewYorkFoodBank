@@ -23,8 +23,7 @@ const attributes = {
   position: "absolute",
   left: "0",
   right: "0",
-  top: "0"
-}
+  top: "0"}
 
 const NavbarIndex = (props) => {
   const [isOpen, setIsOpen] = useState(false);

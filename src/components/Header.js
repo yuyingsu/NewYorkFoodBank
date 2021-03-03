@@ -13,7 +13,8 @@ function Header(props) {
           className="page-header-image"
           style={{
             backgroundImage: `url(${header})`,
-            zIndex: "0"
+            zIndex: "-1",
+            width: "100%"
           }}
         ></div>
         : props.className == "form"?
