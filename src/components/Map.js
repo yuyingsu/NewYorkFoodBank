@@ -15,7 +15,7 @@ const Map = () => {
           zoom={[11.44]}
           containerStyle={{
             height: '80vh',
-            width: '80vw'
+            width: '100%'
           }}
         >
       </Map>

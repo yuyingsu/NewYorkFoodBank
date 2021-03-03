@@ -16,7 +16,7 @@ function MapHouseholdIncome() {
     <Fragment>
       <div className="wrapper">
         <div className="section section-heat-map">
-          <Container style={{marginTop:"30px"}}>
+          <Container className="map-test" style={{marginTop:"30px"}} fluid>
             <Row>
               <Col style={{color:"black"}}className="text-center">
                 <h5>Median Household Income Map</h5>

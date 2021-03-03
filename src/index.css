@@ -54,7 +54,13 @@ code {
 .legend .g { background-color: rgb(255,186,122) }
 
 @media (min-width: 2000px) {
-  #container-map {
+  .container-map {
+    width: 1000px !important;
+  }
+}
+
+@media (min-width: 2000px) {
+  .map-test {
     width: 1000px !important;
   }
 }

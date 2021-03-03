@@ -17,7 +17,7 @@ const MapPantry = compose(
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBReJVSyI6er0EIqUfX4xLI0aZWsxo07sE&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `80vh`, width: `80vw` }} />,
+    containerElement: <div className="container-map" style={{ height: `80vh`, width: `80vw` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
