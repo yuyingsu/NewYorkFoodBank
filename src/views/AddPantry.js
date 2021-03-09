@@ -24,6 +24,7 @@ import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { register } from '../actions/pantryActions';
 import { Header } from "../components/";
+import { listPantries } from "actions/pantryActions";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -90,7 +91,8 @@ function AddPantry(props) {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
-      history.push('/pantries')
+      dispatch(listPantries());
+      history.push('/pantries');
     }
   }, [formErrors]);
 

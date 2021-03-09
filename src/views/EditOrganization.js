@@ -20,6 +20,7 @@ import {
 import { Header } from "../components/";
 import { updateOrg } from '../actions/orgActions';
 import { useHistory } from "react-router-dom";
+import { listMyOrgs } from '../actions/orgActions';
 
 function EditOrganization(props) {
   const [organization_name, setOrganizationName] = useState("");
@@ -46,7 +47,8 @@ function EditOrganization(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateOrg(id, organization_name, phone, type, address, url));
-    history.push('/myorgs')
+    dispatch(listMyOrgs());
+    history.push('/myorgs');
   }
 
   return <div className="orgs content-margined">

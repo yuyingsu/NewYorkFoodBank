@@ -23,6 +23,7 @@ import '@remotelock/react-week-scheduler/index.css';
 import 'resize-observer-polyfill/dist/ResizeObserver.global';
 import { update } from '../actions/pantryActions';
 import { useHistory } from "react-router-dom";
+import { listPantries } from "actions/pantryActions";
 
 const rangeStrings = [];
 const defaultSchedule = rangeStrings.map(range =>
@@ -58,7 +59,8 @@ function EditPantry(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(update(pantry_name, contact_name, phone, type, address, geocode, schedule, id));
-    history.push('/pantries')
+    dispatch(listPantries());
+    history.push('/pantries');
   }
 
   return (
