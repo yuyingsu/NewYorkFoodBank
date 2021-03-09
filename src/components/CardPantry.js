@@ -14,14 +14,16 @@ const CardPantry = (props) => {
     background: "rgba(0,0,0,0.5)",
   }
   const hrs = JSON.parse(props.hours).schedule;
-  hrs.map((hr)=> {
+  if (hrs) {
+    hrs.map((hr)=> {
       const dayOfWeek = new Date(hr[0]).getDay()
         if (schedule[dayOfWeek] === 'Closed') {
         schedule[dayOfWeek] = new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
         } else {
           schedule[dayOfWeek] += ", " + new Date(hr[0]).toLocaleString('en-US', { hour: 'numeric', hour12: true }) + "-" + new Date(hr[1]).toLocaleString('en-US', { hour: 'numeric', hour12: true })
         }
-  })
+    })
+  }
 
   function handleRemove () {
     dispatch(removeOrg(props.org));

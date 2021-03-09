@@ -19,7 +19,7 @@ function Pantries(props) {
   <Header className="list"></Header>
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-    <Container style={{marginTop: "40px", paddingTop: "30px", marginBottom:"40px"}} fluid>
+    <Container style={{marginTop: "40px", paddingTop: "30px", marginBottom:"60px"}} fluid>
         <Row className="d-flex justify-content-center align-items-center">
           <h5 style={{color:"white"}}>
             Pantries
