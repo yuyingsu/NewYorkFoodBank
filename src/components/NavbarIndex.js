@@ -93,7 +93,7 @@ const NavbarIndex = (props) => {
               {userInfo ? <NavLink tag={Link} to="/" onClick={(e)=>{handleLogout(e)}} style={{color: "white"}}>Logout</NavLink> : <NavLink tag={Link} to="/login" style={{color: "white"}}>Log In</NavLink>}
             </NavItem>
           </Nav>
-          <NavbarText>
+          <NavbarText style={{color: "white"}}>
             {userInfo ? (userInfo.username) : ("Guest")}
           </NavbarText>
         </Collapse>

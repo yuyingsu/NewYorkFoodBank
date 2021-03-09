@@ -40,7 +40,7 @@ function orgListReducer(state = { loading: true, orgs: [] }, action) {
   }
 }
 
-function orgReducer(state = {}, action) {
+function orgReducer(state = { loading: true }, action) {
   switch (action.type) {
     case GET_ORG_REQUEST:
       return { loading: true };

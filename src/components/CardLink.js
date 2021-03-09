@@ -12,8 +12,8 @@ function CardLink(props) {
   return (
     <Card style={attributes}>
     <CardText>{props.text}</CardText>
-    <Link to={`/${props.link}`}>
-    <CardTitle>Details</CardTitle></Link>
+    <Link to={`/pantries`}>
+    <CardTitle>More Info</CardTitle></Link>
     </Card>
   );
 }

@@ -17,7 +17,7 @@ function Footer() {
           bottom: "0", position: "absolute"}} fluid>
           <Row>
             <Col>
-              <Link href="/">About Us</Link>
+              <Link to="/">About Us</Link>
             </Col>
             <Col>
               <Link to ="/contact">Contact Us</Link>
