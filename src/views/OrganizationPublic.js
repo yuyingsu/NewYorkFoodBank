@@ -91,11 +91,11 @@ function OrganizationPublic(props) {
               </Col><br></br><br></br>
             </Row>
           </Container>
-          <Container style={{marginBottom: "40px"}} fluid>
+          <Container style={{paddingBottom: "60px"}} fluid>
             { loadingPantries ? <div>Loading...</div> :
              errorPantries ? <div>{errorPantries}</div> :
             <Row>
-              {pantries.length > 0 ? pantries.map(pantry =>
+              {pantries && pantries.length > 0 ? pantries.map(pantry =>
                 <Col xs="6" style={{marginBottom: "30px"}}>
                   <CardPantry id={pantry.id}
                     name={pantry.pantry_name}
