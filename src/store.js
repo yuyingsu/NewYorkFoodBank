@@ -47,18 +47,17 @@ const rootReducer = combineReducers({
   pantryUpdate: pantryUpdateReducer
 });
 
-const storeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const persistConfig = {
   key: 'root',
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer, )
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export default () => {
-  let store = createStore(persistedReducer, initialState,
-    storeEnhancers(applyMiddleware(thunk)))
+  let store = createStore(persistedReducer, initialState, composeEnhancers(applyMiddleware(thunk)))
   let persistor = persistStore(store)
   return { store, persistor }
 }

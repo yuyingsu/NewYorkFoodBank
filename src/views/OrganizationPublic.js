@@ -47,9 +47,8 @@ function OrganizationPublic(props) {
     }
 
     return () => {};
-  }, []);
+  }, [dispatch]);
 
-  console.log(PantryList)
   return <div className="orgs content-margined">
     <Header className="list" />
     { loading ? <div>Loading...</div> :

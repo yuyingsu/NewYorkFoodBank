@@ -58,7 +58,7 @@ function EditPantry(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(update(pantry_name, contact_name, phone, type, address, geocode, schedule, id));
-    history.go(-1);
+    history.push('/pantries')
   }
 
   return (
