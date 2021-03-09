@@ -24,11 +24,10 @@ function OrganizationPublic(props) {
   const [address, setAddress] = useState("");
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
-  const OrgList = useSelector(state => state.myOrgList);
-  const { loading, orgs, error } = OrgList;
+  const OrgList = useSelector(state => state.org);
+  const { loading, org, error } = OrgList;
   const PantryList = useSelector(state => state.myPantryList);
   const { loading: loadingPantries, pantries, error: errorPantries } = PantryList;
-  const org = orgs.find(org => org.id == props.id);
 
   const attributes = {
     border: "5em",
@@ -37,19 +36,20 @@ function OrganizationPublic(props) {
   }
 
   useEffect(() => {
-    dispatch(listMyPantries(props.id))
-    dispatch(listOrg(props.id));
+     dispatch(listOrg(props.id));
+     dispatch(listMyPantries(props.id))
     if (org) {
-      setAddress(org.address)
-      setOrganizationName(org.organization_name)
-      setPhone(org.phone)
-     setType(org.type)
-     setUrl(org.url)
+      setAddress(org[0].address)
+      setOrganizationName(org[0].organization_name)
+      setPhone(org[0].phone)
+     setType(org[0].type)
+     setUrl(org[0].url)
     }
 
     return () => {};
   }, []);
 
+  console.log(PantryList)
   return <div className="orgs content-margined">
     <Header className="list" />
     { loading ? <div>Loading...</div> :

@@ -18,7 +18,7 @@ function Header(props) {
         ></div>
         : props.className == "form"?
         <div
-          className="page-header-image"
+          className="page-header-image2"
           style={{
             backgroundImage: `url(${form})`,
             zIndex: "-1",
@@ -28,7 +28,7 @@ function Header(props) {
         </div>
         : props.className == "list"?
         <div
-          className="page-header-image"
+          className="page-header-image2"
           style={{
             backgroundImage: `url(${list})`,
             zIndex: "-1",
@@ -40,7 +40,7 @@ function Header(props) {
         }
         { !props.className ?
         <Container>
-          <Col xs="5" style={{paddingTop: "60%", position:"block", paddingBottom:"15%"}}><CardLink text="Write a proposal explaining what you want to study about the space. You are to include a research question you formulate, 3 scholarly sources that help you write about the space, its history, or something related to its social formation."/><br /><br /><br /></Col>
+          <Col xs="5" style={{paddingTop: "40%", position:"absolute"}}><CardLink link="/pantries" text="A food bank is a non-profit organization that collects and distributes food to hunger-relief charities. Food banks act as food storage and distribution depots for smaller front line agencies; and usually do not themselves give out food directly to people struggling with hunger."/><br /><br /><br /></Col>
         </Container> : null
         }
       </div>

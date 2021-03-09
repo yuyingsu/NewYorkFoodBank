@@ -21,10 +21,7 @@ const listMyPantries = (organization_id) => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_PANTRY_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/mypantries/" + organization_id, {}, {
-      headers:
-        { Authorization: 'Bearer ' + userInfo.access_token }
-    });
+    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/mypantries/" + organization_id, {}, {});
     dispatch({ type: MY_PANTRY_LIST_SUCCESS, payload: data })
   } catch (error) {
     dispatch({ type: MY_PANTRY_LIST_FAIL, payload: error.message });

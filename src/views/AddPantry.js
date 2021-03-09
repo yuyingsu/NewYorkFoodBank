@@ -106,7 +106,7 @@ function AddPantry(props) {
         ></div>
         <Header className="form" />
         <div className="content">
-          <Container>
+          <Container style={{marginTop:"75px", marginBottom: "75px"}}fluid>
             <Col className="ml-auto mr-auto" md="12">
               <Card className="card-login card-plain">
                 <Form onSubmit={handleSubmit} noValidate>

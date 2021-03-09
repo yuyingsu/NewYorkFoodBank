@@ -35,14 +35,10 @@ const listMyOrgs = () => async (dispatch, getState) => {
   }
 }
 
-const listOrg = (id) => async (dispatch, getState) => {
+const listOrg = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_ORG_REQUEST });
-    const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/org/" + id, {
-      headers:
-        { Authorization: 'Bearer ' + userInfo.access_token }
-    });
+    const { data } = await Axios.get("https://nyfoodbank.herokuapp.com/org/" + id, {});
     dispatch({ type: GET_ORG_SUCCESS, payload: data })
   } catch (error) {
     dispatch({ type: GET_ORG_FAIL, payload: error.message });

@@ -1,7 +1,7 @@
 import React from "react";
 
 function Terms() {
-  return <div data-custom-class="body">
+  return <div data-custom-class="body" style={{marginTop:"75px", marginBottom:"75px"}}>
       <h1>Terms and Conditions</h1>
 <p>Last updated: February 21, 2021</p>
 <p>Please read these terms and conditions carefully before using Our Service.</p>
