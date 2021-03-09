@@ -71,7 +71,7 @@ function Organization(props) {
         >
         </div>
         <div className="content" style={{marginTop:"30px"}}>
-        <Container style={{marginTop: "40px", paddingTop: "30px", paddingBottom:"20px"}} fluid>
+        <Container style={{marginTop: "40px", paddingTop: "30px"}} fluid>
             <Row>
               <Col className="ml-auto mr-auto">
                 <Card className="card-login card-plain">
@@ -189,11 +189,11 @@ function Organization(props) {
                 </Col><br></br><br></br>
               </Row>
             </Container>
-            <Container style={{marginBottom: "60px"}} fluid>
+            <Container style={{paddingBottom: "60px"}} fluid>
             { loadingPantries ? <div>Loading...</div> :
                errorPantries ? <div>{errorPantries}</div> :
             <Row>
-              {pantries.length > 0 ? pantries.map(pantry =>
+              {pantries && pantries.length > 0 ? pantries.map(pantry =>
                 <Col xs="6" style={{marginBottom: "30px"}}>
                   <CardPantry id={pantry.id}
                     name={pantry.pantry_name}

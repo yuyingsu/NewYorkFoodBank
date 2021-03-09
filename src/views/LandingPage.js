@@ -11,15 +11,17 @@ import CardLink from '../components/CardLink'
 
 function LandingPage() {
   return (
-    <Container className="d-flex justify-content-between" fluid>
+    <Container className="d-flex justify-content-between" style={{height: "100%"}}fluid>
       <div className="landing-wrapper">
+        <Row style={{paddingBottom:"0%px"}}>
        <Header />
+       </Row>
         <div className="content-center brand" style={{position:"relative"}}>
             <h1 className="h1-seo">New York Food Bank</h1>
             <h3>Helping to feed New Yorkers</h3>
           </div>
         <div className="section section-about-us">
-          <Container style={{paddingBottom:"4em"}}>
+          <Container style={{marginBottom:"70px"}}>
             <Row>
               <Col className="ml-auto mr-auto text-center" md="8">
                 <h2 className="title">Who we are?</h2>

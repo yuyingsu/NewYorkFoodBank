@@ -40,7 +40,7 @@ function Header(props) {
         }
         { !props.className ?
         <Container>
-          <Col xs="5" style={{paddingTop: "40%", paddingBottom: "40%"}}><CardLink text="Write a proposal explaining what you want to study about the space. You are to include a research question you formulate, 3 scholarly sources that help you write about the space, its history, or something related to its social formation."/></Col>
+          <Col xs="5" style={{paddingTop: "60%", position:"block", paddingBottom:"15%"}}><CardLink text="Write a proposal explaining what you want to study about the space. You are to include a research question you formulate, 3 scholarly sources that help you write about the space, its history, or something related to its social formation."/><br /><br /><br /></Col>
         </Container> : null
         }
       </div>
