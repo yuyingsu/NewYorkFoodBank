@@ -57,7 +57,7 @@ function OrganizationPublic(props) {
     <Fragment>
       <div className="page-header">
         <div className="content" style={{marginTop:"30px"}}>
-          <Container>
+        <Container style={{marginTop: "120px"}} fluid>
             <Row>
               <Col className="ml-auto mr-auto">
                 <Card className="card-login card-plain" style={attributes}>
@@ -91,7 +91,7 @@ function OrganizationPublic(props) {
               </Col><br></br><br></br>
             </Row>
           </Container>
-          <Container fluid>
+          <Container style={{marginBottom: "40px"}} fluid>
             { loadingPantries ? <div>Loading...</div> :
              errorPantries ? <div>{errorPantries}</div> :
             <Row>

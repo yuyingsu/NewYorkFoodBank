@@ -25,7 +25,7 @@ function MapPantries(props) {
        error ? <div>{error}</div> :
       <div className="wrapper">
         <div className="section section-heat-map">
-          <Container fluid>
+        <Container style={{marginTop: "40px", marginBottom: "40px"}} fluid>
             <Row>
               <Col style={{color:"black"}}className="text-center">
                 New York City Pantry Map

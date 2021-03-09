@@ -9,4 +9,4 @@
     frame-src * data: blob: ;
     worker-src * data: blob: ;
     style-src * data: blob: 'unsafe-inline';
-    font-src * data: blob: 'unsafe-inline'; ;'''
+    font-src * data: blob: 'unsafe-inline';'''

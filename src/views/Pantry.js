@@ -28,7 +28,7 @@ function Pantry(props) {
     error ? <div>{error}</div> :
     <Fragment>
       <div className="content">
-        <Container>
+      <Container style={{marginTop: "70px", paddingBottom: "70px"}} fluid>
           <Row>
             <Col className="ml-auto mr-auto">
               <Card className="card-login card-plain">

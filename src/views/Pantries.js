@@ -19,7 +19,7 @@ function Pantries(props) {
   <Header className="list"></Header>
   { loadingPantries ? <div>Loading...</div> :
     errorPantries ? <div>{errorPantries}</div> :
-      <Container fluid>
+    <Container style={{marginTop: "40px", paddingTop: "30px", marginBottom:"40px"}} fluid>
         <Row className="d-flex justify-content-center align-items-center">
           <h5 style={{color:"white"}}>
             Pantries
@@ -27,7 +27,7 @@ function Pantries(props) {
         </Row><br></br>
         <Row>
           {pantries.map(pantry =>
-            <Col xs="4" style={{marginBottom:"30px"}}>
+            <Col xs="6" style={{marginBottom:"30px"}}>
               <CardPantry id={pantry.id}
                 name={pantry.pantry_name}
                 contact={pantry.contact_name}

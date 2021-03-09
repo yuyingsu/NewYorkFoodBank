@@ -14,7 +14,6 @@ function Header(props) {
           style={{
             backgroundImage: `url(${header})`,
             zIndex: "-1",
-            width: "100%"
           }}
         ></div>
         : props.className == "form"?
@@ -42,10 +41,6 @@ function Header(props) {
         { !props.className ?
         <Container>
           <Col xs="5" style={{paddingTop: "40%", paddingBottom: "40%"}}><CardLink text="Write a proposal explaining what you want to study about the space. You are to include a research question you formulate, 3 scholarly sources that help you write about the space, its history, or something related to its social formation."/></Col>
-          <div className="content-center brand">
-            <h1 className="h1-seo">New York Food Bank</h1>
-            <h3>Helping to feed New Yorkers</h3>
-          </div>
         </Container> : null
         }
       </div>

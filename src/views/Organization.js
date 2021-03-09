@@ -71,7 +71,7 @@ function Organization(props) {
         >
         </div>
         <div className="content" style={{marginTop:"30px"}}>
-          <Container>
+        <Container style={{marginTop: "40px", paddingTop: "30px", paddingBottom:"20px"}} fluid>
             <Row>
               <Col className="ml-auto mr-auto">
                 <Card className="card-login card-plain">
@@ -173,7 +173,7 @@ function Organization(props) {
             </Col>
             </Row>
             </Container><br></br><br></br>
-            <Container fluid style={{padding: "0px"}} fluid>
+            <Container style={{marginBottom: "20px"}} fluid>
               <Row className="d-flex align-items-end justify-content-end">
                 <Link to={`/org/${props.id}/addpantry`}>
                   <Button>
@@ -189,7 +189,7 @@ function Organization(props) {
                 </Col><br></br><br></br>
               </Row>
             </Container>
-            <Container fluid>
+            <Container style={{marginBottom: "60px"}} fluid>
             { loadingPantries ? <div>Loading...</div> :
                errorPantries ? <div>{errorPantries}</div> :
             <Row>

@@ -11,11 +11,15 @@ import CardLink from '../components/CardLink'
 
 function LandingPage() {
   return (
-    <Fragment>
-      <div className="wrapper">
-        <Header />
+    <Container className="d-flex justify-content-between" fluid>
+      <div className="landing-wrapper">
+       <Header />
+        <div className="content-center brand" style={{position:"relative"}}>
+            <h1 className="h1-seo">New York Food Bank</h1>
+            <h3>Helping to feed New Yorkers</h3>
+          </div>
         <div className="section section-about-us">
-          <Container>
+          <Container style={{paddingBottom:"4em"}}>
             <Row>
               <Col className="ml-auto mr-auto text-center" md="8">
                 <h2 className="title">Who we are?</h2>
@@ -97,7 +101,7 @@ function LandingPage() {
           </Container>
         </div>
       </div>
-    </Fragment>
+    </Container>
   );
 }
 
