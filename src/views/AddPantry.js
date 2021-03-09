@@ -90,7 +90,7 @@ function AddPantry(props) {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       dispatch(register(pantry_name, contact_name, phone, type, address, geocode, schedule, props.id));
-      history.go(-1);
+      history.push('/pantries')
     }
   }, [formErrors]);
 
