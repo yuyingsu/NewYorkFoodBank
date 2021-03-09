@@ -38,13 +38,6 @@ function OrganizationPublic(props) {
   useEffect(() => {
      dispatch(listOrg(props.id));
      dispatch(listMyPantries(props.id))
-    if (org) {
-      setAddress(org[0].address)
-      setOrganizationName(org[0].organization_name)
-      setPhone(org[0].phone)
-     setType(org[0].type)
-     setUrl(org[0].url)
-    }
 
     return () => {};
   }, [dispatch]);
@@ -70,9 +63,9 @@ function OrganizationPublic(props) {
                       <Container>
                         <Row className="d-flex justify-content-center align-items-center">
                             {"Type: " + type}<br></br>
-                            {organization_name}<br></br>{address}<br></br>
-                            {formatPhoneNumber(phone)}<br></br>
-                            {url}
+                            {org[0].organization_name}<br></br>{org[0].address}<br></br>
+                            {formatPhoneNumber(org[0].phone)}<br></br>
+                            {org[0].url}
                         </Row>
                       </Container>
                     </CardBody>
