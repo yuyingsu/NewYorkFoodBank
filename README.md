@@ -26,7 +26,7 @@ Backend: https://github.com/Scarcrux/NewYorkFoodBankBackend
 ## User Stories
 
 <ul>
-  <li>As a user, I can register on the site</li>
+  <li>As a user, I can register and receive e-mail confirmation (note that registration is currently disabled)</li>
   <li>As a user, I can make a donation</li>
   <li>As a user, I can add/edit/remove/read an organization</li>
   <li>As a user, I can add/edit/remove/read a pantry</li>
