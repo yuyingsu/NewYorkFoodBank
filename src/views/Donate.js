@@ -15,6 +15,7 @@ import {
 } from "../components/utils.js";
 import { useEffect, useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 function Donate() {
   const [amount, setAmount] = useState(0);
@@ -26,6 +27,7 @@ function Donate() {
   const lists = useSelector(state => state.listDonate);
   const { payload,loading } = lists;
   const dispatch = useDispatch();
+  let history = useHistory();
 
   useEffect(() => {
     dispatch(listDonation());
@@ -40,6 +42,8 @@ function Donate() {
 
   const submitPayment = () =>{
     dispatch(donate(amount));
+    alert("Donate Success!");
+    history.push('/');
   }
 
   const handleInputChange = ({ target }) => {
@@ -63,7 +67,7 @@ function Donate() {
     <Fragment>
       <div className="wrapper">
         <Header className="form" />
-        {!loading && <Ticker>
+        {!loading && <Ticker mode="await">
             {() => message ? (
             <p style={{ whiteSpace: "nowrap" }}>{message.toString()}</p>
             ) : (
@@ -76,7 +80,7 @@ function Donate() {
             <Row>
               <Col className="text-center ml-auto mr-auto">
                 <div className="send-button">
-                  <form onSubmit={submitPayment}>
+                  <form>
                     <div className="form-group">
                       <input
                         type="text"
@@ -137,6 +141,7 @@ function Donate() {
                         color="info"
                         href="#pablo"
                         size="lg"
+                        onClick={submitPayment}
                       >
                         Submit Donation
                       </Button>
