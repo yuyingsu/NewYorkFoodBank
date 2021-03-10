@@ -21,7 +21,7 @@ import ReactPlacesSearchBar from "../components/ReactPlacesSearchBar";
 import { register } from '../actions/orgActions';
 import { Header } from "../components/";
 import { useHistory } from "react-router-dom";
-import { listOrgs } from '../actions/orgActions';
+import { listMyOrgs } from '../actions/orgActions';
 
 function AddOrganization() {
   const [organization_name, setOrganizationName] = React.useState("");
@@ -71,7 +71,7 @@ function AddOrganization() {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       dispatch(register(organization_name, phone, type, address, url));
-      dispatch(listOrgs());
+      dispatch(listMyOrgs());
       history.push('/myorgs/');
     }
   }, [formErrors]);
