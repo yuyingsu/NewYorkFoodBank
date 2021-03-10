@@ -33,7 +33,7 @@ import {
       case LIST_PANTRY_REQUEST:
         return { loading: true };
       case LIST_PANTRY_SUCCESS:
-        return { loading: false, pantries: action.payload };
+        return { loading: false, pantries: action.payload, success: true };
       case LIST_PANTRY_FAIL:
         return { loading: false, error: action.payload };
       default: return state;

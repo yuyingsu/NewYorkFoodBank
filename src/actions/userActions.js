@@ -20,11 +20,17 @@ import {
 
 const donate = (amount) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
+  const user_id = userInfo.user_id;
   dispatch({ type: USER_DONATE_REQUEST });
   try {
-    await Axios.post("https://nyfoodbank.herokuapp.com/pay", { "user_id": userInfo.user_id, "amount": amount }, {});
+    await Axios.post("https://nyfoodbank.herokuapp.com/pay/"+user_id, { amount },  {
+      headers: {
+      'Content-Type': 'application/json'
+      }}
+      );
     dispatch({ type: USER_DONATE_SUCCESS });
   } catch (error) {
+    console.log(error.response);
     dispatch({ type: USER_DONATE_FAIL, payload: error.message });
   }
 }

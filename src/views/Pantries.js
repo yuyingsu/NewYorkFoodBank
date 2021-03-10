@@ -14,7 +14,7 @@ function Pantries(props) {
     dispatch(listPantries());
     return () => {};
   }, [])
-
+ 
   return <div className="orgs content-margined">
   <Header className="list"></Header>
   { loadingPantries ? <div>Loading...</div> :

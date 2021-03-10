@@ -43,6 +43,7 @@ function ReactGoogleMaps(props) {
   const [boxes, setBoxes] = useState([]);
   const [currIdx, setCurrentIdx] = useState(-1);
   const pantryHours = [];
+    if(props.pantries){
     props.pantries.forEach(pantry => {
     const hrs = JSON.parse(pantry.hours).schedule;
     const schedule = ['Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed', 'Closed']
@@ -56,6 +57,7 @@ function ReactGoogleMaps(props) {
     })
     pantryHours.push(schedule);
   })
+}
 
 useEffect(() => {
     const initArray = new Array(props.pantries.length);
@@ -63,6 +65,7 @@ useEffect(() => {
      initArray[i]=false;
     setArray(initArray);
     let box = [];
+    if(props.pantries){
     props.pantries.map((pantry, idx)=>(box.push(<InfoBox key={idx}
         position={{lat: parseFloat(pantry.geocode.split(",")[0]), lng: parseFloat(pantry.geocode.split(",")[1])}}
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
@@ -86,7 +89,7 @@ useEffect(() => {
         </div>
       </InfoBox>)));
     setBoxes(box);
-
+    }
     }
     return function cleanup() {
     };
