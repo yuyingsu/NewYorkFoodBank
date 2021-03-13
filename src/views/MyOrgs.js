@@ -21,7 +21,7 @@ function MyOrgs(props) {
     <Header className="list" />
     { loadingOrgs ? <div>Loading...</div> :
       errorOrgs ? <div>{errorOrgs}</div> :
-    <Container style={{paddingBottom: "20px"}} fluid>
+    <Container style={{paddingTop: "40px", paddingBottom: "60px"}} fluid>
       <Row className="d-flex justify-content-end align-items-end" style={{marginTop: "10vh"}}>
         <Link to='/addorg'>
           <Button>
