@@ -40,7 +40,7 @@ function App() {
           <Route exact path="/info" component={MapHouseholdIncome} />
           <Route exact path="/login" component={Login} />
           <Route exact path='/myorgs' component={MyOrgs} />
-          <Route component={NotFound} />
+
           <Route path='/org/:id' exact render={({match}) =>  <Organization id={match.params.id} /> } />         <Route path='/org/:id/addpantry' exact render={({match}) =>  <AddPantry id={match.params.id} /> } />
           <Route path='/org/edit/:id' exact render={({match}) =>  <EditOrganization id={match.params.id} /> } />
           <Route exact path="/orgs" component={Organizations} />
@@ -52,6 +52,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/terms" component={Terms} />
           <Route path='/vieworg/:id' exact render={({match}) =>  <OrganizationPublic id={match.params.id} /> } />
+          <Route component={NotFound} />
           </div>
              <Footer />
           </header>
